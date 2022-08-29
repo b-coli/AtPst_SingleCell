@@ -1,0 +1,11 @@
+Sample_Name,Species,Treatment,Reference,Database,Accession,Sequence_Type
+Control,Arabidopsis thaliana,Control,This study,NCBI,NA,scRNAseq
+DC3000,Arabidopsis thaliana,DC3000,This study,NCBI,NA,scRNAseq
+Control_Bulk_1,Arabidopsis thaliana,Control,This study,NCBI,NA,RNAseq
+Control_Bulk_2,Arabidopsis thaliana,Control,This study,NCBI,NA,RNAseq
+Control_Bulk_3,Arabidopsis thaliana,Control,This study,NCBI,NA,RNAseq
+Control_Proto_1,Arabidopsis thaliana,Control,This study,NCBI,NA,RNAseq
+DC3000_Bulk_1,Arabidopsis thaliana,DC3000,This study,NCBI,NA,RNAseq
+DC3000_Bulk_2,Arabidopsis thaliana,DC3000,This study,NCBI,NA,RNAseq
+DC3000_Bulk_3,Arabidopsis thaliana,DC3000,This study,NCBI,NA,RNAseq
+DC3000_Proto_1,Arabidopsis thaliana,DC3000,This study,NCBI,NA,RNAseq
