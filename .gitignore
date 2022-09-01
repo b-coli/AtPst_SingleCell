@@ -37,3 +37,10 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Large files/file stores
+data/fastq/*
+data/coaker_dataset/*
+genomes/*
+data/expression/*
+*.zip
