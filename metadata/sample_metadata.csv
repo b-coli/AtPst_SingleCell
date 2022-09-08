@@ -1,15 +1,16 @@
-Sample_Name,Species,Treatment,Reference,Sequence_Type
-KimLeaf1,Arabidopsis thaliana,Control,10.1093/plcell/koaa060,scRNAseq
-KimLeaf2,Arabidopsis thaliana,Control,10.1093/plcell/koaa060,scRNAseq
-LopezAnidoLeaf1,Arabidopsis thaliana,Control,10.1016/j.devcel.2021.03.014,scRNAseq
-ProckoLeaf1,Arabidopsis thaliana,Control,10.1093/plcell/koac167,scRNAseq
-Control,Arabidopsis thaliana,Control,This study,scRNAseq
-DC3000,Arabidopsis thaliana,DC3000,This study,scRNAseq
-ControlBulk1,Arabidopsis thaliana,Control,This study,RNAseq
-ControlBulk2,Arabidopsis thaliana,Control,This study,RNAseq
-ControlBulk3,Arabidopsis thaliana,Control,This study,RNAseq
-ControlProto1,Arabidopsis thaliana,Control,This study,RNAseq
-DC3000Bulk1,Arabidopsis thaliana,DC3000,This study,RNAseq
-DC3000Bulk2,Arabidopsis thaliana,DC3000,This study,RNAseq
-DC3000Bulk3,Arabidopsis thaliana,DC3000,This study,RNAseq
-DC3000Proto1,Arabidopsis thaliana,DC3000,This study,RNAseq
+Sample_Name,Species,Treatment,Reference,Sequence_Type,Sample_Type
+KimLeaf1,Arabidopsis thaliana,Control,10.1093/plcell/koaa060,scRNAseq,Protoplast
+KimLeaf2,Arabidopsis thaliana,Control,10.1093/plcell/koaa060,scRNAseq,Protoplast
+LopezAnidoLeaf1,Arabidopsis thaliana,Control,10.1016/j.devcel.2021.03.014,scRNAseq,Protoplast
+ProckoLeaf1,Arabidopsis thaliana,Control,10.1093/plcell/koac167,scRNAseq,Protoplast
+ProckoLeaf2,Arabidopsis thaliana,Control,10.1093/plcell/koac167,scRNAseq,Protoplast
+Control,Arabidopsis thaliana,Control,This study,scRNAseq,Protoplast
+DC3000,Arabidopsis thaliana,DC3000,This study,scRNAseq,Protoplast
+ControlBulk1,Arabidopsis thaliana,Control,This study,RNAseq,Leaf
+ControlBulk2,Arabidopsis thaliana,Control,This study,RNAseq,Leaf
+ControlBulk3,Arabidopsis thaliana,Control,This study,RNAseq,Leaf
+ControlProto1,Arabidopsis thaliana,Control,This study,RNAseq,Protoplast
+DC3000Bulk1,Arabidopsis thaliana,DC3000,This study,RNAseq,Leaf
+DC3000Bulk2,Arabidopsis thaliana,DC3000,This study,RNAseq,Leaf
+DC3000Bulk3,Arabidopsis thaliana,DC3000,This study,RNAseq,Leaf
+DC3000Proto1,Arabidopsis thaliana,DC3000,This study,RNAseq,Protoplast
