@@ -17,14 +17,7 @@ read_bulk_dge <- function(sn) {
   expression %>% dplyr::select(Locus, one_of(sn))
 }
 
-run_edger <- function(dge, md) {
-#  md <- md %>% 
-#    select(Sample_Name, Treatment, Sample_Type) %>% 
-#    group_by(Treatment, Sample_Type) %>% 
-#    mutate(Replicate = 1:n())
-  
-  erobj_norm <- generate_er_object(dge, md)
-  
+get_de_genes <- function(erobj_norm) {
   proto_idx <- which(str_detect(colnames(erobj_norm$design), "Proto"))
   treat_idx <- which(str_detect(colnames(erobj_norm$design), "DC3000"))
   

@@ -1,0 +1,105 @@
+---
+title: "Bulk Data Analysis"
+output: html_document
+date: '2022-09-08'
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+bulk_dge_raw <- targets::tar_read(bulk_dge)
+bulk_erobj <- targets::tar_read(bulk_erobj_norm)
+bulk_dge_norm <- edgeR::cpm(bulk_erobj)
+bulk_de_table <- targets::tar_read(bulk_de_table)
+sample_metadata <- read_csv("metadata/sample_metadata.csv")
+
+```
+
+6 whole-tissue and 2 protoplasted (bulked) samples were processed by:
+
+  *   Trimming adapters and filtering low-quality sequence (trimgalore)
+  *   Mapping to the Arabidopsis genome using STAR (same STAR version and reference used for single-cell data)
+  
+To analyze differential expression as a function of protoplasting and P. syringae treatment, I first loaded the data into a digital expression matrix. Here, I plot expression distributions for each sample. 
+
+```{r plot_raw_distribution}
+bulk_dge_raw %>% 
+  tidyr::gather("Sample_Name", "Expression") %>% 
+  left_join(sample_metadata, by = "Sample_Name") %>%
+  ggplot(aes(x = Sample_Name, y = log1p(Expression))) + 
+  geom_boxplot(aes(fill = interaction(Treatment, Sample_Type))) + 
+  scale_fill_discrete(name = "Sample Type") +
+  theme_bw()
+```
+
+Expression seems fairly even across samples, but could do with a little normalization/filtering
+
+To do this, I imported all data into a new DGEList object (edgeR). I filtered out low-expressed or low-variance genes, and defined a design matrix to identify genes induced by protoplasting, independent of pst3k treatment. 
+
+```{r print_design}
+design <- bulk_erobj$design
+row.names(design) <- row.names(bulk_erobj$samples)
+
+kableExtra::kable(design, format = "latex") %>% kableExtra::kable_styling(full_width = FALSE)
+```
+
+I then normalized the expression matrix. Here, I plot the normalized expression distribution per sample. 
+
+```{r}
+bulk_dge_norm %>% 
+  as_tibble(rownames = "Locus") %>%
+  tidyr::gather("Sample_Name", "Expression", -Locus) %>%
+  left_join(sample_metadata) %>%
+  ggplot(aes(x = Sample_Name, y = log1p(Expression))) + 
+  geom_boxplot(aes(fill = interaction(Treatment, Sample_Type))) + 
+  scale_fill_discrete(name = "Sample Type") +
+  theme_bw()
+
+```
+
+I then used edgeR to build generalized linear models (GLMs) to the data, given the design matrix specified above. I used an adjusted p-value threshold of 0.01 and a log-fold change cutoff of 0.5 to define genes differentially expressed by protoplasting (controlling for DC3000 treatment and interaction between protoplasting and DC3000 treatment). I then repeated the same procedure for genes differentially expressed by DC3000 treatment, using a log-fold change cutoff of 2 and an adjusted p-value of 0.01. Here, I plot the expression distributions of genes based on the effect protoplasting has on them...
+
+
+```{r}
+expr_data <- bulk_dge_norm %>%
+  as_tibble(rownames = "Locus") %>%
+  tidyr::gather("Sample_Name", "Expression", -Locus) %>%
+  left_join(sample_metadata, by = "Sample_Name") %>%
+  left_join(bulk_de_table, by = "Locus")
+
+ggplot(expr_data, aes(x = Sample_Name, y = log1p(Expression))) + 
+  geom_boxplot(aes(fill = de_type_proto)) + 
+  scale_fill_discrete(name = "Protoplast DE Gene") +
+  theme_bw()
+```
+
+...and also by mean expression between protoplasted and bulk samples
+
+```{r}
+expr_data %>%
+  group_by(Locus, Sample_Type, Treatment, de_type_proto) %>%
+  summarize(mean_expr = mean(Expression)) %>%
+  spread(Sample_Type, mean_expr) %>%
+  ggplot(aes(x = log1p(Leaf), y = log1p(Protoplast))) + 
+  geom_point(aes(color = de_type_proto), size = 0.5) +
+  facet_wrap("Treatment")
+```
+
+Here are the same plots for the DC3000 treatment:
+
+```{r}
+ggplot(expr_data, aes(x = Sample_Name, y = log1p(Expression))) + 
+  geom_boxplot(aes(fill = de_type_treat)) + 
+  scale_fill_discrete(name = "DC3000 DE Gene") +
+  theme_bw()
+
+expr_data %>%
+  group_by(Locus, Sample_Type, Treatment, de_type_treat) %>%
+  summarize(mean_expr = mean(Expression)) %>%
+  spread(Treatment, mean_expr) %>%
+  ggplot(aes(x = log1p(Control), y = log1p(DC3000))) + 
+  geom_point(aes(color = de_type_treat), size = 0.5) +
+  facet_wrap("Sample_Type")
+```
