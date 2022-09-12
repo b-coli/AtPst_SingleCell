@@ -91,3 +91,10 @@ while [ "$i" -lt "$len" ]; do
 
         i=$(($i + 1))
 done
+
+## Download the published Frommer dataset, to serve as a reference:
+mkdir -p data/expression/FrommerPublished/
+wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_barcodes.tsv.gz -O data/expression/KimPublished/barcodes.tsv.gz
+wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_features.tsv.gz -O data/expression/KimPublished/features.tsv.gz
+wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_matrix.mtx.gz -O data/expression/KimPublished/matrix.mtx.gz
+

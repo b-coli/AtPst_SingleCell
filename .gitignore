@@ -44,3 +44,4 @@ data/coaker_dataset/*
 genomes/*
 data/expression/*
 *.zip
+_targets/*
