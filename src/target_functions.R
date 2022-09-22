@@ -58,9 +58,9 @@ get_de_genes <- function(erobj_norm) {
                        logFC_treat > 2 & p_adj_treat < 0.01 ~ "DC3000 Up",
                        abs(logFC_treat) <= 2 | p_adj_treat >= 0.01 ~ "Not DE"),
            de_type_proto = 
-             case_when(logFC_proto < -0.5 & p_adj_proto < 0.05 ~ "Proto Down",
-                       logFC_proto > 0.5 & p_adj_proto < 0.05 ~ "Proto Up",
-                       abs(logFC_proto) <= 0.5 | p_adj_proto >= 0.01 ~ "Not DE"))
+             case_when(logFC_proto < -0.5 & p_adj_proto < 0.1 ~ "Proto Down",
+                       logFC_proto > 0.5 & p_adj_proto < 0.1 ~ "Proto Up",
+                       abs(logFC_proto) <= 0.5 | p_adj_proto >= 0.1 ~ "Not DE"))
   
   return(de_table)
   
@@ -153,16 +153,23 @@ get_mito_md <- function(dge) {
     column_to_rownames("Cell")
 }
 
-loom_to_sobj <- function(loom_file, md_file = NA) {
+loom_to_sobj <- function(loom_file, md_file = NA, sample_name = NA) {
   if(!file.exists(loom_file)) return(NA)
-  dges <- SeuratWrappers::ReadVelocity(loom_file)
-  sobj <- CreateSeuratObject(dges$spliced)
+  
+  dge <- SeuratWrappers::ReadVelocity(loom_file)
+  sobj <- as.Seurat(dge)
+  
+  sobj[["RNA"]] <- sobj@assays$spliced
+  DefaultAssay(sobj) <- "RNA"
+  sobj$Sample_Name = sample_name
+  
   if(!is.na(md_file)) {
     md <- read_csv(md_file) %>% column_to_rownames("Barcode")
     sobj <- AddMetaData(sobj, md)
   }
   
   cell_stats <- get_cell_stats(sobj)
+  
   sobj <- AddMetaData(sobj, cell_stats)
   
   return(sobj)
@@ -196,20 +203,29 @@ get_cell_stats <- function(sobj) {
   return(cell_stats)
 }
 
-process_sobj <- function(sobj, ref) {
+process_sobj <- function(sobj, ref, de_table) {
   if(is.na(sobj)) return(NA)
-  sobj <- sobj[,sobj$nUMI >= sobj$UMI_Thresh]
-  sobj <- sobj[,sobj$nUMI < 50000]
-  sobj <- sobj[,sobj$pct.mito < 0.01]
+  cells <- sobj@meta.data %>%
+    as_tibble(rownames = "Cell") %>%
+    filter(nUMI >= UMI_Thresh) %>%
+    filter(pct.mito < 0.01) %>%
+    pull(Cell)
+  
+  sobj <- sobj[,cells]
   
   sobj <- seurat_pipeline(sobj, norm.method = "SCT")
   sobj <- transfer_labels(query = sobj, reference = ref, column = "Cell_Type")
+  
+  dc3000_up_genes <- filter(de_table, de_type_treat == "DC3000 Up") %>% pull(Locus)
+  dc3000_down_genes <- filter(de_table, de_type_treat == "DC3000 Down") %>% pull(Locus)
+  sobj <- Seurat::AddModuleScore(sobj, name = "DC3000.Up", features = list(dc3000_up_genes), assay = "RNA")
+  sobj <- Seurat::AddModuleScore(sobj, name = "DC3000.Down", features = list(dc3000_down_genes), assay = "RNA")
   
   return(sobj)
   
 }
 
-seurat_pipeline <- function(sobj, norm.method = "SCT", num_pcs = 50) {
+seurat_pipeline <- function(sobj, norm.method = "SCT", num_pcs = 50, features = NULL) {
   if(norm.method == "SCT") {
     sobj <- Seurat::SCTransform(sobj)
   } else if(norm.method == "LN") {
@@ -217,9 +233,10 @@ seurat_pipeline <- function(sobj, norm.method = "SCT", num_pcs = 50) {
     sobj <- Seurat::ScaleData(sobj)
   }
   
-  sobj <- RunPCA(sobj, npcs = num_pcs)
+  sobj <- RunPCA(sobj, npcs = num_pcs, features = features)
   sobj <- FindNeighbors(sobj, dims = 1:num_pcs)
   sobj <- FindClusters(sobj, resolution = 0.8)
+  sobj <- FindClusters(sobj, resolution = 1.2)
   sobj <- RunUMAP(sobj, dims = 1:num_pcs)
   
   return(sobj)
@@ -268,8 +285,110 @@ integrate_sobjs <- function(sobj_list, exclude_organelle_loci = TRUE,
   sobj_integrated <- seurat_pipeline(
     sobj_integrated, 
     norm.method = "none", 
-    num_pcs = 50
+    num_pcs = 50,
+    features = features
   )
-
+  
+  sobj_integrate <- RunUMAP(
+    sobj_integrated, 
+    dims = 1:50,
+    n.components = 3,
+    reduction.key = "UMAP3D_", 
+    reduction.name = "umap3d"
+  )
+  
   return(sobj_integrated)
+}
+
+monocle_pipeline <- function(sobj, cells, features, gene_ids) {
+  
+  gene_names <- gene_ids %>%
+    group_by(Locus) %>%
+    summarize(Gene = Gene[1])
+  
+  umap <- Seurat::Embeddings(sobj, reduction = "umap") %>% as_tibble(rownames = "Cell")
+  
+  cell_data <- sobj@meta.data %>%
+    as_tibble(rownames = "Cell") %>%
+    left_join(umap, by = "Cell") %>%
+    mutate(seurat_clusters = as.numeric(as.character(seurat_clusters)))
+  
+  dge <- Seurat::GetAssayData(sobj, assay = "SCT", slot = "data")
+  dge <- dge[features,]
+  dge <- dge[,cells]
+  
+  md <- cell_data %>% 
+    filter(Cell %in% cells) %>%
+    column_to_rownames("Cell")
+  
+  cds <- monocle3::new_cell_data_set(
+    dge,
+    cell_metadata = md[cells,],
+    gene_metadata = data.frame(
+      Locus = features, 
+      gene_short_name = features, 
+      row.names = features, 
+      stringsAsFactors = F)
+    )
+  
+  cds <- monocle3::preprocess_cds(cds, num_dim = 5, norm_method = "none")
+  cds <- monocle3::reduce_dimension(
+    cds, reduction_method = "UMAP", 
+    preprocess_method = "PCA", 
+    umap.metric = "correlation", 
+    umap.min_dist = 0.01
+  )
+  
+  cds <- monocle3::cluster_cells(cds)
+  
+  start_cluster <- cell_data %>%
+    mutate(diff_score = DC3000.Up1 - DC3000.Down1) %>%
+    group_by(seurat_clusters) %>%
+    summarize(mean_score = mean(diff_score)) %>%
+    slice_min(mean_score, n = 1) %>%
+    pull(seurat_clusters)
+  
+  start_cell <- cell_data %>%
+    filter(seurat_clusters == start_cluster) %>% 
+    filter(Sample_Name == "DC3000") %>%
+    mutate(Signiture = (DC3000.Up1 - DC3000.Down1)) %>% 
+    slice_min(Signiture, n = 1) %>%
+    pull(Cell) %>% .[1]
+  
+  cds <- monocle3::learn_graph(
+    cds, 
+    learn_graph_control = list(
+      minimal_branch_len = 15), 
+    use_partition = F
+  )
+  
+  cds <- monocle3::order_cells(cds, root_cells = start_cell)
+  
+  return(cds)
+}
+
+monocle_get_var_genes <- function(cds) {
+  pseudotime_genes <- graph_test(
+    cds, 
+    neighbor_graph="principal_graph", 
+    cores=4
+  )
+  
+  pt_var_genes <- filter(pseudotime_genes, morans_I > 0.2) %>% row.names()
+  
+  return(pt_var_genes)
+
+}
+
+download_and_read_gz <- function(url, type = "rds") {
+  tmpfn <- paste0("tmp.gz")
+  system("gunzip ", tmpfn)
+  tmpfn <- "tmp"
+  download.file(url, destfile = tmpfn)
+  if(type == "csv") out <- read_csv(tmpfn)
+  if(type %in% c("txt", "tsv")) out <- read_tsv(tmpfn)
+  if(type == "rds" & compression == ".gz") out <- read_rds(tmpfn)
+
+  file.remove(tmpfn)
+  return(out)
 }

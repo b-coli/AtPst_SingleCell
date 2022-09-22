@@ -97,4 +97,4 @@ mkdir -p data/expression/FrommerPublished/
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_barcodes.tsv.gz -O data/expression/KimPublished/barcodes.tsv.gz
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_features.tsv.gz -O data/expression/KimPublished/features.tsv.gz
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_matrix.mtx.gz -O data/expression/KimPublished/matrix.mtx.gz
-
+wget https://www.arabidopsis.org/download_files/Public_Data_Releases/TAIR_Data_20200930/gene_aliases_20200930.txt.gz -O data/gene_aliases_20200930.txt.gz
