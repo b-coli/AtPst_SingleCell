@@ -1,0 +1,7 @@
+BiocManager::install('pcaMethods', update = FALSE, version = "3.12")
+remotes::install_github("satijalab/seurat", ref = "84e5d20475f4d7db6b5b7d08ed5d4317831f662a", upgrade = "never")
+remotes::install_github("velocyto-team/velocyto.R", upgrade = "never")
+remotes::install_github("mojaveazure/loomR", upgrade = "never")
+remotes::install_github("mojaveazure/seurat-disk", upgrade = "never")
+remotes::install_github("satijalab/seurat-wrappers", upgrade = "never")
+remotes::install_version("Matrix", version = "1.3-2")

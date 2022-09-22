@@ -1,4 +1,4 @@
-FROM rocker/rstudio:4.1.2
+FROM rocker/rstudio:4.0.3
 
 RUN apt-get update \
 	&& apt-get -y install zlib1g-dev \
@@ -20,9 +20,15 @@ RUN apt-get update \
 	&& apt-get -y install build-essential \
 	&& apt-get -y install libcairo2-dev \
 	&& apt-get -y install libxt-dev \
-	&& apt-get -y install libgdal-dev
+	&& apt-get -y install libgdal-dev \
+	&& apt-get -y install libudunits2-dev
 
+ADD install_bioconductor_packages.R /
 ADD install_R_packages.R /
+ADD install_seurat.R /
+ADD install_monocle.R /
 
 RUN R -e "source(\"install_R_packages.R\")"
-
+RUN R -e "source(\"install_seurat.R\")"
+RUN R -e "source(\"install_bioconductor_packages.R\")"
+RUN R -e "source(\"install_monocle.R\")"
