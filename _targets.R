@@ -182,7 +182,20 @@ archival_data <- list(
 
   tar_target(
      archived_sobj,
-     read_rds(archived_sobj_file)
+     read_archived_sobj(
+       fn = archived_sobj_file,
+       cluster_names = archived_clusterNames)
+  ),
+  
+  tar_target(
+    archived_clusterNames_file,
+    "data/cluster_renaming.csv",
+    format = "file"
+  ),
+  
+  tar_target(
+    archived_clusterNames,
+    read_csv(archived_clusterNames_file)
   ),
   
   tar_render(

@@ -58,7 +58,7 @@ ggplot(all_counts,
   theme_bw() +
   theme(strip.background = element_blank())
 
-ggsave("plots/pseudobulk_correlation.ps", family = "ArialMT")
+ggsave("plots/pseudobulk_correlation.pdf", family = "ArialMT")
 ```
 
 ```{r}

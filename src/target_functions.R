@@ -468,3 +468,20 @@ get_cell_data <- function(sobj) {
   x = left_join(md, reductions)
   return(x)
 }
+
+read_archived_sobj <- function(fn, cluster_names) {
+  sobj <- read_rds(fn)
+  cell_data <- get_cell_data(sobj)
+  cluster_renamed <- cluster_names %>%
+    mutate(seurat_clusters = factor(
+      seurat_clusters, 
+      levels = levels(sobj@meta.data$seurat_clusters))) %>%
+    right_join(cell_data) %>%
+    select(Cell, Cluster) %>%
+    column_to_rownames("Cell")
+  
+  sobj <- AddMetaData(sobj, cluster_renamed)
+  
+  return(sobj)
+  
+}

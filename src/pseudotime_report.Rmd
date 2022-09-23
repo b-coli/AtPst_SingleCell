@@ -20,10 +20,19 @@ mumap <- as.data.frame(reducedDims(cds)[["UMAP"]]) %>%
 
 pt <- enframe(pseudotime(cds, reduction_method = 'UMAP'), "Cell", "Pseudotime")
 
-cell_data <- as_tibble(sobj@meta.data, rownames = "Cell") %>%
-  left_join(Embeddings(sobj, reduction = "umap") %>% as_tibble(rownames = "Cell")) %>%
+cell_data <- get_cell_data(sobj) %>%
   left_join(mumap) %>%
   left_join(pt)
+```
+
+```{r}
+color_scheme <- tar_read(archived_clusterNames) %>%
+  select(Cluster, Color) %>%
+  deframe()
+
+plot_cells(cds, color_cells_by = "Cluster", trajectory_graph_segment_size = 0.75, label_cell_groups = F, label_branch_points = F, label_leaves = F) + scale_color_manual(values = color_scheme)
+
+ggsave("plots/monocle_trajectory.pdf", family = "ArialMT")
 ```
 
 ```{r}
@@ -32,7 +41,7 @@ plot_pt_heatmap(sobj, pt, apriori_genes, gene_names = tar_read(gene_ids)) +
   facet_grid(Category ~ 1, scales = 'free') +
   theme(strip.background = element_blank())
 
-ggsave("plots/pseuotime_heatmap_apriori.ps", family = "ArialMT")
+ggsave("plots/pseuotime_heatmap_apriori.pdf", family = "ArialMT", height = 12, width = 8)
 ```
 
 ```{r}
@@ -48,6 +57,6 @@ plot_pt_heatmap(
         strip.background = element_blank()
   )
 
-ggsave("plots/pseuotime_heatmap_apriori.ps", family = "ArialMT")
+ggsave("plots/pseudotime_heatmap_novel.pdf", height = 10, width = 8, family = "ArialMT")
 ```
 

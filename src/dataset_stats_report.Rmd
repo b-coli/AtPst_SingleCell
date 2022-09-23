@@ -11,7 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 sobj <- tar_read(archived_sobj)
-cell_data <- get_cell_data(sobj)
+cell_data <- get_cell_data(sobj) %>% 
+  mutate(seurat_clusters = as.character(seurat_clusters) %>% as.numeric()) %>%
+  left_join(tar_read(archived_clusterNames))
 ```
 
 ```{r}
@@ -21,7 +23,7 @@ ggplot(cell_data, aes(x = Sample_Name, y = nCount_RNA)) +
        x = "Sample") +
   theme_bw()
 
-ggsave("plots/UMI_stats.ps", family = "ArialMT")
+ggsave("plots/UMI_stats.pdf", family = "ArialMT")
 ```
 
 ```{r}
@@ -31,6 +33,38 @@ ggplot(cell_data, aes(x = Sample_Name, y = cell_data$nFeature_RNA)) +
        x = "Sample") +
   theme_bw()
 
-ggsave("plots/gene_stats.ps", family = "ArialMT")
+ggsave("plots/gene_stats.pdf", family = "ArialMT")
+```
+
+```{r}
+color_scheme <- cell_data %>%
+    select(Cluster_Type, Color) %>%
+    unique() %>%
+    deframe()
+
+ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2)) + 
+    geom_point(aes(color = Cluster_Type), size = 1) +
+    scale_color_manual(values = color_scheme, name = "Cell Type") +
+    guides(color = guide_legend(override.aes = list(size = 3))) +
+    labs(x = "UMAP 1", y = "UMAP 2") +
+    coord_fixed() +
+    theme_void() +
+    theme(axis.title.x = element_text(hjust = 0)) +
+    theme(axis.title.y = element_text(hjust = 0, angle = 90))
+
+ggsave("plots/umap_celltype.pdf", family = "ArialMT")
+```
+
+```{r}
+ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2, group = -1)) +
+    stat_summary_hex(aes(z = Sample_Name == "DC3000"), fun = mean, binwidth = 0.25, color = 'black', lwd = 0.1) +
+    scale_fill_viridis_c(option = "plasma", name = "Proportion DC3000-Treated Cells") +
+    labs(x = "UMAP 1", y = "UMAP 2") +
+    coord_fixed() +
+    theme_void() +
+    theme(axis.title.x = element_text(hjust = 0)) +
+    theme(axis.title.y = element_text(hjust = 0, angle = 90))
+
+ggsave("plots/umap_sampledensity.pdf", family = "ArialMT")
 ```
 
