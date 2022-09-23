@@ -1,0 +1,1270 @@
+nohup: ignoring input
+INFO:    Using cached SIF image
+
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> targets::tar_make()
+Loading required package: limma
+Registered S3 method overwritten by 'spatstat':
+  method     from
+  print.boxx cli 
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.0.6     ✔ dplyr   1.0.4
+✔ tidyr   1.1.2     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  Sample_Name = col_character(),
+  Species = col_character(),
+  Treatment = col_character(),
+  Reference = col_character(),
+  Sequence_Type = col_character(),
+  Sample_Type = col_character(),
+  Cell_Metadata_File = col_character()
+)
+
+✔ skip target loom_file_DC3000
+✔ skip target loom_file_Control
+✔ skip target bulk_dge
+✔ skip target loom_file_KimLeaf1
+✔ skip target leaf_ref
+✔ skip target loom_file_KimLeaf2
+✔ skip target loom_file_ProckoLeaf1
+✔ skip target loom_file_ProckoLeaf2
+✔ skip target loom_file_Lopez.AnidoLeaf1
+✔ skip target raw_sobj_DC3000
+✔ skip target raw_sobj_Control
+✔ skip target bulk_erobj_norm
+✔ skip target raw_sobj_KimLeaf1
+✔ skip target raw_sobj_KimLeaf2
+✔ skip target raw_sobj_ProckoLeaf1
+● run target raw_sobj_ProckoLeaf2
+reading loom file via hdf5r...
+  |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%
+● run target raw_sobj_Lopez.AnidoLeaf1
+reading loom file via hdf5r...
+  |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%
+● run target bulk_de_table
+Joining, by = "Locus"
+● run target protoplast_loci
+● run target sobj_Control
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 18529 by 5601
+Model formula is y ~ log_umi
+  |                                                                              |                                                                      |   0%Get Negative Binomial regression parameters per gene
+Using 2000 genes, 5000 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 174 outliers - those will be ignored in fitting/regularization step
+
+Second step: Get residuals using fitted parameters for 18529 genes
+  |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |===============                                                       |  21%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |============================                                          |  39%  |                                                                              |=============================                                         |  42%  |                                                                              |===============================                                       |  45%  |                                                                              |=================================                                     |  47%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  55%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  61%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  79%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  87%  |                                                                              |===============================================================       |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+  |                                                                              |                                                                      |   0%Computing corrected count matrix for 18529 genes
+  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |===============                                                       |  21%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |============================                                          |  39%  |                                                                              |=============================                                         |  42%  |                                                                              |===============================                                       |  45%  |                                                                              |=================================                                     |  47%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  55%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  61%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  79%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  87%  |                                                                              |===============================================================       |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 2.01065 mins
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT3G49780, AT3G54420, AT3G28210, AT2G38240, AT1G52200, AT4G34230, AT3G13520, AT2G39518, AT1G10585, AT4G15610 
+	   AT1G45145, AT2G30490, AT4G04610, AT2G32240, AT5G24660, AT1G07590, AT1G05340, AT2G43510, AT1G67920, AT2G32190 
+	   AT4G37990, AT2G37430, AT2G29460, AT5G54500, AT1G10370, AT4G02380, AT1G19020, AT1G22400, AT3G48520, AT1G62840 
+Negative:  AT1G29910, AT1G29920, AT5G54270, AT2G34430, AT2G34420, AT2G05070, AT1G29930, AT3G08940, AT3G27690, AT5G38410 
+	   AT1G03130, AT3G47470, AT1G06680, AT2G10940, AT4G02770, AT1G61520, AT1G51400, AT2G45180, AT1G15820, AT5G24770 
+	   AT1G72610, AT1G67090, AT3G26740, AT1G52230, AT2G21660, AT3G62550, AT5G38420, AT2G42530, AT3G14210, AT4G18440 
+PC_ 2 
+Positive:  AT1G52200, AT4G37990, AT5G51070, AT1G10585, AT4G22470, AT3G50900, AT2G39518, AT2G30490, AT2G43510, AT3G16530 
+	   AT2G38870, AT4G34230, AT2G05380, AT1G37130, AT4G21390, AT1G62300, AT4G04610, AT2G02990, AT3G25760, AT3G22060 
+	   AT1G47130, AT2G39350, AT1G22400, AT2G40890, AT2G17500, AT4G16760, AT1G21980, AT5G50200, AT2G41835, AT4G13510 
+Negative:  AT5G02380, AT3G14990, AT1G01470, AT3G23030, AT4G01360, AT3G15353, AT1G05340, AT5G14730, AT4G09030, AT2G02100 
+	   AT4G34131, AT1G18740, AT3G56240, AT4G24060, AT2G24940, AT2G22330, AT2G27310, AT2G46650, AT4G14040, AT1G27730 
+	   AT5G04340, AT3G50970, AT1G07430, AT4G19200, AT2G32210, AT1G20823, AT1G20440, AT3G11930, AT4G34410, AT5G45350 
+PC_ 3 
+Positive:  AT1G14870, AT2G05520, AT2G25510, AT2G43510, AT4G02520, AT3G49120, AT5G42530, AT2G25297, AT4G15610, AT2G39518 
+	   AT2G35980, AT1G65690, AT2G25735, AT1G69930, AT5G25250, AT1G53625, AT1G57630, AT1G65845, AT2G37430, AT3G15518 
+	   AT3G23250, AT1G62300, AT3G55470, AT2G18690, AT4G14450, AT4G25810, AT5G03610, AT1G02920, AT1G27730, AT1G26380 
+Negative:  AT3G28210, AT1G10370, AT3G25770, AT3G25760, AT1G21980, AT1G22400, AT5G16010, AT1G76070, AT5G16970, AT4G34230 
+	   AT3G52360, AT1G32860, AT4G21990, AT2G46370, AT5G17000, AT2G32240, AT5G54165, AT1G15430, AT4G36040, AT4G21440 
+	   AT3G06500, AT5G24570, AT2G35700, AT5G01340, AT5G03030, AT5G42650, AT5G24660, AT4G05100, AT1G01470, AT4G24960 
+PC_ 4 
+Positive:  AT5G42380, AT4G39670, AT1G05575, AT1G56060, AT3G55840, AT4G35985, AT3G02840, AT3G05500, AT1G22810, AT3G46080 
+	   AT3G23250, AT3G61190, AT5G57560, AT2G31945, AT1G18740, AT5G20230, AT3G45730, AT2G25735, AT4G31800, AT2G38790 
+	   AT5G54490, AT4G01250, AT3G46090, AT1G76650, AT1G07160, AT5G56980, AT4G14365, AT1G15010, AT1G25400, AT2G25297 
+Negative:  AT5G02380, AT1G07590, AT3G15353, AT1G54410, AT3G56240, AT5G67600, AT4G38740, AT5G42980, AT4G19840, AT5G12140 
+	   AT4G00780, AT5G64240, AT2G30490, AT4G09030, AT1G10585, AT4G19200, AT1G22710, AT5G18600, AT1G67865, AT1G23130 
+	   AT4G34870, AT1G64370, AT5G57350, AT1G67860, AT1G67870, AT1G69510, AT1G64360, AT1G31340, AT2G21060, AT2G32870 
+PC_ 5 
+Positive:  AT4G14040, AT2G22330, AT5G03610, AT2G46650, AT3G14990, AT2G02100, AT5G23010, AT5G14200, AT4G13770, AT1G78370 
+	   AT3G15450, AT5G48180, AT2G37170, AT2G33380, AT5G26340, AT1G25230, AT3G22890, AT3G19710, AT2G22860, AT4G04830 
+	   AT2G43100, AT2G24940, AT3G54600, AT3G13520, AT2G30490, AT1G60989, AT4G18280, AT2G25450, AT1G21440, AT4G13430 
+Negative:  AT1G56060, AT5G01750, AT4G00780, AT1G22710, AT5G64240, AT1G67870, AT5G18600, AT5G57350, AT2G31945, AT1G64370 
+	   AT4G19840, AT1G64360, AT1G67860, AT2G32870, AT1G79430, AT4G39670, AT5G42980, AT2G16740, AT1G23130, AT1G67865 
+	   AT4G35985, AT4G15660, AT1G06830, AT1G58360, AT5G18240, AT5G04080, AT4G15690, AT4G15700, AT5G45350, AT3G05500 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 5601
+Number of edges: 196846
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8202
+Number of communities: 14
+Elapsed time: 0 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 5601
+Number of edges: 196846
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.7868
+Number of communities: 20
+Elapsed time: 0 seconds
+*****|
+Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session
+16:30:25 UMAP embedding parameters a = 0.9922 b = 1.112
+16:30:25 Read 5601 rows and found 50 numeric columns
+16:30:25 Using Annoy for neighbor search, n_neighbors = 30
+16:30:25 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:30:26 Writing NN index file to temp file /tmp/RtmpE1c214/file696e69469fc6
+16:30:26 Searching Annoy index using 1 thread, search_k = 3000
+16:30:27 Annoy recall = 100%
+16:30:28 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:30:28 Initializing from normalized Laplacian + noise (using irlba)
+16:30:29 Commencing optimization for 500 epochs, with 237148 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:30:35 Optimization finished
+Performing PCA on the provided reference using 2610 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 4068 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target sobj_DC3000
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 19151 by 6294
+  |                                                                              |                                                                      |   0%Model formula is y ~ log_umi
+Get Negative Binomial regression parameters per gene
+Using 2000 genes, 5000 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 150 outliers - those will be ignored in fitting/regularization step
+
+Second step: Get residuals using fitted parameters for 19151 genes
+  |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  15%  |                                                                              |=============                                                         |  18%  |                                                                              |==============                                                        |  21%  |                                                                              |================                                                      |  23%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  28%  |                                                                              |======================                                                |  31%  |                                                                              |=======================                                               |  33%  |                                                                              |=========================                                             |  36%  |                                                                              |===========================                                           |  38%  |                                                                              |=============================                                         |  41%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |=========================================                             |  59%  |                                                                              |===========================================                           |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  69%  |                                                                              |==================================================                    |  72%  |                                                                              |====================================================                  |  74%  |                                                                              |======================================================                |  77%  |                                                                              |========================================================              |  79%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  85%  |                                                                              |=============================================================         |  87%  |                                                                              |===============================================================       |  90%  |                                                                              |=================================================================     |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+  |                                                                            Computing corrected count matrix for 19151 genes
+  |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  15%  |                                                                              |=============                                                         |  18%  |                                                                              |==============                                                        |  21%  |                                                                              |================                                                      |  23%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  28%  |                                                                              |======================                                                |  31%  |                                                                              |=======================                                               |  33%  |                                                                              |=========================                                             |  36%  |                                                                              |===========================                                           |  38%  |                                                                              |=============================                                         |  41%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |=========================================                             |  59%  |                                                                              |===========================================                           |  62%  |                                                                              |=============================================                         |  64%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  69%  |                                                                              |==================================================                    |  72%  |                                                                              |====================================================                  |  74%  |                                                                              |======================================================                |  77%  |                                                                              |========================================================              |  79%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  85%  |                                                                              |=============================================================         |  87%  |                                                                              |===============================================================       |  90%  |                                                                              |=================================================================     |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 2.040478 mins
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT3G13520, AT1G14870, AT3G49780, AT3G22600, AT1G69930, AT1G14880, AT2G39518, AT1G15520, AT2G34500, AT1G53625 
+	   AT2G35980, AT1G52200, AT4G15610, AT1G33960, AT5G03610, AT2G45760, AT4G02520, AT5G13080, AT2G32190, AT2G43510 
+	   AT2G43570, AT3G18250, AT4G37990, AT2G04450, AT3G49120, AT2G45220, AT1G19020, AT4G39670, AT1G67920, AT1G62300 
+Negative:  AT2G34430, AT1G29910, AT5G54270, AT1G29920, AT2G05070, AT2G34420, AT3G08940, AT1G29930, AT5G24770, AT3G27690 
+	   AT2G21660, AT1G72610, AT3G53420, AT4G23600, AT1G51400, AT5G38410, AT1G67090, AT3G62550, AT1G61520, AT3G47470 
+	   AT5G64040, AT4G08870, AT1G06680, AT4G02770, AT1G03130, AT1G15820, AT2G06520, AT3G61430, AT2G43550, AT2G45180 
+PC_ 2 
+Positive:  AT1G22810, AT1G76680, AT2G34430, AT5G16970, AT5G17000, AT1G10370, AT2G38870, AT1G47130, AT5G16010, AT2G17840 
+	   AT5G11670, AT2G21660, AT3G54420, AT4G34230, AT4G24380, AT4G01250, AT1G19380, AT1G15010, AT5G15970, AT2G32240 
+	   AT1G05340, AT4G18950, AT2G28900, AT4G30650, AT1G20440, AT1G07135, AT2G47730, AT4G31550, AT3G49780, AT4G24960 
+Negative:  AT1G14880, AT3G60415, AT2G04450, AT3G52430, AT1G33960, AT4G21840, AT1G01680, AT2G24850, AT3G18250, AT4G02520 
+	   AT1G13340, AT2G25510, AT2G43570, AT5G10380, AT4G21850, AT4G08870, AT1G69930, AT3G21080, AT5G25260, AT2G14610 
+	   AT3G56400, AT4G23600, AT3G46080, AT4G39030, AT1G14870, AT5G52760, AT2G39030, AT5G26920, AT5G55450, AT5G24210 
+PC_ 3 
+Positive:  AT2G34430, AT1G72610, AT2G21660, AT2G45180, AT3G27690, AT4G21840, AT2G05070, AT1G29910, AT1G01680, AT1G20620 
+	   AT2G04450, AT5G42380, AT3G63160, AT1G33960, AT4G39030, AT3G52430, AT5G54270, AT4G24570, AT1G53620, AT1G53625 
+	   AT1G18740, AT5G57560, AT1G22810, AT2G10940, AT2G46400, AT3G21080, AT4G30650, AT3G08940, AT5G26920, AT2G45760 
+Negative:  AT1G80160, AT4G37990, AT4G23600, AT4G08870, AT1G43160, AT3G61430, AT2G39030, AT3G53420, AT2G38240, AT2G33380 
+	   AT5G14180, AT1G10585, AT5G07010, AT3G04000, AT5G02600, AT2G43510, AT5G65660, AT5G42530, AT1G07590, AT3G59940 
+	   AT3G55970, AT1G19670, AT2G25510, AT2G36950, AT5G26340, AT2G34500, AT5G24770, AT2G25450, AT1G64660, AT3G28220 
+PC_ 4 
+Positive:  AT1G52200, AT2G34430, AT4G37990, AT1G14880, AT2G39518, AT2G34500, AT2G38870, AT1G15520, AT3G50900, AT2G43510 
+	   AT1G10585, AT2G14610, AT5G51070, AT1G29910, AT4G15610, AT2G29350, AT4G22470, AT3G22600, AT3G26830, AT2G05380 
+	   AT4G02380, AT1G29920, AT1G02920, AT2G26560, AT1G73965, AT1G10370, AT3G63160, AT1G02930, AT1G50740, AT3G18250 
+Negative:  AT5G02380, AT3G56240, AT3G14990, AT2G22330, AT3G23030, AT3G15353, AT3G11930, AT4G19200, AT1G07430, AT4G24060 
+	   AT4G09030, AT3G12580, AT2G22860, AT4G01360, AT1G72800, AT5G67600, AT5G12140, AT5G45350, AT4G34135, AT2G33380 
+	   AT1G01470, AT3G05880, AT1G78370, AT1G14200, AT4G04830, AT4G34131, AT3G46080, AT1G54410, AT2G32210, AT4G16790 
+PC_ 5 
+Positive:  AT4G23600, AT4G08870, AT5G42380, AT1G22810, AT3G54420, AT3G05500, AT1G47130, AT5G24770, AT5G17000, AT3G61430 
+	   AT1G10370, AT1G15010, AT4G31550, AT3G53420, AT2G17840, AT3G28210, AT1G09932, AT1G67920, AT5G24530, AT3G46080 
+	   AT5G52760, AT3G52430, AT3G56400, AT3G04000, AT1G19670, AT1G31580, AT2G14560, AT5G16970, AT1G24147, AT5G24780 
+Negative:  AT2G34500, AT5G02380, AT3G56240, AT1G15520, AT2G34430, AT2G21660, AT3G49120, AT3G26830, AT2G14610, AT2G43510 
+	   AT3G15353, AT2G29350, AT4G19840, AT1G54410, AT5G67600, AT3G18250, AT1G72610, AT4G37990, AT3G22600, AT3G27690 
+	   AT5G18600, AT4G09030, AT1G64370, AT5G42980, AT5G22270, AT4G00780, AT2G29470, AT2G30770, AT5G12140, AT1G22710 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6294
+Number of edges: 216529
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8263
+Number of communities: 14
+Elapsed time: 0 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6294
+Number of edges: 216529
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.7932
+Number of communities: 18
+Elapsed time: 0 seconds
+*****|
+16:34:29 UMAP embedding parameters a = 0.9922 b = 1.112
+16:34:29 Read 6294 rows and found 50 numeric columns
+16:34:29 Using Annoy for neighbor search, n_neighbors = 30
+16:34:29 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:34:30 Writing NN index file to temp file /tmp/RtmpE1c214/file696e1d95b2e1
+16:34:30 Searching Annoy index using 1 thread, search_k = 3000
+16:34:32 Annoy recall = 100%
+16:34:33 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:34:33 Initializing from normalized Laplacian + noise (using irlba)
+16:34:34 Commencing optimization for 500 epochs, with 258940 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:34:41 Optimization finished
+Performing PCA on the provided reference using 2684 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 4280 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target sobj_KimLeaf1
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 18110 by 2379
+  |                                                                              |                                                                      |   0%Model formula is y ~ log_umi
+Get Negative Binomial regression parameters per gene
+Using 2000 genes, 2379 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 69 outliers - those will be ignored in fitting/regularization step
+
+Second step: Get residuals using fitted parameters for 18110 genes
+  |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |========                                                              |  11%  |                                                                              |=========                                                             |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  19%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |=====================                                                 |  30%  |                                                                              |=======================                                               |  32%  |                                                                              |=========================                                             |  35%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  41%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  59%  |                                                                              |============================================                          |  62%  |                                                                              |=============================================                         |  65%  |                                                                              |===============================================                       |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |=========================================================             |  81%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+  |                                                                              |                                                                      |   0%Computing corrected count matrix for 18110 genes
+  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |========                                                              |  11%  |                                                                              |=========                                                             |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  19%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |=====================                                                 |  30%  |                                                                              |=======================                                               |  32%  |                                                                              |=========================                                             |  35%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  41%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  59%  |                                                                              |============================================                          |  62%  |                                                                              |=============================================                         |  65%  |                                                                              |===============================================                       |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |=========================================================             |  81%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 29.31722 secs
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT5G54940, AT4G30530, AT5G02380, AT1G54410, AT1G09070, AT1G70700, AT2G24940, AT1G54050, AT2G29450, AT2G41430 
+	   AT1G20620, AT1G07590, AT2G47730, AT1G76180, AT3G09440, AT4G38740, AT4G32020, AT4G19200, AT5G56010, AT1G20450 
+	   AT3G12580, AT4G21960, AT1G19570, AT3G15353, AT5G05410, AT1G74310, AT5G08790, AT5G02500, AT5G56030, AT5G63790 
+Negative:  AT4G26530, AT2G10940, AT5G38420, AT3G14210, AT3G47070, AT1G29070, AT3G62030, AT1G13650, AT5G48490, AT5G38430 
+	   AT3G56910, AT4G13577, AT1G29910, AT1G12090, AT4G35090, AT2G25510, AT2G34430, AT1G50732, AT5G42530, AT3G14420 
+	   ATCG00470, ATCG00340, ATCG00440, AT4G33666, AT4G33010, AT4G31870, AT2G40100, AT1G14250, ATCG00080, AT1G03130 
+PC_ 2 
+Positive:  AT5G12030, AT3G13310, AT1G07400, AT3G12580, AT5G12020, AT5G08790, AT1G53540, AT2G29500, AT3G46230, AT1G16030 
+	   AT5G63790, AT3G15353, AT1G54050, AT5G54165, AT5G59820, AT2G46240, AT4G12400, AT4G13395, AT5G05410, AT1G74310 
+	   AT2G26150, AT5G04340, AT3G09440, AT1G27730, AT5G64310, AT4G13770, AT1G66500, AT5G52640, AT5G02380, AT4G14040 
+Negative:  AT2G05520, AT4G17245, AT2G32690, AT1G66100, AT3G51600, AT2G38540, AT5G54585, AT1G09310, AT1G68530, AT3G26450 
+	   AT5G25610, AT3G16370, AT2G27385, AT4G15630, AT1G29670, AT2G26250, AT5G64770, AT4G33220, AT5G44020, AT4G21620 
+	   AT3G23050, AT4G23670, AT1G04250, AT3G43720, AT1G51500, AT1G55260, AT4G38770, AT3G48720, AT1G29660, AT4G39330 
+PC_ 3 
+Positive:  AT2G37170, AT4G13770, AT4G14040, AT3G15353, AT2G30860, AT5G02380, AT2G20610, AT1G20620, AT3G22890, AT1G25230 
+	   AT2G14750, AT3G52720, AT2G24940, AT2G36830, AT3G54600, AT1G24100, AT2G46650, AT1G74100, AT5G44720, AT4G31500 
+	   AT3G43800, AT2G18960, AT3G23570, AT4G30530, AT4G38740, AT5G04590, AT1G19570, AT4G04830, AT4G39940, AT2G26690 
+Negative:  AT5G59820, AT1G27730, AT5G08790, AT3G13310, AT4G13395, AT5G12030, AT3G46230, AT5G54165, AT5G04340, AT5G03210 
+	   AT4G27652, AT5G63790, AT2G29500, AT1G18740, AT1G32920, AT3G12580, AT1G07400, AT1G54050, AT1G76600, AT5G10695 
+	   AT4G11280, AT1G53540, AT1G16030, AT1G76650, AT1G01720, AT4G17500, AT5G05410, AT1G19210, AT1G14200, AT1G71000 
+PC_ 4 
+Positive:  AT3G56240, AT5G67600, AT1G54410, AT4G38740, AT5G12140, AT4G34870, AT4G19200, AT5G02380, AT5G22090, AT5G54660 
+	   AT4G09030, AT4G19840, AT2G21660, AT2G31200, AT1G69510, AT1G07640, AT5G42980, AT3G01470, AT1G31812, AT1G15270 
+	   AT2G21060, AT3G15353, AT3G24100, AT2G02130, AT5G48480, AT1G79430, AT2G35635, AT4G11220, AT5G04080, AT2G28810 
+Negative:  AT5G42530, AT2G41100, AT1G24147, AT2G41090, AT5G57560, AT2G23810, AT2G25510, AT4G14040, AT5G19240, AT3G45140 
+	   AT1G31580, AT4G34150, AT2G31880, AT2G17040, AT2G37170, AT2G36830, AT4G13770, AT4G12720, AT4G27280, AT4G14365 
+	   AT1G72930, AT2G46600, AT3G45640, AT3G04520, AT2G25450, AT4G08870, AT3G56710, AT3G56400, AT5G52750, AT4G23600 
+PC_ 5 
+Positive:  AT5G12030, AT1G74670, AT1G54050, AT3G13310, AT3G12580, AT3G16240, AT4G14040, AT1G07400, AT4G13770, AT3G26520 
+	   AT4G29905, AT1G74930, AT1G53540, AT3G52720, AT4G11280, AT1G12090, AT5G12020, AT2G10940, AT5G59820, AT4G04830 
+	   AT3G54600, AT5G08790, AT1G78370, AT3G03780, AT3G22890, AT5G22920, AT4G04610, AT1G19210, AT2G20610, AT3G61430 
+Negative:  AT2G25510, AT5G42530, AT4G14400, AT2G41090, AT4G13510, AT1G24147, AT2G16600, GSR 1, AT1G21250, AT1G72060 
+	   AT5G19240, AT4G02520, AT4G14365, AT4G23470, AT5G24530, AT4G11890, AT5G08760, AT2G31880, AT5G54610, AT2G14560 
+	   AT4G05050, AT3G22235, AT1G31580, AT3G22231, AT1G14880, AT4G32870, AT1G45145, AT5G44568, AT3G01290, AT1G13990 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 2379
+Number of edges: 79954
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8297
+Number of communities: 17
+Elapsed time: 0 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 2379
+Number of edges: 79954
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.7962
+Number of communities: 18
+Elapsed time: 0 seconds
+*****|
+16:37:09 UMAP embedding parameters a = 0.9922 b = 1.112
+16:37:09 Read 2379 rows and found 50 numeric columns
+16:37:09 Using Annoy for neighbor search, n_neighbors = 30
+16:37:09 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:37:09 Writing NN index file to temp file /tmp/RtmpE1c214/file696e1b6dfd2f
+16:37:09 Searching Annoy index using 1 thread, search_k = 3000
+16:37:10 Annoy recall = 100%
+16:37:10 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:37:11 Initializing from normalized Laplacian + noise (using irlba)
+16:37:11 Commencing optimization for 500 epochs, with 96176 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:37:14 Optimization finished
+Performing PCA on the provided reference using 2807 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 8388 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target sobj_KimLeaf2
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 17357 by 1368
+Model formula is y ~ log_umi
+  |                                                                              |                                                                      |   0%Get Negative Binomial regression parameters per gene
+Using 2000 genes, 1368 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 78 outliers - those will be ignored in fitting/regularization step
+
+  |                                                                            Second step: Get residuals using fitted parameters for 17357 genes
+  |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   6%  |                                                                              |======                                                                |   9%  |                                                                              |========                                                              |  11%  |                                                                              |==========                                                            |  14%  |                                                                              |============                                                          |  17%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  23%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  31%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |============================                                          |  40%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  60%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  69%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  74%  |                                                                              |======================================================                |  77%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  83%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  91%  |                                                                              |==================================================================    |  94%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+  |                                                                              |                                                                      |   0%Computing corrected count matrix for 17357 genes
+  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   6%  |                                                                              |======                                                                |   9%  |                                                                              |========                                                              |  11%  |                                                                              |==========                                                            |  14%  |                                                                              |============                                                          |  17%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  23%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  31%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |============================                                          |  40%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  60%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  69%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  74%  |                                                                              |======================================================                |  77%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  83%  |                                                                              |============================================================          |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  91%  |                                                                              |==================================================================    |  94%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 18.29505 secs
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT5G02380, AT5G54940, AT1G54410, AT4G30530, AT2G24940, AT1G20620, AT1G09070, AT1G70700, AT2G41430, AT1G76180 
+	   AT4G38740, AT3G15353, AT1G19570, AT1G07590, AT4G21960, AT4G32020, AT1G20450, AT3G04120, AT2G37170, AT5G02500 
+	   AT4G13770, AT5G56010, AT3G22890, AT2G47730, AT1G80440, AT2G29450, AT2G18960, AT4G19200, AT2G45960, AT2G37180 
+Negative:  AT4G26530, AT5G38420, AT2G10940, AT3G14210, AT3G47070, AT5G48490, AT1G29910, AT1G29070, AT1G13650, AT4G35090 
+	   AT3G56290, AT2G34430, AT1G12090, AT1G08380, ATCG00470, AT2G25510, AT1G30380, AT4G13577, AT2G40100, AT3G14420 
+	   AT1G50732, ATCG00340, ATCG00440, AT4G31870, AT4G33010, AT5G56100, ATCG01020, AT5G44130, ATCG00220, AT4G33666 
+PC_ 2 
+Positive:  AT2G45960, AT2G37170, AT4G13770, AT3G61430, AT2G18960, AT3G22890, AT2G24940, AT2G20610, AT3G53420, AT4G17340 
+	   AT4G14040, AT3G15353, AT4G31500, AT5G02380, AT2G30860, AT3G01120, AT2G36830, AT1G19570, AT3G52720, AT3G43800 
+	   AT1G25230, AT3G23570, AT3G26520, AT1G20620, AT5G44720, AT1G01620, AT1G24100, AT3G04520, AT4G38740, AT2G14750 
+Negative:  AT5G59820, AT5G12030, AT1G27730, AT5G08790, AT3G13310, AT3G12580, AT4G13395, AT5G63790, AT1G07400, AT5G54165 
+	   AT3G46230, AT5G03210, AT2G29500, AT1G54050, AT5G04340, AT1G16030, AT5G10695, AT1G32920, AT5G05410, AT1G76600 
+	   AT1G53540, AT4G11280, AT1G18740, AT4G27652, AT1G01720, AT4G17500, AT1G66500, AT2G46240, AT5G12020, AT1G71000 
+PC_ 3 
+Positive:  AT2G05520, AT4G17245, AT2G32690, AT5G19250, AT5G54585, AT5G44568, AT4G02520, AT1G25275, AT4G36500, AT2G38540 
+	   AT4G15630, AT5G65730, AT3G26450, AT1G09310, AT3G23050, AT2G27385, AT5G25610, AT3G51600, AT1G68530, AT2G26250 
+	   AT3G16370, AT1G51500, AT4G21620, AT1G27950, AT1G29670, AT5G49730, AT5G44020, AT2G44230, AT4G36220, AT4G13840 
+Negative:  AT3G15353, AT4G13770, AT4G14040, AT2G36830, AT3G52720, AT2G20610, AT1G24100, AT3G54600, AT1G74100, AT2G14750 
+	   AT2G30860, AT3G23570, AT2G46650, AT5G44720, AT5G12030, AT1G07400, AT2G37170, AT3G22890, AT4G04610, AT2G25450 
+	   AT1G25230, AT4G39940, AT5G24660, AT4G31500, AT3G12580, AT2G24940, AT3G13310, AT5G04590, AT3G04520, AT4G14680 
+PC_ 4 
+Positive:  AT5G67600, AT3G56240, AT4G34870, AT2G21660, AT5G12140, AT2G21060, AT4G38740, AT5G02380, AT4G09030, AT1G31812 
+	   AT2G31200, AT1G69510, AT1G54410, AT3G01470, AT5G65660, AT3G24100, AT5G42980, AT4G19200, AT5G48480, AT4G11220 
+	   AT4G37870, AT1G69295, AT5G03240, AT3G12490, AT5G22090, AT1G63180, AT2G27510, AT3G60720, AT5G42300, AT1G15270 
+Negative:  AT5G42530, AT1G24147, AT2G41090, AT2G41100, AT1G31580, AT5G57560, AT5G19240, AT2G25510, AT2G23810, AT1G72930 
+	   AT4G14040, AT3G45140, AT3G61430, AT4G34150, AT4G27280, AT1G49750, AT3G04520, AT2G25450, AT3G26520, AT2G31880 
+	   AT1G35140, AT2G46600, AT3G56400, AT2G17040, AT3G45640, AT4G31500, AT3G06070, AT3G22120, AT4G08870, AT4G30530 
+PC_ 5 
+Positive:  AT5G12030, AT4G29905, AT3G26520, AT3G61430, AT1G54050, AT1G80440, AT3G12580, AT1G74670, AT3G03780, AT1G07400 
+	   AT1G74930, AT3G13310, AT3G51600, AT1G62380, AT4G09890, AT3G13750, AT1G09310, AT2G38540, AT3G24420, AT5G10150 
+	   AT1G04250, AT5G25610, AT2G27385, AT1G68530, AT1G15260, AT4G04830, AT3G16370, AT5G44020, AT1G66100, AT4G33220 
+Negative:  AT5G42530, AT2G25510, AT5G08760, AT4G14400, AT1G24147, AT5G19240, AT2G41090, AT1G21250, AT4G14365, AT2G17040 
+	   AT1G72930, AT1G31580, AT3G22231, AT2G14560, AT4G13510, AT2G31880, AT1G72060, AT4G23470, AT5G24530, AT5G54610 
+	   AT5G03350, AT4G09030, AT1G13990, AT4G11890, AT5G61210, AT3G19010, AT4G22305, AT4G08470, GSR 1, AT3G51890 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 1368
+Number of edges: 43680
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8062
+Number of communities: 11
+Elapsed time: 0 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 1368
+Number of edges: 43680
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.7613
+Number of communities: 15
+Elapsed time: 0 seconds
+*****|
+16:38:27 UMAP embedding parameters a = 0.9922 b = 1.112
+16:38:27 Read 1368 rows and found 50 numeric columns
+16:38:27 Using Annoy for neighbor search, n_neighbors = 30
+16:38:27 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:38:27 Writing NN index file to temp file /tmp/RtmpE1c214/file696e57c5875f
+16:38:27 Searching Annoy index using 1 thread, search_k = 3000
+16:38:28 Annoy recall = 100%
+16:38:28 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:38:29 Initializing from normalized Laplacian + noise (using irlba)
+16:38:29 Commencing optimization for 500 epochs, with 53500 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:38:30 Optimization finished
+Performing PCA on the provided reference using 2589 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 5404 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target sobj_Lopez.AnidoLeaf1
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 18868 by 5948
+  |                                                                              |                                                                      |   0%Model formula is y ~ log_umi
+Get Negative Binomial regression parameters per gene
+Using 2000 genes, 5000 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 157 outliers - those will be ignored in fitting/regularization step
+
+Second step: Get residuals using fitted parameters for 18868 genes
+  |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |===============                                                       |  21%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |============================                                          |  39%  |                                                                              |=============================                                         |  42%  |                                                                              |===============================                                       |  45%  |                                                                              |=================================                                     |  47%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  55%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  61%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  79%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  87%  |                                                                              |===============================================================       |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+  |                                                                              |                                                                      |   0%Computing corrected count matrix for 18868 genes
+  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |=======                                                               |  11%  |                                                                              |=========                                                             |  13%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  18%  |                                                                              |===============                                                       |  21%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  26%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |============================                                          |  39%  |                                                                              |=============================                                         |  42%  |                                                                              |===============================                                       |  45%  |                                                                              |=================================                                     |  47%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  53%  |                                                                              |=======================================                               |  55%  |                                                                              |=========================================                             |  58%  |                                                                              |==========================================                            |  61%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |====================================================                  |  74%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  79%  |                                                                              |=========================================================             |  82%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  87%  |                                                                              |===============================================================       |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 1.871632 mins
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT5G38410, AT1G29920, AT1G29910, AT1G67090, AT1G29930, AT5G38420, AT5G54270, AT2G34420, AT2G34430, AT2G39730 
+	   AT5G14740, AT4G10340, AT4G38970, AT1G08380, AT3G47470, AT3G61470, AT3G27690, AT1G30380, AT1G31330, AT5G64040 
+	   AT1G79040, AT5G38430, AT5G66570, AT2G05070, AT1G20340, AT1G61520, AT5G01530, AT3G26650, AT2G46820, AT1G15820 
+Negative:  AT5G26000, AT3G49780, AT1G04800, AT4G37990, AT2G43520, AT5G48485, AT3G28740, AT1G75280, AT5G12030, AT3G26740 
+	   AT3G46230, AT2G41730, AT4G02520, AT2G29500, AT2G22320, AT5G26340, AT4G08555, AT1G64660, AT2G43120, AT1G07590 
+	   AT3G53720, AT1G07400, AT4G25260, AT3G09390, AT4G18280, AT3G50970, AT3G52770, AT1G32350, AT4G37370, AT4G02940 
+PC_ 2 
+Positive:  AT5G26000, AT1G04800, AT5G38410, AT3G49780, AT4G37990, AT1G29910, AT1G29920, AT5G48485, AT3G26740, AT2G43520 
+	   AT5G38420, AT1G67090, AT2G41730, AT2G22320, AT3G28740, AT1G29930, AT3G53720, AT1G64660, AT1G75280, AT1G32350 
+	   AT4G02520, AT1G05680, AT1G22885, AT3G52770, AT4G02940, AT5G54270, AT4G08555, AT2G47000, AT2G34420, AT2G15830 
+Negative:  AT1G62380, AT3G11930, AT2G02100, AT5G02380, AT3G13520, AT3G16330, AT5G16010, AT4G09030, AT5G64310, AT3G14990 
+	   AT5G24800, AT2G29440, AT1G20440, AT3G56240, AT5G11740, AT5G12030, AT1G05340, AT1G20450, AT1G54050, AT4G37730 
+	   AT5G11670, AT1G18740, AT2G02130, AT5G46590, AT5G01600, AT5G55180, AT1G80520, AT3G25770, AT2G32210, AT3G18280 
+PC_ 3 
+Positive:  AT5G12030, AT1G54050, AT1G16030, AT1G53540, AT1G07400, AT5G12020, AT3G46230, AT3G12580, AT2G38540, AT1G74310 
+	   AT2G29500, AT2G46240, AT4G25200, AT5G52640, AT1G59860, AT5G55180, AT1G71000, AT5G48570, AT2G42840, AT2G32210 
+	   AT5G25450, AT2G32120, AT4G12400, AT1G01120, AT1G27950, AT2G32200, AT1G56580, AT1G14200, AT4G17245, AT2G19310 
+Negative:  AT5G02380, AT3G11930, AT3G14990, AT5G24800, AT3G16330, AT2G02100, AT5G46590, AT2G30400, AT3G13520, AT4G37730 
+	   AT3G49780, AT2G34140, AT3G25770, AT3G56240, AT3G56620, AT5G26340, AT2G02130, AT2G29440, AT4G09030, AT1G07640 
+	   AT3G15353, AT1G78370, AT2G30395, AT1G80520, AT2G24940, AT1G55210, AT5G17980, AT5G57685, AT2G15960, AT2G33380 
+PC_ 4 
+Positive:  AT1G04820, AT1G13930, AT5G26000, AT1G50010, AT1G12845, AT1G52910, AT2G27385, AT4G23800, AT2G42840, AT4G14270 
+	   AT2G14890, AT5G66440, AT5G15230, AT1G04800, AT3G23730, AT1G54050, AT3G14990, AT1G50490, AT3G47295, AT4G38740 
+	   AT1G20930, AT2G33400, AT3G54820, AT2G21660, AT4G29020, AT3G23890, AT5G16250, AT3G56240, AT1G76540, AT1G35780 
+Negative:  AT2G05380, AT1G05340, AT5G55180, AT2G05520, AT4G39670, AT2G38870, AT1G01120, AT5G20230, AT5G16010, AT2G38240 
+	   AT4G17245, AT3G13790, AT2G32200, AT2G39400, AT1G15010, AT2G22470, AT2G32190, AT1G02920, AT1G10370, AT4G36500 
+	   AT3G25760, AT1G19020, AT3G49120, AT3G30775, AT2G02990, AT1G22890, AT5G42380, AT3G15500, AT2G32210, AT4G15610 
+PC_ 5 
+Positive:  AT2G38540, AT2G05520, AT2G27385, AT2G42840, AT1G09310, AT1G27950, AT5G59690, AT4G29020, AT4G17245, AT3G51600 
+	   AT1G56580, AT3G53650, AT1G09200, AT5G10400, AT1G01120, AT1G07820, AT4G23670, AT4G21960, AT5G65360, AT1G04820 
+	   AT1G13930, AT3G45980, AT5G55180, AT2G05380, AT5G13930, AT4G02520, AT5G59870, AT2G39400, AT3G23810, AT1G12845 
+Negative:  AT5G12030, AT3G46230, AT1G07400, AT5G12020, AT1G54050, AT1G53540, AT1G16030, AT2G29500, AT3G12580, AT1G74310 
+	   AT5G52640, AT4G25200, AT5G48570, AT2G46240, AT4G12400, AT1G59860, AT3G09350, AT1G71000, AT2G32120, AT1G30070 
+	   AT2G19310, AT5G25450, AT2G20560, AT3G16330, AT5G51440, AT4G21320, AT3G16050, AT3G11930, AT5G56030, AT5G24800 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 5948
+Number of edges: 211248
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8647
+Number of communities: 18
+Elapsed time: 0 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 5948
+Number of edges: 211248
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8358
+Number of communities: 20
+Elapsed time: 0 seconds
+*****|
+16:41:03 UMAP embedding parameters a = 0.9922 b = 1.112
+16:41:03 Read 5948 rows and found 50 numeric columns
+16:41:03 Using Annoy for neighbor search, n_neighbors = 30
+16:41:03 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:41:04 Writing NN index file to temp file /tmp/RtmpE1c214/file696e2e9e87a3
+16:41:04 Searching Annoy index using 1 thread, search_k = 3000
+16:41:06 Annoy recall = 100%
+16:41:06 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:41:07 Initializing from normalized Laplacian + noise (using irlba)
+16:41:07 Commencing optimization for 500 epochs, with 241174 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:41:14 Optimization finished
+Performing PCA on the provided reference using 2700 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 3994 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target sobj_ProckoLeaf1
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 19685 by 15998
+Model formula is y ~ log_umi
+  |                                                                              |                                                                      |   0%Get Negative Binomial regression parameters per gene
+Using 2000 genes, 5000 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 200 outliers - those will be ignored in fitting/regularization step
+
+Second step: Get residuals using fitted parameters for 19685 genes
+  |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   2%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |=========                                                             |  12%  |                                                                              |==========                                                            |  15%  |                                                                              |============                                                          |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  22%  |                                                                              |==================                                                    |  25%  |                                                                              |===================                                                   |  28%  |                                                                              |=====================                                                 |  30%  |                                                                              |=======================                                               |  32%  |                                                                              |========================                                              |  35%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  40%  |                                                                              |==============================                                        |  42%  |                                                                              |================================                                      |  45%  |                                                                              |=================================                                     |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  52%  |                                                                              |======================================                                |  55%  |                                                                              |========================================                              |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |============================================                          |  62%  |                                                                              |==============================================                        |  65%  |                                                                              |===============================================                       |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  72%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================                |  78%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  82%  |                                                                              |============================================================          |  85%  |                                                                              |=============================================================         |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |=================================================================     |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%
+  |                                                                              |                                                                      |   0%Computing corrected count matrix for 19685 genes
+  |                                                                              |==                                                                    |   2%  |                                                                              |====                                                                  |   5%  |                                                                              |=====                                                                 |   8%  |                                                                              |=======                                                               |  10%  |                                                                              |=========                                                             |  12%  |                                                                              |==========                                                            |  15%  |                                                                              |============                                                          |  18%  |                                                                              |==============                                                        |  20%  |                                                                              |================                                                      |  22%  |                                                                              |==================                                                    |  25%  |                                                                              |===================                                                   |  28%  |                                                                              |=====================                                                 |  30%  |                                                                              |=======================                                               |  32%  |                                                                              |========================                                              |  35%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  40%  |                                                                              |==============================                                        |  42%  |                                                                              |================================                                      |  45%  |                                                                              |=================================                                     |  48%  |                                                                              |===================================                                   |  50%  |                                                                              |=====================================                                 |  52%  |                                                                              |======================================                                |  55%  |                                                                              |========================================                              |  58%  |                                                                              |==========================================                            |  60%  |                                                                              |============================================                          |  62%  |                                                                              |==============================================                        |  65%  |                                                                              |===============================================                       |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  72%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================                |  78%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  82%  |                                                                              |============================================================          |  85%  |                                                                              |=============================================================         |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |=================================================================     |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 2.833435 mins
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT5G02380, AT3G15353, AT1G64370, AT1G23130, AT1G67870, AT1G54410, AT1G07590, AT1G67865, AT5G42980, AT1G67860 
+	   AT4G00780, AT4G38740, AT4G19840, AT2G32870, AT1G64360, AT3G56240, AT1G22710, AT5G45350, AT5G18600, AT2G18328 
+	   AT1G31812, AT4G14020, AT5G12140, AT5G64240, AT5G09220, AT5G63850, AT5G22090, AT1G06830, AT5G57350, AT2G32880 
+Negative:  AT2G05520, AT1G09310, AT1G66100, AT3G51600, AT2G05380, AT4G02380, AT4G23670, AT5G42530, AT1G29910, AT4G02520 
+	   AT2G34420, AT1G79040, AT4G36500, AT5G44020, AT5G03210, AT2G22880, AT1G19020, AT2G34430, AT4G04840, AT2G45180 
+	   AT3G16770, AT2G25735, AT1G05575, AT1G29920, AT3G16530, AT2G25510, AT1G07135, AT2G47730, AT2G38540, AT5G42380 
+PC_ 2 
+Positive:  AT2G34420, AT1G29920, AT1G29910, AT2G05070, AT1G79040, AT5G54270, AT2G34430, AT3G27690, AT3G47470, AT5G38410 
+	   AT1G29930, AT3G61470, AT5G42530, AT1G61520, AT2G25510, AT3G54890, AT3G08940, AT1G15820, AT1G08380, AT1G67090 
+	   AT4G10340, AT5G38420, AT5G38430, AT1G03130, AT4G26530, AT1G12090, AT5G14740, AT2G39730, AT4G35090, AT2G21330 
+Negative:  AT1G09310, AT2G05520, AT1G66100, AT4G23670, AT3G51600, AT5G44020, AT2G05540, AT2G38540, AT4G04840, AT1G70890 
+	   AT3G16770, AT4G38770, AT5G25610, AT1G68530, AT3G16370, AT5G66040, AT3G16420, AT5G64770, AT3G16530, AT5G36910 
+	   AT4G37800, AT2G30930, AT5G22270, AT3G23050, AT5G28630, AT4G21960, AT4G00360, AT1G21130, AT2G40610, AT5G55620 
+PC_ 3 
+Positive:  AT1G23130, AT1G64370, AT1G67870, AT5G42980, AT1G67860, AT1G67865, AT4G00780, AT1G07590, AT4G19840, AT2G32870 
+	   AT5G45350, AT1G64360, AT1G54410, AT1G22710, AT5G18600, AT2G18328, AT3G15353, AT4G14020, AT1G31812, AT5G09220 
+	   AT5G64240, AT4G38740, AT2G05520, AT5G63850, AT2G32880, AT5G01750, AT1G06830, AT5G57350, AT1G09310, AT4G15690 
+Negative:  AT3G11930, AT3G56240, AT3G48740, AT1G78370, AT5G02380, AT2G02130, AT4G04830, AT5G23010, AT5G23660, AT4G13770 
+	   AT3G14990, AT3G52720, AT4G08290, AT2G43100, AT2G46650, AT5G14200, AT5G23020, AT4G39940, AT3G19710, AT2G37460 
+	   AT5G67600, AT2G32487, AT5G24800, AT3G54600, AT4G31500, AT2G22330, AT1G16410, AT5G04230, AT2G30860, AT4G14040 
+PC_ 4 
+Positive:  AT1G19020, AT4G02380, AT2G22880, AT5G42380, AT4G39670, AT2G31945, AT2G38870, AT2G37430, AT5G03210, AT1G05575 
+	   AT5G64310, AT4G14450, AT1G67920, AT5G54165, AT2G25735, AT5G20230, AT3G28210, AT1G01470, AT3G23230, AT3G29000 
+	   AT1G05340, AT1G66580, AT5G59820, AT5G35735, AT1G14540, AT1G76650, AT2G25297, AT5G06320, AT5G65300, AT1G75860 
+Negative:  AT1G09310, AT4G23670, AT1G66100, AT3G51600, AT2G05540, AT5G44020, AT2G38540, AT2G34420, AT1G70890, AT2G05520 
+	   AT4G04840, AT5G25610, AT3G27690, AT5G54270, AT3G16370, AT1G68530, AT4G38770, AT5G64770, AT1G29920, AT1G29910 
+	   AT1G74670, AT4G37800, AT2G05070, AT3G16240, AT2G40610, AT1G69530, AT3G26520, AT3G16420, AT5G36910, AT5G55620 
+PC_ 5 
+Positive:  AT5G23010, AT1G78370, AT3G19710, AT1G16410, AT4G13770, AT2G43100, AT3G02020, AT5G14200, AT2G36830, AT4G14040 
+	   AT2G37170, AT5G10180, FMO GS-OX3, AT2G46650, AT5G07460, AT3G58990, AT2G43150, AT3G03190, AT4G13430, AT3G22890 
+	   AT5G61660, AT3G45160, AT1G21440, AT3G49680, AT3G03780, AT3G54600, AT2G30860, AT4G04610, AT4G12030, AT3G22740 
+Negative:  AT3G11930, AT3G48740, AT3G56240, AT5G23660, AT4G08290, AT2G37460, AT5G67600, AT5G24800, AT4G08300, AT5G08350 
+	   AT1G49470, AT5G04230, AT4G31330, AT2G22330, AT4G39770, AT4G01450, AT2G02130, AT1G62480, AT2G32487, AT4G31500 
+	   AT3G14990, AT5G19260, AT3G62930, AT1G77885, AT5G23360, AT4G34600, AT5G63710, AT1G07640, AT2G47560, AT4G39950 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 15998
+Number of edges: 589553
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8508
+Number of communities: 20
+Elapsed time: 2 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 15998
+Number of edges: 589553
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8230
+Number of communities: 25
+Elapsed time: 2 seconds
+*****|
+16:45:32 UMAP embedding parameters a = 0.9922 b = 1.112
+16:45:32 Read 15998 rows and found 50 numeric columns
+16:45:32 Using Annoy for neighbor search, n_neighbors = 30
+16:45:32 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:45:35 Writing NN index file to temp file /tmp/RtmpE1c214/file696e62df420e
+16:45:35 Searching Annoy index using 1 thread, search_k = 3000
+16:45:40 Annoy recall = 100%
+16:45:41 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:45:42 Initializing from normalized Laplacian + noise (using irlba)
+16:45:43 Commencing optimization for 200 epochs, with 702770 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:45:50 Optimization finished
+Performing PCA on the provided reference using 2858 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 6938 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target sobj_ProckoLeaf2
+Calculating cell attributes from input UMI matrix: log_umi
+Variance stabilizing transformation of count matrix of size 20442 by 16493
+  |                                                                              |                                                                      |   0%Model formula is y ~ log_umi
+Get Negative Binomial regression parameters per gene
+Using 2000 genes, 5000 cells
+  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Found 193 outliers - those will be ignored in fitting/regularization step
+
+  |                                                                            Second step: Get residuals using fitted parameters for 20442 genes
+  |                                                                      |   0%  |                                                                              |==                                                                    |   2%  |                                                                              |===                                                                   |   5%  |                                                                              |=====                                                                 |   7%  |                                                                              |=======                                                               |  10%  |                                                                              |=========                                                             |  12%  |                                                                              |==========                                                            |  15%  |                                                                              |============                                                          |  17%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  39%  |                                                                              |=============================                                         |  41%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |=========================================                             |  59%  |                                                                              |===========================================                           |  61%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  83%  |                                                                              |============================================================          |  85%  |                                                                              |=============================================================         |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |=================================================================     |  93%  |                                                                              |===================================================================   |  95%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%
+  |                                                                              |                                                                      |   0%Computing corrected count matrix for 20442 genes
+  |                                                                              |==                                                                    |   2%  |                                                                              |===                                                                   |   5%  |                                                                              |=====                                                                 |   7%  |                                                                              |=======                                                               |  10%  |                                                                              |=========                                                             |  12%  |                                                                              |==========                                                            |  15%  |                                                                              |============                                                          |  17%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  29%  |                                                                              |======================                                                |  32%  |                                                                              |========================                                              |  34%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  39%  |                                                                              |=============================                                         |  41%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |=======================================                               |  56%  |                                                                              |=========================================                             |  59%  |                                                                              |===========================================                           |  61%  |                                                                              |============================================                          |  63%  |                                                                              |==============================================                        |  66%  |                                                                              |================================================                      |  68%  |                                                                              |==================================================                    |  71%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |========================================================              |  80%  |                                                                              |==========================================================            |  83%  |                                                                              |============================================================          |  85%  |                                                                              |=============================================================         |  88%  |                                                                              |===============================================================       |  90%  |                                                                              |=================================================================     |  93%  |                                                                              |===================================================================   |  95%  |                                                                              |====================================================================  |  98%  |                                                                              |======================================================================| 100%
+Calculating gene attributes
+Wall clock passed: Time difference of 3.120526 mins
+Determine variable features
+Set 3000 variable features
+Place corrected count matrix in counts slot
+Centering data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==================                                                    |  25%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================================                  |  75%  |                                                                              |======================================================================| 100%
+Set default assay to SCT
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..SCTransform.RNA; see ?make.names for more details on syntax validity
+PC_ 1 
+Positive:  AT5G02380, AT3G15353, AT1G64370, AT1G23130, AT1G54410, AT4G38740, AT1G67870, AT4G19840, AT4G00780, AT1G07590 
+	   AT1G67860, AT5G42980, AT1G67865, AT3G56240, AT2G32870, AT1G22710, AT1G64360, AT5G45350, AT5G18600, AT2G18328 
+	   AT1G31812, AT4G14020, AT5G12140, AT5G64240, AT3G11930, AT5G22090, AT5G57350, AT5G63850, AT2G32880, AT3G48740 
+Negative:  AT2G05520, AT1G09310, AT3G51600, AT1G66100, AT4G23670, AT5G44020, AT4G04840, AT2G38540, AT3G16770, AT2G05540 
+	   AT4G02380, AT1G70890, AT3G16530, AT4G38770, AT5G25610, AT4G02520, AT3G16370, AT1G21130, AT4G36500, AT1G68530 
+	   AT5G28630, AT5G22270, AT2G47730, AT5G64770, AT1G25275, AT1G19020, AT3G23050, AT2G25735, AT2G39400, AT4G37800 
+PC_ 2 
+Positive:  AT1G09310, AT2G05520, AT4G23670, AT3G51600, AT1G66100, AT5G44020, AT2G05540, AT4G04840, AT2G38540, AT4G38770 
+	   AT1G70890, AT3G16770, AT5G02380, AT5G25610, AT1G68530, AT3G16370, AT5G64770, AT4G37800, AT5G22270, AT3G23050 
+	   AT3G16420, AT5G66040, AT3G16530, AT5G36910, AT2G30930, AT5G28630, AT3G56240, AT4G00360, AT5G55620, AT4G21620 
+Negative:  AT2G34420, AT1G29920, AT1G29910, AT2G05070, AT2G34430, AT3G27690, AT5G54270, AT1G79040, AT3G47470, AT1G29930 
+	   AT5G42530, AT5G38410, AT2G25510, AT3G61470, AT1G61520, AT3G54890, AT3G08940, AT4G28750, AT1G15820, AT1G67090 
+	   AT4G26530, AT1G08380, AT1G31330, AT1G12090, AT4G10340, AT5G38420, AT5G38430, AT1G03130, AT3G63160, AT4G35090 
+PC_ 3 
+Positive:  AT3G11930, AT3G48740, AT1G78370, AT3G56240, AT2G02130, AT4G04830, AT4G13770, AT5G23010, AT2G43100, AT3G14990 
+	   AT3G52720, AT2G46650, AT5G14200, AT4G39940, AT5G23660, AT4G08290, AT3G19710, AT3G54600, AT5G23020, AT5G02380 
+	   AT5G67600, AT2G37460, AT2G32487, AT5G24800, AT4G31500, AT2G22330, AT4G14040, AT1G16410, AT5G04230, AT4G04610 
+Negative:  AT1G23130, AT1G64370, AT1G67870, AT4G00780, AT1G67860, AT5G42980, AT1G67865, AT1G07590, AT4G19840, AT2G32870 
+	   AT5G45350, AT1G22710, AT1G64360, AT1G54410, AT5G18600, AT2G18328, AT3G15353, AT4G14020, AT1G31812, AT5G64240 
+	   AT4G38740, AT5G57350, AT5G63850, AT2G32880, AT1G06830, AT5G09220, AT5G22090, AT1G75250, AT1G45201, AT4G15690 
+PC_ 4 
+Positive:  AT1G19020, AT4G02380, AT2G22880, AT5G42380, AT2G37430, AT4G39670, AT2G31945, AT5G03210, AT2G38870, AT5G64310 
+	   AT1G05575, AT4G14450, AT1G67920, AT5G54165, AT2G25735, AT1G01470, AT3G28210, AT3G23230, AT3G29000, AT5G20230 
+	   AT1G05340, AT5G59820, AT1G66580, AT5G35735, AT1G14540, AT1G76650, AT2G25297, AT2G32210, AT5G06320, AT2G32190 
+Negative:  AT1G09310, AT4G23670, AT1G66100, AT5G44020, AT3G51600, AT2G38540, AT2G05540, AT1G70890, AT2G05520, AT4G38770 
+	   AT1G68530, AT5G64770, AT5G25610, AT4G04840, AT3G16370, AT4G37800, AT2G34420, AT3G27690, AT2G40610, AT1G74670 
+	   AT2G05070, AT3G16240, AT5G54270, AT3G26520, AT1G29920, AT1G29910, AT5G55620, AT3G16420, AT5G65730, AT1G69530 
+PC_ 5 
+Positive:  AT5G23010, AT3G19710, AT1G78370, AT4G13770, AT1G16410, AT2G43100, AT3G02020, AT2G36830, AT4G14040, AT2G37170 
+	   AT5G14200, AT5G10180, FMO GS-OX3, AT5G07460, AT3G58990, AT2G46650, AT2G43150, AT3G54600, AT3G03190, AT3G49680 
+	   AT5G61660, AT3G45160, AT1G21440, FMO GS-OX1, AT3G22890, AT4G13430, AT5G07690, AT4G04610, AT3G03780, AT4G12030 
+Negative:  AT3G11930, AT3G48740, AT3G56240, AT5G23660, AT4G08290, AT2G37460, AT5G67600, AT5G24800, AT1G49470, AT5G08350 
+	   AT5G04230, AT4G08300, AT4G39770, AT2G22330, AT4G01450, AT2G32487, AT2G02130, AT4G31330, AT5G19260, AT3G62930 
+	   AT4G31500, AT5G23360, AT3G14990, AT1G62480, AT1G77885, AT4G34600, AT5G63710, AT2G47560, AT1G07640, AT3G27030 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 16493
+Number of edges: 594363
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8515
+Number of communities: 19
+Elapsed time: 2 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 16493
+Number of edges: 594363
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8254
+Number of communities: 25
+Elapsed time: 2 seconds
+*****|
+16:51:24 UMAP embedding parameters a = 0.9922 b = 1.112
+16:51:24 Read 16493 rows and found 50 numeric columns
+16:51:24 Using Annoy for neighbor search, n_neighbors = 30
+16:51:24 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:51:27 Writing NN index file to temp file /tmp/RtmpE1c214/file696e65ea40c3
+16:51:27 Searching Annoy index using 1 thread, search_k = 3000
+16:51:33 Annoy recall = 100%
+16:51:33 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:51:34 Initializing from normalized Laplacian + noise (using irlba)
+16:51:35 Commencing optimization for 200 epochs, with 719702 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:51:43 Optimization finished
+Performing PCA on the provided reference using 2904 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 6867 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
+● run target bulk_analysis_report
+● run target atpst_sobj
+Finding all pairwise anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 12777 anchors
+Filtering anchors
+	Retained 9832 anchors
+Merging dataset 1 into 2
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+PC_ 1 
+Positive:  AT1G14880, AT2G43510, AT4G02520, AT2G43570, AT3G60415, AT1G33960, AT3G18250, AT2G04450, AT2G14610, AT2G24850 
+	   AT3G52430, AT2G25510, AT5G10380, AT4G21840, AT1G01680, AT1G55210, AT2G29350, AT4G11890, AT5G25260, AT4G21850 
+	   AT1G21310, AT5G67600, AT5G52760, AT4G39030, AT1G07590, AT5G26920, AT3G21080, AT3G60450, AT5G55450, AT1G76960 
+Negative:  AT1G29910, AT5G54270, AT1G72610, AT2G05070, AT3G27690, AT3G08940, AT1G29920, AT1G29930, AT3G63160, AT2G45180 
+	   AT5G38410, AT2G34420, AT5G64040, AT1G20620, AT3G14210, AT1G51400, AT5G38430, AT1G61520, AT2G10940, AT1G06680 
+	   AT1G15820, AT4G10340, AT3G47470, AT5G38420, AT3G54890, AT3G26520, AT5G16030, AT1G08380, AT3G16240, AT4G02770 
+PC_ 2 
+Positive:  AT4G23600, AT4G08870, AT5G24770, AT3G53420, AT2G39030, AT3G61430, AT1G19670, AT5G03350, AT3G04000, AT2G25510 
+	   AT5G67480, AT2G43550, AT3G56400, AT5G07010, AT5G43150, AT5G42530, AT1G29920, AT3G55290, AT4G00430, AT3G28220 
+	   AT3G59940, AT5G24780, AT5G22390, AT1G31580, AT5G02600, AT4G35090, AT2G34420, AT2G34070, AT1G19960, AT2G14560 
+Negative:  AT1G54410, AT1G55330, AT3G63160, AT3G16240, AT1G78850, AT1G72610, AT1G25275, AT2G02100, RBOH F, AT3G14990 
+	   AT5G67600, AT5G12140, AT1G26560, AT2G22860, AT1G75280, AT5G16030, AT2G45180, AT3G14210, AT4G24060, AT5G02380 
+	   AT2G10940, AT3G17390, AT3G53620, AT3G15353, AT5G48930, LRR XI-23, AT1G31340, AT3G56240, AT2G06850, AT1G10770 
+PC_ 3 
+Positive:  AT5G02380, AT3G15353, AT3G56240, AT1G54410, AT3G14990, AT3G53420, AT4G24060, AT5G12140, AT2G22330, AT2G37170 
+	   AT3G11930, AT2G36830, AT3G61430, AT2G24940, AT4G08870, AT4G38740, AT5G07010, AT1G07590, AT4G04830, AT4G16790 
+	   AT4G14040, AT2G33810, AT1G78370, AT4G19840, AT2G44130, AT3G15450, AT5G59080, AT4G23600, AT2G02100, AT1G01620 
+Negative:  AT1G14880, AT4G02520, AT2G04450, AT1G33960, AT2G43570, AT3G52430, AT3G18250, AT4G21840, AT5G10380, AT1G01680 
+	   AT5G55450, AT5G52760, AT5G25260, AT3G60415, AT1G72610, AT4G39030, AT4G21850, AT3G21080, AT2G14610, AT1G29910 
+	   AT5G26920, AT4G11890, AT2G46400, AT2G24850, AT1G21310, AT4G17670, AT1G53620, AT5G13320, AT2G25510, AT5G51465 
+PC_ 4 
+Positive:  AT5G42530, AT2G25510, AT1G79040, AT4G23600, AT2G39030, AT3G45140, AT1G29920, AT1G19960, AT3G22235, AT5G03350 
+	   AT4G28750, AT5G04140, AT4G35090, AT2G43510, AT4G32870, AT1G52870, AT3G15780, AT4G30270, AT3G13750, AT4G18980 
+	   AT4G33010, AT1G14880, AT1G25275, AT2G46820, AT5G22390, AT1G02450, AT3G28220, AT3G22231, AT2G43540, AT1G70760 
+Negative:  AT5G02380, AT2G02100, AT1G20620, AT3G14990, AT3G56240, AT1G72610, AT2G22330, AT4G09030, AT3G16240, AT3G15450 
+	   AT5G11070, AT3G15353, AT3G26520, AT2G10940, AT1G29930, AT2G46400, AT2G24940, AT4G14040, AT5G12140, AT4G21840 
+	   AT2G27710, AT5G56030, AT2G33810, AT1G70600, AT3G52430, AT5G67600, AT2G36830, AT3G49910, AT5G52760, AT1G01680 
+PC_ 5 
+Positive:  AT5G42980, AT4G00780, AT5G64240, AT5G18600, AT1G22710, AT4G19840, AT1G79430, AT1G64370, AT1G67870, AT1G67860 
+	   AT1G23130, AT2G16740, AT5G27690, AT5G57350, AT1G64360, AT4G15700, AT1G58360, AT2G32870, AT1G31812, AT1G67865 
+	   AT4G15660, AT2G32880, AT5G22090, AT1G45201, AT5G04080, AT5G17450, AT4G15690, AT4G14020, AT2G30540, AT5G18240 
+Negative:  AT2G02100, AT2G22330, AT4G14040, AT1G20620, AT2G37170, AT3G16240, AT4G13770, AT2G36830, AT4G04830, AT1G78370 
+	   AT1G25230, AT5G23010, AT5G14200, AT2G22860, AT3G14990, AT3G19710, AT3G15450, AT3G54600, AT3G04520, AT1G21440 
+	   AT2G47180, AT2G05520, AT4G18280, AT2G43100, AT2G46650, AT1G12010, AT4G13430, AT1G61660, AT3G26520, AT3G02020 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 11895
+Number of edges: 442667
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8474
+Number of communities: 18
+Elapsed time: 1 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 11895
+Number of edges: 442667
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8205
+Number of communities: 22
+Elapsed time: 1 seconds
+*****|
+16:59:41 UMAP embedding parameters a = 0.9922 b = 1.112
+16:59:41 Read 11895 rows and found 50 numeric columns
+16:59:41 Using Annoy for neighbor search, n_neighbors = 30
+16:59:41 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:59:42 Writing NN index file to temp file /tmp/RtmpE1c214/file696e6b020032
+16:59:42 Searching Annoy index using 1 thread, search_k = 3000
+16:59:46 Annoy recall = 100%
+16:59:47 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+16:59:48 Initializing from normalized Laplacian + noise (using irlba)
+16:59:48 Commencing optimization for 200 epochs, with 506450 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:59:54 Optimization finished
+16:59:54 UMAP embedding parameters a = 0.9922 b = 1.112
+16:59:54 Read 11895 rows and found 50 numeric columns
+16:59:54 Using Annoy for neighbor search, n_neighbors = 30
+16:59:54 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+16:59:55 Writing NN index file to temp file /tmp/RtmpE1c214/file696e3b752cd1
+16:59:55 Searching Annoy index using 1 thread, search_k = 3000
+16:59:59 Annoy recall = 100%
+17:00:00 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+17:00:00 Initializing from normalized Laplacian + noise (using irlba)
+17:00:01 Commencing optimization for 200 epochs, with 506450 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+17:00:07 Optimization finished
+● run target leaf_sobj
+Finding all pairwise anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 12885 anchors
+Filtering anchors
+	Retained 10132 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 7295 anchors
+Filtering anchors
+	Retained 5890 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 6991 anchors
+Filtering anchors
+	Retained 5285 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5119 anchors
+Filtering anchors
+	Retained 4540 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 5063 anchors
+Filtering anchors
+	Retained 4138 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4996 anchors
+Filtering anchors
+	Retained 4957 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 17312 anchors
+Filtering anchors
+	Retained 8215 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 17542 anchors
+Filtering anchors
+	Retained 8009 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 9354 anchors
+Filtering anchors
+	Retained 4685 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 6079 anchors
+Filtering anchors
+	Retained 2774 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 17280 anchors
+Filtering anchors
+	Retained 8204 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 17500 anchors
+Filtering anchors
+	Retained 8276 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 9430 anchors
+Filtering anchors
+	Retained 4806 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 6064 anchors
+Filtering anchors
+	Retained 2855 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 45169 anchors
+Filtering anchors
+	Retained 39938 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 10681 anchors
+Filtering anchors
+	Retained 6233 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 11104 anchors
+Filtering anchors
+	Retained 6673 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 6793 anchors
+Filtering anchors
+	Retained 3572 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 4953 anchors
+Filtering anchors
+	Retained 2435 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 13186 anchors
+Filtering anchors
+	Retained 8531 anchors
+Running CCA
+Merging objects
+Finding neighborhoods
+Finding anchors
+	Found 13258 anchors
+Filtering anchors
+	Retained 8588 anchors
+Merging dataset 4 into 3
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 5 into 6
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 3 4 into 1
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 2 into 1 3 4
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 7 into 6 5
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+Merging dataset 1 3 4 2 into 6 5 7
+Extracting anchors for merged samples
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Integrating data
+PC_ 1 
+Positive:  AT1G29920, AT1G29910, AT2G34420, AT2G05070, AT3G27690, AT5G54270, AT5G38410, AT1G79040, AT3G47470, AT2G25510 
+	   AT1G29930, AT3G54890, AT1G15820, AT4G28750, AT3G61470, AT5G42530, AT3G08940, AT1G67090, AT1G61520, AT5G38420 
+	   AT4G35090, AT1G08380, AT1G31330, AT1G20340, AT5G66570, AT2G21330, AT1G03130, AT5G38430, AT4G10340, AT5G64040 
+Negative:  AT2G05520, AT1G09310, AT5G02380, AT3G51600, AT5G44020, AT4G23670, AT3G16770, AT2G38540, AT3G56240, AT1G68530 
+	   AT4G21960, AT5G66040, AT4G04830, AT2G05540, AT5G25610, AT4G04840, AT5G64770, AT5G22270, AT3G14990, AT3G23050 
+	   AT5G40450, AT1G20620, AT4G37800, AT1G78370, AT1G21130, AT4G13770, AT4G00360, AT2G02130, AT4G21620, AT4G31500 
+PC_ 2 
+Positive:  AT5G02380, AT3G56240, AT4G13770, AT1G78370, AT2G02130, AT2G46650, AT3G14990, AT3G52720, AT3G11930, AT2G43100 
+	   AT5G23010, AT3G54600, AT5G14200, AT4G39940, AT3G15353, AT4G04830, AT3G48740, AT5G67600, AT4G14040, AT4G38740 
+	   AT3G19710, AT2G32487, AT2G24940, AT2G02100, AT3G22890, AT4G08290, AT2G22330, AT2G30860, AT5G23660, AT5G24800 
+Negative:  AT2G05520, AT1G09310, AT3G51600, AT5G44020, AT4G23670, AT3G16770, AT2G38540, AT1G68530, AT5G25610, AT4G04840 
+	   AT5G64770, AT1G21130, AT5G22270, AT2G05540, AT3G23050, AT4G37800, AT1G25275, AT4G02520, AT4G00360, AT5G28630 
+	   AT3G26450, AT4G21620, AT5G65730, AT3G26520, AT1G13110, AT2G40610, AT2G15050, AT1G29670, AT1G51500, AT5G25460 
+PC_ 3 
+Positive:  AT4G13770, AT5G38430, AT4G14040, AT2G36830, AT5G23010, AT2G25510, AT3G54600, AT1G78370, AT5G42530, AT2G37170 
+	   AT2G43100, AT2G46650, AT5G14200, AT3G63160, AT3G22890, AT3G02020, AT5G38420, AT2G30860, AT3G19710, AT1G75750 
+	   AT5G38410, AT1G67090, AT5G38980, AT3G52720, AT2G41090, AT1G31580, AT4G04830, AT4G39940, AT1G16410, AT3G01500 
+Negative:  AT1G54410, AT1G23130, AT1G07590, AT4G00780, AT4G19840, AT5G42980, AT3G15353, AT1G22710, AT1G31812, AT4G38740 
+	   AT5G18600, AT5G64240, AT5G57350, AT5G22090, AT5G12140, AT5G63850, AT1G45201, AT5G59890, AT5G02380, AT5G04080 
+	   AT1G58360, AT4G34870, AT1G79430, AT2G16740, AT3G56240, AT5G10170, AT1G69510, AT1G24575, AT1G07610, AT5G27690 
+PC_ 4 
+Positive:  AT3G63160, AT1G75750, AT1G07590, AT5G38430, AT5G42980, AT5G42530, AT4G02520, AT4G00780, AT4G34870, AT4G19840 
+	   AT2G25510, AT1G23130, AT2G28190, AT5G57350, AT5G18600, AT1G22710, AT5G64240, AT1G31812, AT5G12140, AT5G59890 
+	   AT3G60245, AT1G54410, AT5G22090, AT2G35370, AT1G15270, AT1G07610, AT3G15353, AT1G69510, AT2G16600, AT4G38740 
+Negative:  AT1G29920, AT2G05070, AT2G34420, AT1G29910, AT5G54270, AT3G27690, AT3G47470, AT3G08940, AT1G29930, AT1G15820 
+	   AT1G61520, AT1G03130, AT1G74670, AT2G05100, AT3G54890, AT4G10340, AT3G55240, AT3G16240, AT1G08380, AT3G26520 
+	   AT1G12090, AT3G61470, AT4G04830, AT4G13770, AT1G21500, AT1G31330, AT1G51400, AT2G20670, AT3G15450, AT4G02770 
+PC_ 5 
+Positive:  AT1G20620, AT4G02520, AT2G34420, AT1G13930, AT3G26740, AT1G12090, AT4G23600, AT3G04720, AT1G29910, AT1G29930 
+	   AT5G44420, AT1G76960, AT2G30870, AT3G18080, AT3G55240, AT4G14270, AT1G27020, AT2G30860, AT1G61520, AT2G26010 
+	   AT2G26020, AT3G15450, AT3G63160, AT1G21130, AT3G47470, AT5G67480, AT3G54890, AT3G14310, AT3G17020, AT5G19140 
+Negative:  AT4G35090, AT5G38410, AT3G01500, AT1G09310, AT2G21330, AT5G38420, AT4G04840, AT5G38430, AT5G44020, AT4G23670 
+	   AT2G38540, AT1G65490, AT4G33010, AT1G44575, AT1G69530, AT1G07590, AT3G47070, AT1G67090, AT1G09340, AT3G56290 
+	   AT5G51720, AT5G65730, AT2G39730, AT5G25610, AT5G14740, AT5G02380, AT4G16980, AT4G37800, FED A, AT4G38970 
+Computing nearest neighbor graph
+Computing SNN
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 54081
+Number of edges: 2113114
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8723
+Number of communities: 23
+Elapsed time: 13 seconds
+*****|
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 54081
+Number of edges: 2113114
+
+Running Louvain algorithm...
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+*********************************************Maximum modularity in 10 random starts: 0.8536
+Number of communities: 32
+Elapsed time: 14 seconds
+*****|
+18:43:13 UMAP embedding parameters a = 0.9922 b = 1.112
+18:43:13 Read 54081 rows and found 50 numeric columns
+18:43:13 Using Annoy for neighbor search, n_neighbors = 30
+18:43:13 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:43:24 Writing NN index file to temp file /tmp/RtmpE1c214/file696e759f185a
+18:43:24 Searching Annoy index using 1 thread, search_k = 3000
+18:43:48 Annoy recall = 100%
+18:43:52 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+18:43:54 Initializing from normalized Laplacian + noise (using irlba)
+18:43:59 Commencing optimization for 200 epochs, with 2486054 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:44:24 Optimization finished
+18:44:24 UMAP embedding parameters a = 0.9922 b = 1.112
+18:44:24 Read 54081 rows and found 50 numeric columns
+18:44:24 Using Annoy for neighbor search, n_neighbors = 30
+18:44:24 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:44:34 Writing NN index file to temp file /tmp/RtmpE1c214/file696eafd6590
+18:44:34 Searching Annoy index using 1 thread, search_k = 3000
+18:44:58 Annoy recall = 100%
+18:44:58 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+18:45:00 Initializing from normalized Laplacian + noise (using irlba)
+18:45:05 Commencing optimization for 200 epochs, with 2486054 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+18:45:34 Optimization finished
+● end pipeline
+There were 50 or more warnings (use warnings() to see the first 50)
+> 
+> 

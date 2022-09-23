@@ -1,0 +1,82 @@
+STAR version=                 2.7.2a
+STAR compilation time,server,dir=__REDACTED__
+##### Command Line:
+STAR --runMode genomeGenerate --genomeDir /home/bjcole/AtPst_SingleCell/at10/star --runThreadN 1 --genomeFastaFiles /home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa --sjdbGTFfile /home/bjcole/AtPst_SingleCell/at10/genes/genes.gtf --limitGenomeGenerateRAM 17179869184 --genomeSAsparseD 1 --genomeSAindexNbases 12 --genomeChrBinNbits 18
+##### Initial USER parameters from Command Line:
+###### All USER parameters from Command Line:
+runMode                       genomeGenerate     ~RE-DEFINED
+genomeDir                     /home/bjcole/AtPst_SingleCell/at10/star     ~RE-DEFINED
+runThreadN                    1     ~RE-DEFINED
+genomeFastaFiles              /home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa        ~RE-DEFINED
+sjdbGTFfile                   /home/bjcole/AtPst_SingleCell/at10/genes/genes.gtf     ~RE-DEFINED
+limitGenomeGenerateRAM        17179869184     ~RE-DEFINED
+genomeSAsparseD               1     ~RE-DEFINED
+genomeSAindexNbases           12     ~RE-DEFINED
+genomeChrBinNbits             18     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runMode                           genomeGenerate
+runThreadN                        1
+genomeDir                         /home/bjcole/AtPst_SingleCell/at10/star
+genomeFastaFiles                  /home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa   
+genomeSAindexNbases               12
+genomeChrBinNbits                 18
+genomeSAsparseD                   1
+limitGenomeGenerateRAM            17179869184
+sjdbGTFfile                       /home/bjcole/AtPst_SingleCell/at10/genes/genes.gtf
+
+-------------------------------
+##### Final effective command line:
+STAR   --runMode genomeGenerate   --runThreadN 1   --genomeDir /home/bjcole/AtPst_SingleCell/at10/star   --genomeFastaFiles /home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa      --genomeSAindexNbases 12   --genomeChrBinNbits 18   --genomeSAsparseD 1   --limitGenomeGenerateRAM 17179869184   --sjdbGTFfile /home/bjcole/AtPst_SingleCell/at10/genes/genes.gtf
+----------------------------------------
+
+Finished loading and checking parameters
+Aug 30 22:36:51 ... starting to generate Genome files
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 0  "Chr1" chrStart: 0
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 1  "Chr2" chrStart: 30670848
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 2  "Chr3" chrStart: 50593792
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 3  "Chr4" chrStart: 74186752
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 4  "Chr5" chrStart: 92798976
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 5  "ChrC" chrStart: 119799808
+/home/bjcole/AtPst_SingleCell/at10/fasta/genome.fa : chr # 6  "ChrM" chrStart: 120061952
+Estimated genome size=321586240   120586240   201000000
+GstrandBit=32
+Number of SA indices: 238963086
+Aug 30 22:36:58 ... starting to sort Suffix Array. This may take a long time...
+Number of chunks: 1;   chunks size limit: 10163206016 bytes
+Aug 30 22:37:00 ... sorting Suffix Array chunks and saving them to disk...
+Writing 1911704688 bytes into /home/bjcole/AtPst_SingleCell/at10/star/SA_0 ; empty space on disk = 840183943168 bytes ... done
+Aug 30 22:41:54 ... loading chunks from disk, packing SA...
+Aug 30 22:41:59 ... finished generating suffix array
+Aug 30 22:41:59 ... generating Suffix Array index
+Aug 30 22:42:14 ... completed Suffix Array index
+Aug 30 22:42:14 ..... processing annotations GTF
+Processing pGe.sjdbGTFfile=/home/bjcole/AtPst_SingleCell/at10/genes/genes.gtf, found:
+		48456 transcripts
+		306409 exons (non-collapsed)
+		131183 collapsed junctions
+Aug 30 22:42:18 ..... finished GTF processing
+Aug 30 22:42:18   Loaded database junctions from the GTF file: /home/bjcole/AtPst_SingleCell/at10/genes/genes.gtf: 131183 total junctions
+
+WARNING: long repeat for junction # 51522 : Chr2 17206886 17207050; left shift = 17; right shift = 255
+Aug 30 22:42:18   Finished preparing junctions
+Aug 30 22:42:18 ..... inserting junctions into the genome indices
+Aug 30 22:45:51   Finished SA search: number of new junctions=131167, old junctions=0
+Aug 30 22:46:12   Finished sorting SA indicesL nInd=52466722
+Genome size with junctions=146950807  120586240   26364567
+GstrandBit1=32   GstrandBit=32
+Aug 30 22:46:19   Finished inserting junction indices
+Aug 30 22:46:27   Finished SAi
+Aug 30 22:46:27 ..... finished inserting junctions into genome
+Aug 30 22:46:27 ... writing Genome to disk ...
+Writing 146950807 bytes into /home/bjcole/AtPst_SingleCell/at10/star/Genome ; empty space on disk = 830782935040 bytes ... done
+SA size in bytes: 1202147961
+Aug 30 22:46:27 ... writing Suffix Array to disk ...
+Writing 1202147961 bytes into /home/bjcole/AtPst_SingleCell/at10/star/SA ; empty space on disk = 830628593664 bytes ... done
+Aug 30 22:46:29 ... writing SAindex to disk
+Writing 8 bytes into /home/bjcole/AtPst_SingleCell/at10/star/SAindex ; empty space on disk = 829352304640 bytes ... done
+Writing 104 bytes into /home/bjcole/AtPst_SingleCell/at10/star/SAindex ; empty space on disk = 829352304640 bytes ... done
+Writing 97867091 bytes into /home/bjcole/AtPst_SingleCell/at10/star/SAindex ; empty space on disk = 829352304640 bytes ... done
+Aug 30 22:46:30 ..... finished successfully
+DONE: Genome generation, EXITING

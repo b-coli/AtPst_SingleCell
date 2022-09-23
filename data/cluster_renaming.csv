@@ -1,0 +1,19 @@
+seurat_clusters,Cluster,Color,Cluster_Type,Cluster_Type_Coarse
+5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll
+10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll
+9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll
+11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll
+0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll
+1,M6,#33a02c,Other Mesophyll,Control Mesophyll
+2,M7,#33a02c,Other Mesophyll,Control Mesophyll
+3,M8,#33a02c,Other Mesophyll,Control Mesophyll
+4,M9,#33a02c,Other Mesophyll,Control Mesophyll
+6,M10,#33a02c,Other Mesophyll,Control Mesophyll
+7,M11,#33a02c,Other Mesophyll,Control Mesophyll
+8,M12,#33a02c,Other Mesophyll,Control Mesophyll
+16,M13,#33a02c,Other Mesophyll,Control Mesophyll
+17,M14,#33a02c,Other Mesophyll,Control Mesophyll
+12,B15,#a6cee3,Bundle Sheath,Bundle Sheath
+13,P16,#b2df8a,Vasculature,Vasculature
+14,G17,#fdbf6f,Guard,Guard
+15,C18,#fb9a99,Companion,Companion
