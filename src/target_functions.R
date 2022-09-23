@@ -3,7 +3,7 @@ read_bulk_dges <- function(sns) {
   ## sns = sample name
   ## Calls read_bulk_dge to format file name and read data
   dge_list <- map(sns, read_bulk_dge) %>%
-    reduce(left_join, by = "Locus") %>% 
+    purrr::reduce(left_join, by = "Locus") %>% 
     column_to_rownames("Locus") %>%
     .[,sns]
 }
@@ -259,7 +259,7 @@ transfer_labels <- function(query, reference, column = "Cell_Type") {
 integrate_sobjs <- function(sobj_list, exclude_organelle_loci = TRUE, 
                             exclude_features = NULL, method = "cca") {
   
-  features <- map(sobj_list, row.names) %>% reduce(intersect)
+  features <- map(sobj_list, row.names) %>% purrr::reduce(intersect)
   
   if(!is.null(exclude_features)) features <- setdiff(features, exclude_features)
   
@@ -391,4 +391,80 @@ download_and_read_gz <- function(url, type = "rds") {
 
   file.remove(tmpfn)
   return(out)
+}
+
+extract_goi_pt_data <- function(sobj, pt, goi, nclusters = NULL) {
+  goi_expr <- GetAssayData(sobj, assay = "SCT", slot = "data")[goi,] %>%
+    as_tibble(rownames = "Locus") %>%
+    pivot_longer(names_to = "Cell", values_to = "Expression", -Locus) %>%
+    left_join(pt, by = "Cell") %>%
+    filter(!is.na(Pseudotime)) %>%
+    group_by(Locus) %>%
+    filter(var(Expression) > 0) %>%
+    mutate(Scaled_Expression = as.numeric(scale(Expression, center = T, scale = T))) %>%
+    ungroup()
+  
+  goi_expr_mat <- goi_expr %>% 
+    arrange(Pseudotime) %>%
+    select(Cell, Locus, Scaled_Expression) %>%
+    pivot_wider(names_from = Cell, values_from = Scaled_Expression) %>%
+    column_to_rownames("Locus") %>%
+    as.matrix()
+  
+  goi_expr_hclust <- dist(goi_expr_mat) %>% hclust()
+  
+  cell_order <- goi_expr %>% 
+    select(Cell, Pseudotime) %>% 
+    unique() %>% 
+    arrange(Pseudotime) %>% 
+    pull(Cell)
+  
+  gene_order <- goi_expr_hclust$labels[goi_expr_hclust$order]
+  
+  goi_expr <- goi_expr %>%
+    mutate(Locus = factor(Locus, levels = gene_order)) %>%
+    mutate(Cell = factor(Cell, levels = cell_order))
+  
+  if(!is.null(nclusters)) {
+    clusters <- cutree(goi_expr_hclust, k = nclusters) %>% 
+      enframe("Locus", "Module")
+    goi_expr <- left_join(goi_expr, clusters)
+  }
+  
+  return(goi_expr)
+}
+
+plot_pt_heatmap <- function(sobj, pt, goi, gene_names, nclusters = NULL) {
+  goi_expr <- extract_goi_pt_data(sobj, pt, goi$Locus, nclusters = nclusters)
+  goi <- mutate(goi, Locus = factor(Locus, levels = levels(goi_expr$Locus)))
+  goi_expr <- left_join(goi_expr, goi)
+  
+  gene_labels <- left_join(goi_expr, gene_names) %>%
+    select(Locus, Gene) %>%
+    mutate(Gene = if_else(is.na(Gene), Locus, Gene)) %>%
+    arrange(Locus) %>%
+    deframe()
+  
+  plt <- goi_expr %>% 
+    filter(!is.na(Pseudotime)) %>%
+    mutate(Scaled_Expr = scales::squish(Scaled_Expression, range = c(-3,3))) %>%
+    ggplot(aes(x = Cell, y = Locus)) + 
+    geom_tile(aes(fill = Scaled_Expr)) +
+    scale_fill_viridis_c(option = "plasma") +
+    scale_y_discrete(labels = gene_labels) +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
+  
+  plt
+}
+
+get_cell_data <- function(sobj) {
+  md <- sobj@meta.data %>% as_tibble(rownames = "Cell")
+  reductions <- map(names(sobj@reductions), function(red) {
+    Embeddings(sobj, reduction = red) %>%
+      as_tibble(rownames = "Cell")}) %>%
+    purrr::reduce(full_join)
+  
+  x = left_join(md, reductions)
+  return(x)
 }

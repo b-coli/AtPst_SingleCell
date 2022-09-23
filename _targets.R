@@ -106,7 +106,13 @@ integrated_objects <- list(
       exclude_features = protoplast_loci,
       method = "cca"
     )
-  )
+  ),
+  
+  tar_render(
+    pseudobulk_report, 
+    path = "src/pseudobulk_report.Rmd", 
+    output_dir = "reports/")
+  
 )
 
 pseudotime_objects <- list(
@@ -142,7 +148,14 @@ pseudotime_objects <- list(
   tar_target(
     pt_var_genes,
     monocle_get_var_genes(atpst_mobj)
-  )
+  ),
+  
+  tar_render(
+    pseudotime_report, 
+    path = "src/pseudotime_report.Rmd", 
+    output_dir = "reports/")
+  
+  
 )
 
 archival_data <- list(
@@ -170,8 +183,13 @@ archival_data <- list(
   tar_target(
      archived_sobj,
      read_rds(archived_sobj_file)
-  )
-
+  ),
+  
+  tar_render(
+    dataset_stats_report, 
+    path = "src/dataset_stats_report.Rmd", 
+    output_dir = "reports/")
+  
 )
 
 list(

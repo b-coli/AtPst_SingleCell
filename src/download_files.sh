@@ -62,35 +62,50 @@ while [ "$i" -lt "$len" ]; do
 	if [ "$db" == "Local" ]; then
 		if [ "$rd" == "1" ]; then
 			echo "$samplename"
-			cp ${loc} ${sample_folder}/${r1}
+			#cp ${loc} ${sample_folder}/${r1}
 		fi
 		if [ "$rd" == "2" ]; then
 			echo "$samplename"
-			cp ${loc} ${sample_folder}/${r2}
+			#cp ${loc} ${sample_folder}/${r2}
 		fi
 	fi
 
 	## If file is located in NCBI SRA, use fasterq-dump to download, then rename and move
 	if [ "$db" == "NCBI_SRA" ]; then
-		singularity run docker://ncbi/sra-tools fasterq-dump -e 15 -S --include-technical $accession
+		#singularity run docker://ncbi/sra-tools fasterq-dump -e 15 -S --include-technical $accession
 
 		if [ "$seqtype" == "PE" ]; then
 			echo "$samplename"
-			pigz -p 15 ${accession}_${bar}.fastq 
-			pigz -p 15 ${accession}_${gen}.fastq
-			mv ${accession}_${bar}.fastq.gz ${sample_folder}/$r1
-			mv ${accession}_${gen}.fastq.gz ${sample_folder}/$r2
+			#pigz -p 15 ${accession}_${bar}.fastq 
+			#pigz -p 15 ${accession}_${gen}.fastq
+			#mv ${accession}_${bar}.fastq.gz ${sample_folder}/$r1
+			#mv ${accession}_${gen}.fastq.gz ${sample_folder}/$r2
 		fi
 
 		if [ "$seqtype" == "SE" ]; then
 			echo "$samplename"
-			pigz -p 15 ${accession}_1.fastq
-			mv ${accession}_1.fastq.gz ${sample_folder}/$r1
+			#pigz -p 15 ${accession}_1.fastq
+			#mv ${accession}_1.fastq.gz ${sample_folder}/$r1
 		fi
+	fi
+
+	if [ "$db" == "NGDC" ]; then
+		if [ "$rd" == "1" ]; then
+			echo "${samplename}"
+			wget ${loc} -O ${sample_folder}/${r1}
+		fi
+
+		if [ "$rd" == "2" ]; then
+			echo "${samplename}"
+			wget ${loc} -O ${sample_folder}/${r2}
+		fi
+
 	fi
 
         i=$(($i + 1))
 done
+
+## Download the Zhang data set
 
 ## Download the published Frommer dataset, to serve as a reference:
 mkdir -p data/expression/FrommerPublished/

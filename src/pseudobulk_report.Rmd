@@ -1,0 +1,71 @@
+---
+title: "Pseudobulk Analysis"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sobj <- targets::tar_read(archived_sobj)
+targets::tar_load(bulk_erobj_norm)
+
+bulk_norm_counts <- edgeR::cpm(bulk_erobj_norm) %>%
+  as_tibble(rownames = "Locus") %>%
+  pivot_longer(names_to = "Sample", values_to = "Expression", -Locus) %>%
+  mutate(
+    Sample_Type = case_when(
+      str_detect(Sample, "Bulk") ~ "Bulk",
+      str_detect(Sample, "Proto") ~ "Proto"),
+    Treatment = case_when(
+      str_detect(Sample, "Control") ~ "Control",
+      str_detect(Sample, "DC3000") ~ "DC3000")) %>%
+  group_by(Locus, Sample_Type, Treatment) %>%
+  summarize(mean_bulk_expression = mean(Expression, na.rm = T)) %>%
+  ungroup() %>%
+  mutate(Sample = paste0(Treatment, Sample_Type)) %>%
+  select(-Treatment, -Sample_Type)
+```
+
+```{r}
+sc_counts_data <- Seurat::GetAssayData(sobj, slot = "data", assay = "RNA")
+pseudobulk_counts <- map(c("Control", "DC3000"), function(sn) {
+  cells_idx <- str_detect(colnames(sc_counts_data), sn)
+  mtx <- Matrix::rowSums(sc_counts_data[,cells_idx])
+  df <- enframe(mtx, "Locus", paste0(sn, "Pseudobulk"))}) %>% 
+  purrr::reduce(full_join) %>%
+  pivot_longer(
+    names_to = "Pseudobulk_Sample", 
+    values_to = "Pseudobulk_Counts", -Locus
+  )
+
+all_counts <- full_join(bulk_norm_counts, pseudobulk_counts) %>%
+  filter(!is.na(Pseudobulk_Sample) & !is.na(Sample))
+```
+
+```{r}
+ggplot(all_counts, 
+       aes(x = log1p(Pseudobulk_Counts), 
+           y = log1p(mean_bulk_expression))) + 
+  geom_bin2d(binwidth = 0.2) + 
+  coord_fixed() + 
+  labs(x = "Pseudobulk Samples",
+       y = "Bulk RNA-seq Samples") +
+  facet_grid(Sample ~ Pseudobulk_Sample) + 
+  theme_bw() +
+  theme(strip.background = element_blank())
+
+ggsave("plots/pseudobulk_correlation.ps", family = "ArialMT")
+```
+
+```{r}
+all_counts %>% 
+  group_by(Sample, Pseudobulk_Sample) %>% 
+  summarize(Correlation = cor(Pseudobulk_Counts, mean_bulk_expression, method = "spearman")) %>% 
+  kableExtra::kable() %>%
+  kableExtra::kable_styling(full_width = F)
+```
+

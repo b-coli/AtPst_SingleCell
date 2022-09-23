@@ -1,0 +1,36 @@
+---
+title: "Dataset Stats"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sobj <- tar_read(archived_sobj)
+cell_data <- get_cell_data(sobj)
+```
+
+```{r}
+ggplot(cell_data, aes(x = Sample_Name, y = nCount_RNA)) +
+  geom_boxplot(aes(fill = Sample_Name)) +
+  labs(y = "Unique Transcripts",
+       x = "Sample") +
+  theme_bw()
+
+ggsave("plots/UMI_stats.ps", family = "ArialMT")
+```
+
+```{r}
+ggplot(cell_data, aes(x = Sample_Name, y = cell_data$nFeature_RNA)) +
+  geom_boxplot(aes(fill = Sample_Name)) +
+  labs(y = "Unique Genes",
+       x = "Sample") +
+  theme_bw()
+
+ggsave("plots/gene_stats.ps", family = "ArialMT")
+```
+

@@ -1,0 +1,53 @@
+---
+title: "Pseudotime Report"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sobj <- tar_read(atpst_sobj)
+cds <- tar_read(atpst_mobj)
+ptvar_genes <- tar_read(pt_var_genes)
+
+mumap <- as.data.frame(reducedDims(cds)[["UMAP"]]) %>% 
+    as_tibble(rownames = "Cell") %>% 
+    select(Cell, mUMAP_1 = V1, mUMAP_2 = V2)
+
+pt <- enframe(pseudotime(cds, reduction_method = 'UMAP'), "Cell", "Pseudotime")
+
+cell_data <- as_tibble(sobj@meta.data, rownames = "Cell") %>%
+  left_join(Embeddings(sobj, reduction = "umap") %>% as_tibble(rownames = "Cell")) %>%
+  left_join(mumap) %>%
+  left_join(pt)
+```
+
+```{r}
+apriori_genes <- read_csv("data/apriori_immune_and_susceptible.csv", col_types = cols())
+plot_pt_heatmap(sobj, pt, apriori_genes, gene_names = tar_read(gene_ids)) + 
+  facet_grid(Category ~ 1, scales = 'free') +
+  theme(strip.background = element_blank())
+
+ggsave("plots/pseuotime_heatmap_apriori.ps", family = "ArialMT")
+```
+
+```{r}
+plot_pt_heatmap(
+  sobj = sobj, 
+  pt = pt, 
+  goi = tibble(Locus = ptvar_genes), 
+  gene_names = tar_read(gene_ids), 
+  nclusters = 7) +
+  facet_grid(Module ~ 1, scales = 'free') +
+  theme(axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_blank()
+  )
+
+ggsave("plots/pseuotime_heatmap_apriori.ps", family = "ArialMT")
+```
+
