@@ -18,6 +18,8 @@ KimLeaf2,NCBI_SRA,SRR13040594,NA,1,8,NA,PE,2,1
 Lopez-AnidoLeaf1,NCBI_SRA,SRR13749640,NA,1,1,NA,PE,3,2
 ProckoLeaf1,NCBI_SRA,SRR15992287,NA,1,1,NA,PE,2,1
 ProckoLeaf2,NCBI_SRA,SRR15992288,NA,1,2,NA,PE,2,1
+ZhangLeaf1,NGDC,CRR151722,ftp://download.big.ac.cn/gsa/CRA002977/CRR151722/CRR151722_f1.fastq.gz,1,1,1,PE,2,1
+ZhangLeaf1,NGDC,CRR151722,ftp://download.big.ac.cn/gsa/CRA002977/CRR151722/CRR151722_r2.fastq.gz,1,1,2,PE,2,1
 Control,Local,NA,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/Control_S33_L004_R1_001.fastq.gz,33,4,1,PE,NA,NA
 DC3000,Local,NA,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/DC3000_S32_L004_R1_001.fastq.gz,32,4,1,PE,NA,NA
 Control,Local,NA,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/Control_S33_L004_R2_001.fastq.gz,33,4,2,PE,NA,NA
