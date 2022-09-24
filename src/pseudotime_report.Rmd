@@ -60,3 +60,7 @@ plot_pt_heatmap(
 ggsave("plots/pseudotime_heatmap_novel.pdf", height = 10, width = 8, family = "ArialMT")
 ```
 
+```{r}
+tar_read(pt_var_table) %>% write_csv("data/pseudotime_variable_genes.csv")
+```
+

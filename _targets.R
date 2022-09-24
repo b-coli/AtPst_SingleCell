@@ -52,7 +52,8 @@ integrated_objects <- list(
         sobj_KimLeaf2,
         sobj_ProckoLeaf1,
         sobj_ProckoLeaf2,
-        sobj_Lopez.AnidoLeaf1),
+        sobj_Lopez.AnidoLeaf1,
+        sobj_ZhangLeaf1),
       exclude_organelle_loci = T,
       exclude_features = protoplast_loci,
       method = "cca"
@@ -85,7 +86,8 @@ pseudotime_objects <- list(
   ),
   
   tar_target(atpst_mobj, monocle_pipeline(sobj = archived_sobj, cells = monocle_cells, features = monocle_genes, gene_ids = gene_ids)),
-  tar_target(pt_var_genes, monocle_get_var_genes(atpst_mobj)),
+  tar_target(pt_var_table, monocle_get_var_genes(atpst_mobj)),
+  tar_target(pt_var_genes, pt_var_table %>% filter(morans_I > 0.2) %>% row.names()),
   tar_render(pseudotime_report, path = "src/pseudotime_report.Rmd", output_dir = "reports/")
 )
 

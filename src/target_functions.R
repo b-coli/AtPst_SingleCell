@@ -374,9 +374,7 @@ monocle_get_var_genes <- function(cds) {
     cores=4
   )
   
-  pt_var_genes <- filter(pseudotime_genes, morans_I > 0.2) %>% row.names()
-  
-  return(pt_var_genes)
+  return(pseudotime_genes)
 
 }
 
