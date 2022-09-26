@@ -7,15 +7,13 @@ library(future)
 library(monocle3)
 
 source("src/target_functions.R")
-future::plan(strategy = "multisession", workers = 32)
-
 sample_metadata <- readr::read_csv("metadata/sample_metadata.csv")
 
 bulk_data <- list(
   tar_target(bulk_dge, read_bulk_dges(sns = sample_metadata %>% filter(Sequence_Type == "RNAseq") %>% pull(Sample_Name))),
   tar_target(bulk_erobj_norm, generate_er_object(dge = bulk_dge, md = filter(sample_metadata, Sequence_Type == "RNAseq"))),
   tar_target(bulk_de_table, get_de_genes(bulk_erobj_norm)),
-  tar_target(protoplast_loci, bulk_de_table %>% filter(de_type_proto %in% c("Proto Up", "Proto Down")) %>% pull(Locus)),
+  tar_target(protoplast_loci, bulk_de_table %>% filter(de_type_proto %in% c("Proto Up")) %>% pull(Locus)),
   tar_render(bulk_analysis_report, path = "src/bulk_analysis_report.Rmd", output_dir = "reports/")
 )
 
@@ -79,7 +77,7 @@ pseudotime_objects <- list(
   tar_target(
     monocle_genes,
     bulk_de_table %>%
-      filter(de_type_proto != "Not DE") %>%
+      filter(abs(logFC_proto) > 0.5 & p_adj_proto < 0.1) %>%
       filter(de_type_treat == "Not DE") %>%
       pull(Locus) %>%
       setdiff(x = row.names(archived_sobj@assays$SCT))

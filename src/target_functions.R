@@ -58,9 +58,9 @@ get_de_genes <- function(erobj_norm) {
                        logFC_treat > 2 & p_adj_treat < 0.01 ~ "DC3000 Up",
                        abs(logFC_treat) <= 2 | p_adj_treat >= 0.01 ~ "Not DE"),
            de_type_proto = 
-             case_when(logFC_proto < -0.5 & p_adj_proto < 0.1 ~ "Proto Down",
-                       logFC_proto > 0.5 & p_adj_proto < 0.1 ~ "Proto Up",
-                       abs(logFC_proto) <= 0.5 | p_adj_proto >= 0.1 ~ "Not DE"))
+             case_when(logFC_proto < -0.5 & p_adj_proto < 0.05 ~ "Proto Down",
+                       logFC_proto > 0.5 & p_adj_proto < 0.05 ~ "Proto Up",
+                       abs(logFC_proto) <= 0.5 | p_adj_proto >= 0.05 ~ "Not DE"))
   
   return(de_table)
   
