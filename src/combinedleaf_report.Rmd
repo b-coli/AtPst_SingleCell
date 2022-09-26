@@ -1,0 +1,33 @@
+---
+title: "Combined Leaf Datasets"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+tar_load(leaf_sobj)
+```
+
+```{r}
+cell_data <- get_cell_data(leaf_sobj)
+umap_base <- ggplot(cell_data %>% arrange(DC3000.Up1), aes(x = UMAP_1, y = UMAP_2)) + theme_bw()
+umap_base + geom_point(aes(color = predicted.id), size = 1, alpha = 0.1) +   guides(color = guide_legend(override.aes = list(alpha = 1, size = 3)))
+ggsave("plots/combined_leaf_umap_celltype.pdf", family = "ArialMT")
+```
+
+```{r}
+umap_base + geom_point(aes(color = predicted.id), alpha = 0.1, size = 1) + 
+  facet_wrap("Sample_Name") +
+  guides(color = guide_legend(override.aes = list(alpha = 1, size = 3)))
+ggsave("plots/combined_leaf_umap_celltype_sample.pdf", family = "ArialMT")
+```
+
+```{r}
+umap_base + geom_point(aes(color = DC3000.Up1 - DC3000.Down1), size = 1) + 
+  scale_color_viridis_c(option = "plasma")
+
+ggsave("plots/combined_leaf_umap_response.pdf", family = "ArialMT")
+```

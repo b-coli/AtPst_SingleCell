@@ -60,7 +60,8 @@ integrated_objects <- list(
   
   tar_target(cluster_deg, FindAllMarkers(archived_sobj, assay = "RNA", logfc.threshold = 0, min.pct = 0)),
   tar_render(pseudobulk_report, path = "src/pseudobulk_report.Rmd", output_dir = "reports/"),
-  tar_render( dataset_stats_report, path = "src/dataset_stats_report.Rmd", output_dir = "reports/")
+  tar_render(dataset_stats_report, path = "src/dataset_stats_report.Rmd", output_dir = "reports/"),
+  tar_render(combinedleaf_report, path = "src/combinedleaf_report.Rmd", output_dir = "reports/")
 )
 
 pseudotime_objects <- list(
