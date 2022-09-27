@@ -69,23 +69,21 @@ ggsave("plots/umap_sampledensity.pdf", family = "ArialMT")
 ```
 
 ```{r}
-ggplot(
-  cell_data %>% mutate(
-    Cluster_Type = factor(
-      Cluster_Type, 
-      levels = c(
-        "Immunity Mesophyll",
-        "Transition Mesophyll",
-        "Susceptibility Mesophyll",
-        "Other Mesophyll",
-        "Vasculature",
-        "Guard",
-        "Bundle Sheath",
-        "Companion"
-      )
-    )
-  ), 
-  aes(x = Cluster)) +
+base_clusterplt <- cell_data %>%
+  mutate(Cluster_Type = case_when(
+    Cluster %in% paste0("M", 1:5) ~ "Pathogen-responsive Mesophyll",
+    Cluster %in% paste0("M",6:14) ~ "Other Mesophyll",
+    !(Cluster %in% paste0("M",1:14)) ~ "Other Cell Types"
+  )) %>%
+  mutate(Cluster_Type = factor(Cluster_Type, levels = c(
+    "Pathogen-responsive Mesophyll",
+    "Other Mesophyll",
+    "Other Cell Types"
+  ))) %>%
+  mutate(Cluster = factor(Cluster, levels = c(paste0("M",1:14), "B15", "P16", "G17", "C18"))) %>%
+  ggplot(aes(x = Cluster))
+
+base_clusterplt +
   geom_bar(aes(fill = Sample_Name)) +
   scale_fill_discrete(name = "Sample") +
   scale_y_continuous(limits = c(0,2000), expand = c(0,0)) +
@@ -98,27 +96,11 @@ ggplot(
         strip.background.y = element_blank(),
         strip.background.x = element_blank())
 
-ggsave("plots/cluster_proportion_sample.pdf", height = 8, width = 16)
+ggsave("plots/cluster_proportion_sample.pdf")
 ```
 
 ```{r}
-ggplot(
-  cell_data %>% mutate(
-    Cluster_Type = factor(
-      Cluster_Type, 
-      levels = c(
-        "Immunity Mesophyll",
-        "Transition Mesophyll",
-        "Susceptibility Mesophyll",
-        "Other Mesophyll",
-        "Vasculature",
-        "Guard",
-        "Bundle Sheath",
-        "Companion"
-      )
-    )
-  ), 
-  aes(x = Cluster)) +
+base_clusterplt +
   geom_bar(aes(fill = predicted.id)) +
   scale_fill_discrete(name = "Cell Type") +
   scale_y_continuous(limits = c(0,2000), expand = c(0,0)) +
@@ -131,7 +113,7 @@ ggplot(
         strip.background.y = element_blank(),
         strip.background.x = element_blank())
 
-ggsave("plots/cluster_proportion_celltype.pdf", height = 8, width = 16)
+ggsave("plots/cluster_proportion_celltype.pdf")
 
 ```
 
