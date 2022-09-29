@@ -2,11 +2,15 @@ library(targets)
 library(tarchetypes)
 library(edgeR)
 library(Seurat)
-library(tidyverse)
 library(future)
 library(monocle3)
+library(topGO)
+library(tidyverse)
 
 source("src/target_functions.R")
+future::plan(strategy = "multisession", workers = 4)
+options(future.globals.maxSize = 10*(1024^3))
+
 sample_metadata <- readr::read_csv("metadata/sample_metadata.csv")
 
 bulk_data <- list(
@@ -58,10 +62,12 @@ integrated_objects <- list(
     )
   ),
   
-  tar_target(cluster_deg, FindAllMarkers(archived_sobj, assay = "RNA", logfc.threshold = 0, min.pct = 0)),
+  tar_target(cluster_deg, FindAllMarkers(archived_sobj, assay = "SCT", logfc.threshold = 0, min.pct = 0)),
+  tar_target(cluster_sample_deg, find_markers2d(archived_sobj, comp_1 = "DC3000", comp_2 = "Control")),
   tar_render(pseudobulk_report, path = "src/pseudobulk_report.Rmd", output_dir = "reports/"),
   tar_render(dataset_stats_report, path = "src/dataset_stats_report.Rmd", output_dir = "reports/"),
-  tar_render(combinedleaf_report, path = "src/combinedleaf_report.Rmd", output_dir = "reports/")
+  tar_render(combinedleaf_report, path = "src/combinedleaf_report.Rmd", output_dir = "reports/"),
+  tar_render(de_report, path = "src/de_report.Rmd", output_dir = "reports/")
 )
 
 pseudotime_objects <- list(
@@ -99,10 +105,37 @@ archival_data <- list(
   tar_target(archived_clusterNames, read_csv(archived_clusterNames_file))
 )
 
+go_information <- list(
+  tar_target(
+    gene_annotation, 
+    download_and_read_gz(
+      "https://arabidopsis.org/download_files/GO_and_PO_Annotations/Gene_Ontology_Annotations/ATH_GO_GOSLIM.txt.gz", 
+      type = "tsv",
+      skip = 4,
+      col_names = c(
+        "Locus", "TAIR_Accession", "ObjectName", "Relationship", 
+        "GO_Description", "GO", "TAIR_Keyword", "Aspect", "GOslim_Term", 
+        "EvidenceCode", "EvidenceDescription", "SupportingEvidence", 
+        "Reference", "Annotator", "Date"
+      )
+    )),
+  tar_target(gene2GO, map_GO_to_genes(gene_annotation)),
+  tar_target(marker_go, get_go_for_clusters(
+    sobj = archived_sobj, 
+    markers = cluster_deg, 
+    min.pct = 0.1, 
+    min.lfc = 1, 
+    p = 0.01, 
+    gene_to_go = gene2GO)),
+  tar_render(go_report, path = "src/go_report.Rmd", output_dir = "reports/")
+  
+)
+
 list(
   bulk_data,
   individual_objects,
   integrated_objects,
   archival_data,
-  pseudotime_objects
+  pseudotime_objects,
+  go_information
 )

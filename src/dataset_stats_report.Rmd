@@ -11,9 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 sobj <- tar_read(archived_sobj)
-cell_data <- get_cell_data(sobj) %>% 
-  mutate(seurat_clusters = as.character(seurat_clusters) %>% as.numeric()) %>%
-  left_join(tar_read(archived_clusterNames))
+cell_data <- get_cell_data(sobj)
 ```
 
 ```{r}
@@ -38,7 +36,7 @@ ggsave("plots/gene_stats.pdf", family = "ArialMT")
 
 ```{r}
 color_scheme <- cell_data %>%
-    select(Cluster_Type, Color) %>%
+    dplyr::select(Cluster_Type, Color) %>%
     unique() %>%
     deframe()
 

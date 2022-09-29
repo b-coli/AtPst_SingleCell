@@ -378,14 +378,14 @@ monocle_get_var_genes <- function(cds) {
 
 }
 
-download_and_read_gz <- function(url, type = "rds") {
+download_and_read_gz <- function(url, type = "rds", ...) {
   tmpfn <- paste0("tmp.gz")
-  system("gunzip ", tmpfn)
-  tmpfn <- "tmp"
   download.file(url, destfile = tmpfn)
-  if(type == "csv") out <- read_csv(tmpfn)
-  if(type %in% c("txt", "tsv")) out <- read_tsv(tmpfn)
-  if(type == "rds" & compression == ".gz") out <- read_rds(tmpfn)
+  system(paste0("gunzip ", tmpfn))
+  tmpfn <- "tmp"
+  if(type == "csv") out <- read_csv(tmpfn, ...)
+  if(type %in% c("txt", "tsv")) out <- read_tsv(tmpfn, ...)
+  if(type == "rds") out <- read_rds(tmpfn, ...)
 
   file.remove(tmpfn)
   return(out)
@@ -469,17 +469,133 @@ get_cell_data <- function(sobj) {
 
 read_archived_sobj <- function(fn, cluster_names) {
   sobj <- read_rds(fn)
-  cell_data <- get_cell_data(sobj)
+  cell_data <- get_cell_data(sobj) %>% dplyr::select(Cell, seurat_clusters)
   cluster_renamed <- cluster_names %>%
     mutate(seurat_clusters = factor(
       seurat_clusters, 
       levels = levels(sobj@meta.data$seurat_clusters))) %>%
     right_join(cell_data) %>%
-    select(Cell, Cluster) %>%
     column_to_rownames("Cell")
   
   sobj <- AddMetaData(sobj, cluster_renamed)
   
   return(sobj)
   
+}
+
+get_go_for_clusters <- function(sobj, markers = NULL, min.pct, min.lfc, p, gene_to_go, clusters = NULL) {
+  markers <- markers %>%
+    filter(pct.1 >= min.pct) %>%
+    filter(avg_log2FC >= min.lfc) %>%
+    filter(p_val_adj < p)
+  
+  if(is.null(clusters)) clusters <- unique(markers$cluster)
+  
+  expressed_genes <- get_expressed_genes(sobj)
+  
+  cluster_go <- map_dfr(clusters, function(clust) {
+    genes <- filter(markers, cluster == clust) %>% pull(gene)
+    results <- run_go(genes, background = expressed_genes, gene_to_go = gene_to_go)
+    results$cluster <- clust
+    return(results)
+  })
+  
+  return(cluster_go)
+  
+}
+
+get_expressed_genes <- function(sobj, assay = "RNA", slot = "counts", cluster = NULL) {
+  dge <- GetAssayData(sobj, assay = assay, slot = slot)
+  cell_data <- get_cell_data(sobj)
+  if(is.null(cluster)) {
+    cells <- cell_data$Cell
+  } else {
+    cells <- get_cell_data(sobj) %>% 
+      filter(seurat_clusters == cluster) %>% 
+      pull(Cell)
+  }
+  
+  dge <- dge[,cells]
+  expression <- Matrix::rowSums(dge) %>% enframe("Locus", "Expression")
+  expressing_genes <- filter(expression, Expression > 0) %>% pull(Locus)
+  return(expressing_genes)
+}
+
+run_go <- function(genes, background, gene_to_go) {
+  geneList <- factor(as.integer(background %in% genes), levels = c(0,1))
+  names(geneList) <- background
+  
+  GOdata <- new("topGOdata", ontology = "BP", allGenes = geneList, annot = annFUN.gene2GO, gene2GO = gene_to_go)
+  go_scores <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
+  topNodes <- names(go_scores@score) %>% unique() %>% length()
+  
+  summary_table <- GenTable(GOdata, classic = go_scores, ranksOf = "classic", topNodes = topNodes) %>% as_tibble()
+  
+  return(summary_table)
+}
+
+get_GO_for_gene <- function(gene, gene_annot) {
+  filtered_annotations <- filter(gene_annot, Locus == gene)
+  go_terms <- unique(filtered_annotations$GO)
+  
+  if(is.null(go_terms)) go_terms <- NA
+  return(go_terms)
+}
+
+map_GO_to_genes <- function(gene_annotations) {
+  all_genes <- unique(gene_annotations$Locus)
+  
+  separated_annotations <- gene_annotations %>%
+    separate_rows(GO, sep = ",") %>%
+    filter(!is.na(GO))
+  
+  gene_to_go <- map(.x = all_genes, 
+                  .f = get_GO_for_gene, 
+                  gene_annot = separated_annotations)
+  
+  names(gene_to_go) <- all_genes
+  return(gene_to_go)
+}
+
+find_markers2d <- function(sobj, group_ident = "Cluster_Type", 
+                           comp_ident = "Sample_Name", 
+                           comp_1 = NULL, comp_2 = NULL) {
+  ## Get cell data, make sure cells are in same order as in seurat object
+  cells <- row.names(sobj@meta.data)
+  cell_data <- get_cell_data(sobj) %>% column_to_rownames("Cell")
+  cell_data <- cell_data[cells,] %>% as_tibble(rownames = "Cell")
+  
+  ## Define new identities based on parameters
+  new_idents <- paste0(sobj@meta.data[,comp_ident], "_", sobj@meta.data[,group_ident])
+  Idents(sobj) <- new_idents
+  group_idents <- cell_data %>% pull(!!group_ident) %>% unique()
+  comp_idents <- cell_data %>% pull(!!comp_ident) %>% unique()
+  if(is.null(comp_1)) comp_1 = setdiff(comp_idents, comp_2)[1]
+  if(is.null(comp_2)) comp_2 = setdiff(comp_idents, comp_1)[1]
+
+  ## Loop through all grouping identities, calculate DE between comp_ident
+  all_markers <- furrr::future_map_dfr(group_idents, function(gid) {
+    message(paste0("Processing cluster ", gid))
+    label1 = paste0(comp_1, "_", gid)
+    label2 = paste0(comp_2, "_", gid)
+
+    markers <- FindMarkers(
+      object = sobj, 
+      ident.1 = label1,
+      ident.2 = label2,
+      assay = "RNA",
+      test.use = "DESeq2",
+      logfc.threshold = 0, 
+      min.pct = 0.05, 
+      min.diff.pct = 0
+    )
+    
+    markers <- as_tibble(markers, rownames = "Locus") %>%
+      mutate(set1 = label1, set2 = label2)
+    
+    return(markers)
+    
+  })
+  
+  return(all_markers)
 }

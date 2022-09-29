@@ -193,13 +193,10 @@ summary {
 
 
 <pre class="r"><code>sobj &lt;- tar_read(archived_sobj)
-cell_data &lt;- get_cell_data(sobj) %&gt;% 
-  mutate(seurat_clusters = as.character(seurat_clusters) %&gt;% as.numeric()) %&gt;%
-  left_join(tar_read(archived_clusterNames))</code></pre>
+cell_data &lt;- get_cell_data(sobj)</code></pre>
 <pre><code>## Joining, by = &quot;Cell&quot;
 ## Joining, by = &quot;Cell&quot;
 ## Joining, by = &quot;Cell&quot;</code></pre>
-<pre><code>## Joining, by = c(&quot;seurat_clusters&quot;, &quot;Cluster&quot;)</code></pre>
 <pre class="r"><code>ggplot(cell_data, aes(x = Sample_Name, y = nCount_RNA)) +
   geom_boxplot(aes(fill = Sample_Name)) +
   labs(y = &quot;Unique Transcripts&quot;,
@@ -221,7 +218,7 @@ cell_data &lt;- get_cell_data(sobj) %&gt;%
 <pre><code>## Warning: Use of `cell_data$nFeature_RNA` is discouraged. Use `nFeature_RNA`
 ## instead.</code></pre>
 <pre class="r"><code>color_scheme &lt;- cell_data %&gt;%
-    select(Cluster_Type, Color) %&gt;%
+    dplyr::select(Cluster_Type, Color) %&gt;%
     unique() %&gt;%
     deframe()
 

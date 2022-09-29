@@ -1,0 +1,30 @@
+---
+title: "GO tables"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(kableExtra)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+targets::tar_load(marker_go)
+```
+
+```{r}
+map(unique(marker_go$cluster), function(clust) {
+  go_data <- filter(marker_go, cluster == clust)
+  go_data <- filter(go_data, classic < 0.001)
+  go_data <- arrange(go_data, classic)
+  go_data <- slice_min(go_data, classic, n = 10)
+  kableExtra::kable(go_data, caption = paste0("Cluster ", clust), format = "html") %>% kableExtra::kable_styling(full_width = FALSE)
+})
+```
+
+```{r}
+write_csv(marker_go, file = "data/go_for_cluster_markers.csv")
+```
+
