@@ -1,0 +1,76 @@
+#1 [internal] load build definition from Dockerfile
+#1 sha256:8339da00ab0fbb4a16975e1622f09d30b7e9bb20aa374ec22c148c05cfafe822
+#1 transferring dockerfile: 32B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:b213c03bf42676c69a6369ba3635d183f61641a57ff353fbaf7ea1814624672e
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/rocker/rstudio:4.0.3
+#3 sha256:8c89d1e938a2990ab348972381115b0cb021e849a7f402db0da7de73c5e92309
+#3 ...
+
+#4 [auth] rocker/rstudio:pull token for registry-1.docker.io
+#4 sha256:2949588300cecc5efd265b31f1c23c59c18b95dac81fdcf77ba1fd3ad4dc3066
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/rocker/rstudio:4.0.3
+#3 sha256:8c89d1e938a2990ab348972381115b0cb021e849a7f402db0da7de73c5e92309
+#3 DONE 18.8s
+
+#5 [ 1/10] FROM docker.io/rocker/rstudio:4.0.3@sha256:16dd90ab5800b52f4ea218c688c7b63797779fc480e630223008223430126340
+#5 sha256:90c2b24c531ab13e9fb0b468b387438f38056e0af80e555ec46e03cf2e514610
+#5 DONE 0.0s
+
+#7 [internal] load build context
+#7 sha256:8af2e42da7f663d42321a045a723b9b125d5b2db5abb404db757032ec142704c
+#7 transferring context: 166B done
+#7 DONE 0.0s
+
+#13 [ 8/10] RUN R -e "source("install_seurat.R")"
+#13 sha256:fe18278e27221b679bbd352c0e8f0cdf128596730faf8ace51342582818249ce
+#13 CACHED
+
+#6 [ 2/10] RUN apt-get update 	&& apt-get -y install zlib1g-dev 	&& apt-get -y install libbz2-dev 	&& apt-get -y install liblzma-dev 	&& apt-get -y install libcurl4-openssl-dev 	&& apt-get -y install libxml2 	&& apt-get -y install libglpk40 	&& apt-get -y install libxt-dev 	&& apt-get -y install libboost-dev 	&& apt-get -y install libhdf5-dev 	&& apt-get -y install cmake 	&& apt-get -y install libboost-dev 	&& apt-get -y install libboost-iostreams-dev 	&& apt-get -y install libboost-log-dev 	&& apt-get -y install libboost-system-dev 	&& apt-get -y install libboost-test-dev 	&& apt-get -y install libproj-dev 	&& apt-get -y install build-essential 	&& apt-get -y install libcairo2-dev 	&& apt-get -y install libxt-dev 	&& apt-get -y install libgdal-dev 	&& apt-get -y install libudunits2-dev
+#6 sha256:cfc0ae7bdcc57d0408a2d56a34d2301293ff4e42828c4122b9ce4177f7bcae63
+#6 CACHED
+
+#14 [ 9/10] RUN R -e "source("install_bioconductor_packages.R")"
+#14 sha256:d11c5e8510ee77700ef9c87b6228c40821e1451d10c0d769bb2ef56b2f3cf274
+#14 CACHED
+
+#8 [ 3/10] ADD install_bioconductor_packages.R /
+#8 sha256:818b7ef8ce3e5127cf1d9cf72d6448a9bfdd9d07b2e5f006632d7e7f6f048ec6
+#8 CACHED
+
+#9 [ 4/10] ADD install_R_packages.R /
+#9 sha256:a3649f0cae4009bdaebd0518439f9df3b95a5f0fc2de690bd292862e6ef5a767
+#9 CACHED
+
+#10 [ 5/10] ADD install_seurat.R /
+#10 sha256:9f9a7c3330f4d1eb1d4a5b100ace2f5cd8b8e3b536b2e3c76111d4717b53394b
+#10 CACHED
+
+#12 [ 7/10] RUN R -e "source("install_R_packages.R")"
+#12 sha256:910d3c71119c1a0b6d1c1331bf632f1c72a6188440fea6553753def6487d2e23
+#12 CACHED
+
+#11 [ 6/10] ADD install_monocle.R /
+#11 sha256:634296160e1b12695a1b0cdef5ae3ab2ae6bcbaae911ecce2f0e63ef0ed31ac7
+#11 CACHED
+
+#15 [10/10] RUN R -e "source("install_monocle.R")"
+#15 sha256:6addc268327f8a83ebab268f543f0e91daf2153e372db145ac7a7f3e04fa573b
+#15 CACHED
+
+#16 exporting to image
+#16 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#16 exporting layers done
+#16 writing image sha256:da47221059e0d1934263dd2445af4d9f79dcbd69a707c4aafc767fd8e3029f52
+#16 writing image sha256:da47221059e0d1934263dd2445af4d9f79dcbd69a707c4aafc767fd8e3029f52 done
+#16 naming to docker.io/bcoli/atpst_singlecell_r:1.0 done
+#16 DONE 0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them

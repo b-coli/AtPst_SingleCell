@@ -3,7 +3,8 @@ BiocManager::install(
     'batchelor', 
     'BiocGenerics', 
     'DelayedArray', 
-    'DelayedMatrixStats',                     
+    'DelayedMatrixStats',
+    'DESeq2',
     'DropletUtils', 
     'edgeR', 
     'ggrastr',
@@ -14,7 +15,8 @@ BiocManager::install(
     'S4Vectors', 
     'SingleCellExperiment',
     'SummarizedExperiment', 
-    'terra'
+    'terra',
+    'topGO'
   ),
   version = "3.12",
   update = FALSE)
