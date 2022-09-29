@@ -42,8 +42,11 @@ gene_list <- list(Susceptibility = susceptibility_genes,
                   #Pseudotime_Variable = pt_genes,
                   Bulk = bulk_genes)
 
+pdf(file="plots/de_upset.pdf")
 UpSetR::fromList(gene_list) %>% UpSetR::upset()
-ggsave("plots/de_upset.pdf", family = "ArialMT")
+dev.off()
+
+UpSetR::fromList(gene_list) %>% UpSetR::upset()
 ```
 
 ```{r}
