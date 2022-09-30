@@ -9,16 +9,25 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 
 sobj <- tar_read(archived_sobj)
-cluster_markers <- tar_read(cluster_deg)
-cluster_de_genes <- tar_read(cluster_sample_deg)
+de_table <- tar_read(bulk_de_table)
+
+protoplast_loci <- bulk_de_table %>%
+  filter(p_adj_proto < 0.1 & abs(logFC_proto) > 0.5) %>%
+  pull(Locus)
+
+cluster_de_genes <- tar_read(cluster_sample_deg) %>%
+  filter(!(Locus %in% protoplast_loci))
+
 filtered_cluster_de_genes <- cluster_de_genes %>% 
   filter(p_val_adj < 0.01) %>%
   filter(abs(avg_log2FC) > 0.5)
 
-bulk_de_table <- tar_read(bulk_de_table)
+bulk_de_table <- tar_read(bulk_de_table) %>%
+  filter(!(Locus %in% protoplast_loci))
 ```
 
 ```{r}
+cluster_markers <- tar_read(cluster_deg)
 write_csv(cluster_markers, file = "data/cluster_markers.csv")
 ```
 
