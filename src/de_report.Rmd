@@ -19,6 +19,10 @@ bulk_de_table <- tar_read(bulk_de_table)
 ```
 
 ```{r}
+write_csv(cluster_markers, file = "data/cluster_markers.csv")
+```
+
+```{r}
 immunity_genes <- filtered_cluster_de_genes %>%
   filter(str_detect(set1, "Immunity")) %>%
   pull(Locus) %>% 

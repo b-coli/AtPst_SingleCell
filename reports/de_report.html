@@ -192,6 +192,7 @@ summary {
 </div>
 
 
+<pre class="r"><code>write_csv(cluster_markers, file = &quot;data/cluster_markers.csv&quot;)</code></pre>
 <pre class="r"><code>immunity_genes &lt;- filtered_cluster_de_genes %&gt;%
   filter(str_detect(set1, &quot;Immunity&quot;)) %&gt;%
   pull(Locus) %&gt;% 
