@@ -45,3 +45,4 @@ genomes/*
 data/expression/*
 *.zip
 _targets/*
+Figures/*
