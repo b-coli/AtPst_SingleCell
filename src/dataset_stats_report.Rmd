@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 sobj <- tar_read(archived_sobj)
 cell_data <- get_cell_data(sobj)
+write_csv(cell_data, "data/cell_metadata.csv")
 ```
 
 ```{r}

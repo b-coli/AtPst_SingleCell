@@ -2063,7 +2063,9 @@ summary {
 ##   &lt;/tr&gt;
 ## &lt;/tbody&gt;
 ## &lt;/table&gt;</code></pre>
-<pre class="r"><code>write_csv(marker_go, file = &quot;data/go_for_cluster_markers.csv&quot;)</code></pre>
+<pre class="r"><code>write_csv(marker_go, file = &quot;data/go_for_cluster_markers.csv&quot;)
+write_csv(marker_go %&gt;% group_by(cluster) %&gt;% slice_min(classic, n = 5), 
+          file = &quot;data/go_for_cluster_markers_top5.csv&quot;)</code></pre>
 
 
 

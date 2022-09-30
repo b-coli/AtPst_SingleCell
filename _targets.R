@@ -126,7 +126,8 @@ go_information <- list(
     min.pct = 0.1, 
     min.lfc = 1, 
     p = 0.01, 
-    gene_to_go = gene2GO)),
+    gene_to_go = gene2GO,
+    exclude_loci = protoplast_loci)),
   tar_render(go_report, path = "src/go_report.Rmd", output_dir = "reports/")
   
 )

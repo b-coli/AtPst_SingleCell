@@ -197,6 +197,7 @@ cell_data &lt;- get_cell_data(sobj)</code></pre>
 <pre><code>## Joining, by = &quot;Cell&quot;
 ## Joining, by = &quot;Cell&quot;
 ## Joining, by = &quot;Cell&quot;</code></pre>
+<pre class="r"><code>write_csv(cell_data, &quot;data/cell_metadata.csv&quot;)</code></pre>
 <pre class="r"><code>ggplot(cell_data, aes(x = Sample_Name, y = nCount_RNA)) +
   geom_boxplot(aes(fill = Sample_Name)) +
   labs(y = &quot;Unique Transcripts&quot;,

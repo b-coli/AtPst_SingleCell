@@ -483,7 +483,7 @@ read_archived_sobj <- function(fn, cluster_names) {
   
 }
 
-get_go_for_clusters <- function(sobj, markers = NULL, min.pct, min.lfc, p, gene_to_go, clusters = NULL) {
+get_go_for_clusters <- function(sobj, markers = NULL, min.pct, min.lfc, p, gene_to_go, clusters = NULL, exclude_loci = NULL) {
   markers <- markers %>%
     filter(pct.1 >= min.pct) %>%
     filter(avg_log2FC >= min.lfc) %>%
@@ -492,7 +492,8 @@ get_go_for_clusters <- function(sobj, markers = NULL, min.pct, min.lfc, p, gene_
   if(is.null(clusters)) clusters <- unique(markers$cluster)
   
   expressed_genes <- get_expressed_genes(sobj)
-  
+  background_gene <- setdiff(expressed_genes, exclude_loci)
+
   cluster_go <- map_dfr(clusters, function(clust) {
     genes <- filter(markers, cluster == clust) %>% pull(gene)
     results <- run_go(genes, background = expressed_genes, gene_to_go = gene_to_go)
