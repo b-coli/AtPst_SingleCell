@@ -45,7 +45,7 @@ ggsave("plots/pseuotime_heatmap_apriori.pdf", family = "ArialMT", height = 12, w
 ```
 
 ```{r}
-plot_pt_heatmap(
+pt_plt <- plot_pt_heatmap(
   sobj = sobj, 
   pt = pt, 
   goi = tibble(Locus = ptvar_genes), 
@@ -57,10 +57,14 @@ plot_pt_heatmap(
         strip.background = element_blank()
   )
 
-ggsave("plots/pseudotime_heatmap_novel.pdf", height = 10, width = 8, family = "ArialMT")
+pt_plt
+
+ggsave("plots/pseudotime_heatmap_novel.pdf", plot = pt_plt, height = 10, width = 8, family = "ArialMT")
 ```
 
 ```{r}
-tar_read(pt_var_table) %>% write_csv("data/pseudotime_variable_genes.csv")
+modules <- select(pt_plt$data, Locus, Module) %>% unique()
+
+tar_read(pt_var_table) %>% left_join(modules) %>% write_csv("data/pseudotime_variable_genes.csv")
 ```
 
