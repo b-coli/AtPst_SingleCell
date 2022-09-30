@@ -16,6 +16,7 @@ This analysis makes use of several dockerhub images:
 |staphb/fastqc:0.11.9          |FastQC for evaluating fastq data quality                                            |
 
 The analysis also uses resources on Phytozome, which will need to be downloaded from:
+
 https://data.jgi.doe.gov/refine-download/phytozome?organism=Athaliana&expanded=447
  * Genome annotation: Athaliana_447_Araport11.gene_exons.gff3.gz
  * Genome sequence: Athaliana_447_TAIR10.fa.gz
