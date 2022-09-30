@@ -26,7 +26,7 @@ map(unique(marker_go$cluster), function(clust) {
 
 ```{r}
 write_csv(marker_go, file = "data/go_for_cluster_markers.csv")
-write_csv(marker_go %>% group_by(cluster) %>% slice_min(classic, n = 5), 
+write_csv(marker_go %>% group_by(cluster) %>% slice_min(classic, n = 10), 
           file = "data/go_for_cluster_markers_top5.csv")
 ```
 
