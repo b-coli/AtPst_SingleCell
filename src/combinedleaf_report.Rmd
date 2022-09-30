@@ -33,16 +33,23 @@ ggsave("plots/combined_leaf_umap_response.pdf", family = "ArialMT")
 ```
 
 ```{r}
-ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2, group = -1)) +
-    stat_summary_hex(aes(z = Sample_Name == "DC3000"), fun = mean, binwidth = 0.2, color = 'black', lwd = 0) +
-    scale_fill_viridis_c(option = "plasma", name = "Proportion DC3000-Treated Cells") +
+sample_names <- cell_data$Sample_Name %>% unique()
+
+plots <- map(sample_names, function(sample_name) {
+  plt <- ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2, group = -1)) +
+    stat_summary_hex(aes(z = Sample_Name == sample_name), fun = mean, binwidth = 0.2, color = 'black', lwd = 0) +
+    scale_fill_viridis_c(option = "plasma", name = paste0("Proportion ", sample_name, " Cells")) +
     labs(x = "UMAP 1", y = "UMAP 2") +
     coord_fixed() +
     theme_void() +
     theme(axis.title.x = element_text(hjust = 0)) +
     theme(axis.title.y = element_text(hjust = 0, angle = 90))
+  
+  ggsave(paste0("plots/combined_leaf_umap_sampledensity_", sample_name, ".pdf"), family = "ArialMT")
+  
+  plt
+})
 
-ggsave("plots/combined_leaf_umap_sampledensity.pdf", family = "ArialMT")
-
+plots
 ```
 
