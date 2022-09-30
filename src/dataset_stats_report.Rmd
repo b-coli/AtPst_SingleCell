@@ -68,6 +68,21 @@ ggsave("plots/umap_sampledensity.pdf", family = "ArialMT")
 ```
 
 ```{r}
+ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2)) +
+  geom_point(aes(color = DC3000.Up1 - DC3000.Down1), size = 0.5) +
+    scale_color_viridis_c(option = "plasma", name = "Pathogen signature score") +
+    labs(x = "UMAP 1", y = "UMAP 2") +
+    coord_fixed() +
+    theme_void() +
+    theme(axis.title.x = element_text(hjust = 0)) +
+    theme(axis.title.y = element_text(hjust = 0, angle = 90))
+
+ggsave("plots/umap_signaturescore.pdf", family = "ArialMT")
+
+```
+
+
+```{r}
 base_clusterplt <- cell_data %>%
   mutate(Cluster_Type = case_when(
     Cluster %in% paste0("M", 1:5) ~ "Pathogen-responsive Mesophyll",
