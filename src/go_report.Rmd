@@ -11,8 +11,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-targets::tar_load(marker_go)
+marker_go <- targets::tar_read(marker_go) %>% 
+  mutate(p.adj = p.adjust(classic, method = "BH"),
+         seurat_clusters = as.character(cluster) %>% as.numeric()) %>%
+  left_join(tar_read(archived_clusterNames)) %>%
+  mutate(Enrichment = Significant / (Expected+1))
+
+selected_go_terms <- marker_go %>% 
+  mutate(p.adj = p.adjust(classic, method = "BH")) %>% 
+  filter(p.adj < 0.01) %>% 
+  group_by(cluster) %>% 
+  slice_min(p.adj, n = 20) %>% 
+  pull(GO.ID) %>% 
+  unique()
 ```
+
+## Display top 10 GO terms for each cluster
 
 ```{r}
 map(unique(marker_go$cluster), function(clust) {
@@ -24,9 +38,46 @@ map(unique(marker_go$cluster), function(clust) {
 })
 ```
 
+## Save cluster GO terms
+
 ```{r}
 write_csv(marker_go, file = "data/go_for_cluster_markers.csv")
 write_csv(marker_go %>% group_by(cluster) %>% slice_min(classic, n = 10), 
           file = "data/go_for_cluster_markers_top5.csv")
+```
+
+## Heatmap of top GO terms by cluster
+
+```{r}
+go_mat <- marker_go %>% 
+  filter(GO.ID %in% selected_go_terms) %>%
+  select(GO.ID, cluster, Enrichment) %>%
+  pivot_wider(names_from = "cluster", values_from = "Enrichment") %>%
+  column_to_rownames("GO.ID")
+
+go_hclust <- dist(go_mat) %>% hclust() 
+go_order <- go_hclust$labels[go_hclust$order]
+
+
+labels <- marker_go %>% 
+  filter(GO.ID %in% selected_go_terms) %>%
+  select(GO.ID, Term) %>%
+  deframe()
+
+ggplot(
+  marker_go %>% 
+    filter(GO.ID %in% go_order) %>%
+    mutate(GO.ID = factor(GO.ID, levels = go_order)) %>%
+    mutate(Cluster = factor(
+      Cluster, 
+      levels = c(
+        paste0("M",1:14),
+        paste0(c("B","P","G","C"),c(15:18))))),
+  aes(x = Cluster, y = GO.ID)) +
+  geom_tile(aes(fill = Enrichment)) +
+  scale_fill_viridis_c() +
+  scale_y_discrete(labels = labels)
+
+ggsave("plots/go_heatmap.pdf", family = "ArialMT", width = 18, height = 12)
 ```
 

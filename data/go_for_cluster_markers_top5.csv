@@ -1,190 +1,190 @@
-GO.ID,Term,Annotated,Significant,Expected,classic,cluster
-GO:0019372,lipoxygenase pathway,4,2,0.02,0.00011,0
-GO:0009416,response to light stimulus,2022,21,8.75,0.00012,0
-GO:0015996,chlorophyll catabolic process,24,3,0.1,0.00015,0
-GO:0009314,response to radiation,2065,21,8.94,0.00016,0
-GO:0031407,oxylipin metabolic process,25,3,0.11,0.00017,0
-GO:0014070,response to organic cyclic compound,809,12,3.5,0.00019,0
-GO:0046149,pigment catabolic process,27,3,0.12,0.00021,0
-GO:0006690,icosanoid metabolic process,6,2,0.03,0.00028,0
-GO:0080151,positive regulation of salicylic acid me...,6,2,0.03,0.00028,0
-GO:0006787,porphyrin-containing compound catabolic ...,30,3,0.13,0.00029,0
-GO:0033015,tetrapyrrole catabolic process,30,3,0.13,0.00029,0
-GO:0010027,thylakoid membrane organization,51,4,0.25,0.00011,1
-GO:0006417,regulation of translation,98,5,0.48,0.00012,1
-GO:0006779,porphyrin-containing compound biosynthet...,100,5,0.48,0.00013,1
-GO:0034248,regulation of cellular amide metabolic p...,101,5,0.49,0.00013,1
-GO:0010608,posttranscriptional regulation of gene e...,234,7,1.13,0.00015,1
-GO:0009668,plastid membrane organization,56,4,0.27,0.00016,1
-GO:0033014,tetrapyrrole biosynthetic process,111,5,0.54,0.00021,1
-GO:0006094,gluconeogenesis,24,3,0.12,0.00021,1
-GO:0071704,organic substance metabolic process,10498,69,50.89,0.00023,1
-GO:0019319,hexose biosynthetic process,27,3,0.13,0.00030,1
-GO:0033013,tetrapyrrole metabolic process,297,6,0.77,0.00012,2
-GO:1903428,positive regulation of reactive oxygen s...,7,2,0.02,0.00014,2
-GO:0010119,regulation of stomatal movement,104,4,0.27,0.00015,2
-GO:0009651,response to salt stress,613,8,1.59,0.00017,2
-GO:0002213,defense response to insect,44,3,0.11,0.00020,2
-GO:0042221,response to chemical,4906,25,12.7,0.00021,2
-GO:0072593,reactive oxygen species metabolic proces...,130,4,0.34,0.00036,2
-GO:2000379,positive regulation of reactive oxygen s...,13,2,0.03,0.00050,2
-GO:0009644,response to high light intensity,62,3,0.16,0.00056,2
-GO:0010087,phloem or xylem histogenesis,147,4,0.38,0.00057,2
-GO:0071495,cellular response to endogenous stimulus,1320,23,9.75,0.00011,3
-GO:0007165,signal transduction,2401,34,17.74,0.00014,3
-GO:0009755,hormone-mediated signaling pathway,1081,20,7.99,0.00014,3
-GO:0009409,response to cold,459,12,3.39,0.00016,3
-GO:1901701,cellular response to oxygen-containing c...,1250,21,9.24,0.00036,3
-GO:0002376,immune system process,687,14,5.08,0.00059,3
-GO:0009753,response to jasmonic acid,615,13,4.54,0.00067,3
-GO:0050789,regulation of biological process,6712,69,49.59,0.00074,3
-GO:0009644,response to high light intensity,62,4,0.46,0.00115,3
-GO:0009061,anaerobic respiration,8,2,0.06,0.00148,3
-GO:0010438,cellular response to sulfur starvation,8,2,0.06,0.00148,3
-GO:0009611,response to wounding,793,12,3.28,0.00010,4
-GO:0031408,oxylipin biosynthetic process,23,3,0.1,0.00011,4
-GO:0014070,response to organic cyclic compound,809,12,3.35,0.00012,4
-GO:0009415,response to water,1073,14,4.44,0.00013,4
-GO:0070887,cellular response to chemical stimulus,2140,21,8.86,0.00014,4
-GO:0031407,oxylipin metabolic process,25,3,0.1,0.00015,4
-GO:0001101,response to acid chemical,1101,14,4.56,0.00016,4
-GO:0031347,regulation of defense response,734,11,3.04,0.00022,4
-GO:0080134,regulation of response to stress,866,12,3.59,0.00023,4
-GO:0009414,response to water deprivation,1004,13,4.16,0.00024,4
-GO:0006950,response to stress,5155,162,58.95,< 1e-30,5
-GO:0009607,response to biotic stimulus,2432,106,27.81,< 1e-30,5
-GO:0043207,response to external biotic stimulus,2430,105,27.79,< 1e-30,5
-GO:0051707,response to other organism,2430,105,27.79,< 1e-30,5
-GO:0044419,interspecies interaction between organis...,2452,105,28.04,< 1e-30,5
-GO:0009605,response to external stimulus,2861,111,32.72,< 1e-30,5
-GO:0050896,response to stimulus,8837,190,101.06,< 1e-30,5
-GO:0006790,sulfur compound metabolic process,522,17,5.97,0.00011,5
-GO:0009808,lignin metabolic process,68,6,0.78,0.00013,5
-GO:1901605,alpha-amino acid metabolic process,379,14,4.33,0.00013,5
-GO:0009631,cold acclimation,62,3,0.09,0.00011,6
-GO:0006950,response to stress,5155,17,7.76,0.00041,6
-GO:0010207,photosystem II assembly,28,2,0.04,0.00081,6
-GO:0042548,"regulation of photosynthesis, light reac...",28,2,0.04,0.00081,6
-GO:0050821,protein stabilization,30,2,0.05,0.00093,6
-GO:0043467,regulation of generation of precursor me...,31,2,0.05,0.00099,6
-GO:0009780,photosynthetic NADP+ reduction,1,1,0,0.00151,6
-GO:0018131,oxazole or thiazole biosynthetic process,1,1,0,0.00151,6
-GO:0046484,oxazole or thiazole metabolic process,1,1,0,0.00151,6
-GO:0031647,regulation of protein stability,39,2,0.06,0.00157,6
-GO:0006749,glutathione metabolic process,46,4,0.26,0.00014,7
-GO:0099402,plant organ development,1790,23,10.19,0.00017,7
-GO:0048827,phyllome development,706,13,4.02,0.00020,7
-GO:0009991,response to extracellular stimulus,282,8,1.61,0.00021,7
-GO:0006082,organic acid metabolic process,2078,25,11.83,0.00024,7
-GO:1901701,cellular response to oxygen-containing c...,1250,18,7.12,0.00025,7
-GO:0009642,response to light intensity,367,9,2.09,0.00026,7
-GO:0042538,hyperosmotic salinity response,57,4,0.32,0.00031,7
-GO:0009269,response to desiccation,24,3,0.14,0.00033,7
-GO:0009631,cold acclimation,62,4,0.35,0.00043,7
-GO:0006091,generation of precursor metabolites and ...,410,3,0.14,0.00024,8
-GO:0019684,"photosynthesis, light reaction",158,2,0.05,0.00113,8
-GO:0015979,photosynthesis,238,2,0.08,0.00253,8
-GO:0009769,"photosynthesis, light harvesting in phot...",10,1,0,0.00329,8
-GO:0033013,tetrapyrrole metabolic process,297,2,0.1,0.00390,8
-GO:0030388,"fructose 1,6-bisphosphate metabolic proc...",12,1,0,0.00395,8
-GO:0006094,gluconeogenesis,24,1,0.01,0.00788,8
-GO:0019319,hexose biosynthetic process,27,1,0.01,0.00886,8
-GO:0006006,glucose metabolic process,48,1,0.02,0.01571,8
-GO:0046364,monosaccharide biosynthetic process,52,1,0.02,0.01701,8
-GO:0010565,regulation of cellular ketone metabolic ...,119,5,0.46,0.00010,9
-GO:0023052,signaling,2453,22,9.58,0.00013,9
-GO:0033240,positive regulation of cellular amine me...,5,2,0.02,0.00015,9
-GO:0045764,positive regulation of cellular amino ac...,5,2,0.02,0.00015,9
-GO:0071446,cellular response to salicylic acid stim...,134,5,0.52,0.00018,9
-GO:0046394,carboxylic acid biosynthetic process,644,10,2.52,0.00020,9
-GO:0006563,L-serine metabolic process,30,3,0.12,0.00022,9
-GO:0009682,induced systemic resistance,30,3,0.12,0.00022,9
-GO:0006564,L-serine biosynthetic process,6,2,0.02,0.00022,9
-GO:0090357,regulation of tryptophan metabolic proce...,6,2,0.02,0.00022,9
-GO:0006950,response to stress,5155,219,78.84,< 1e-30,10
-GO:0043207,response to external biotic stimulus,2430,153,37.17,< 1e-30,10
-GO:0051707,response to other organism,2430,153,37.17,< 1e-30,10
-GO:0009607,response to biotic stimulus,2432,153,37.2,< 1e-30,10
-GO:0044419,interspecies interaction between organis...,2452,153,37.5,< 1e-30,10
-GO:0009605,response to external stimulus,2861,163,43.76,< 1e-30,10
-GO:0050896,response to stimulus,8837,265,135.16,< 1e-30,10
-GO:0098542,defense response to other organism,2106,133,32.21,< 1e-30,10
-GO:0006952,defense response,2459,141,37.61,< 1e-30,10
-GO:0009617,response to bacterium,1226,100,18.75,< 1e-30,10
-GO:0042742,defense response to bacterium,1037,89,15.86,< 1e-30,10
-GO:0042221,response to chemical,4906,187,75.04,< 1e-30,10
-GO:0002376,immune system process,687,65,10.51,< 1e-30,10
-GO:0009620,response to fungus,958,75,14.65,< 1e-30,10
-GO:0014070,response to organic cyclic compound,809,69,12.37,< 1e-30,10
-GO:0051716,cellular response to stimulus,3815,150,58.35,< 1e-30,10
-GO:0033013,tetrapyrrole metabolic process,297,10,2.28,0.00010,11
-GO:2000379,positive regulation of reactive oxygen s...,13,3,0.1,0.00012,11
-GO:0006778,porphyrin-containing compound metabolic ...,247,9,1.89,0.00013,11
-GO:1903409,reactive oxygen species biosynthetic pro...,34,4,0.26,0.00013,11
-GO:0010119,regulation of stomatal movement,104,6,0.8,0.00015,11
-GO:0010597,green leaf volatile biosynthetic process,3,2,0.02,0.00017,11
-GO:0090333,regulation of stomatal closure,37,4,0.28,0.00018,11
-GO:0015994,chlorophyll metabolic process,153,7,1.17,0.00018,11
-GO:0097305,response to alcohol,1236,22,9.48,0.00020,11
-GO:0010118,stomatal movement,160,7,1.23,0.00024,11
-GO:0055085,transmembrane transport,756,16,5.8,0.00024,11
-GO:0042221,response to chemical,4906,138,50.79,< 1e-30,12
-GO:0050896,response to stimulus,8837,180,91.49,< 1e-30,12
-GO:0006950,response to stress,5155,134,53.37,< 1e-30,12
-GO:0009067,aspartate family amino acid biosynthetic...,46,5,0.48,0.00011,12
-GO:0031407,oxylipin metabolic process,25,4,0.26,0.00012,12
-GO:0010439,regulation of glucosinolate biosynthetic...,10,3,0.1,0.00012,12
-GO:0071395,cellular response to jasmonic acid stimu...,185,9,1.92,0.00014,12
-GO:0071396,cellular response to lipid,482,15,4.99,0.00016,12
-GO:0006566,threonine metabolic process,11,3,0.11,0.00017,12
-GO:0044282,small molecule catabolic process,244,10,2.53,0.00024,12
-GO:0042221,response to chemical,4906,181,65.34,< 1e-30,13
-GO:0006950,response to stress,5155,180,68.66,< 1e-30,13
-GO:1901700,response to oxygen-containing compound,3055,139,40.69,< 1e-30,13
-GO:0050896,response to stimulus,8837,219,117.69,< 1e-30,13
-GO:0071215,cellular response to abscisic acid stimu...,323,14,4.3,0.00012,13
-GO:0097306,cellular response to alcohol,323,14,4.3,0.00012,13
-GO:0009867,jasmonic acid mediated signaling pathway,178,10,2.37,0.00014,13
-GO:0002376,immune system process,687,22,9.15,0.00014,13
-GO:0031408,oxylipin biosynthetic process,23,4,0.31,0.00022,13
-GO:0006790,sulfur compound metabolic process,522,18,6.95,0.00024,13
-GO:0009642,response to light intensity,367,13,3.73,0.00010,14
-GO:0016145,S-glycoside catabolic process,28,4,0.28,0.00018,14
-GO:0019759,glycosinolate catabolic process,28,4,0.28,0.00018,14
-GO:0019762,glucosinolate catabolic process,28,4,0.28,0.00018,14
-GO:0009753,response to jasmonic acid,615,17,6.25,0.00019,14
-GO:0006979,response to oxidative stress,573,16,5.82,0.00027,14
-GO:0009409,response to cold,459,14,4.67,0.00027,14
-GO:1901575,organic substance catabolic process,1713,33,17.41,0.00028,14
-GO:0042538,hyperosmotic salinity response,57,5,0.58,0.00028,14
-GO:0006790,sulfur compound metabolic process,522,15,5.31,0.00031,14
-GO:0044419,interspecies interaction between organis...,2452,56,33.93,0.00011,15
-GO:1901657,glycosyl compound metabolic process,273,13,3.78,0.00012,15
-GO:0044281,small molecule metabolic process,2760,61,38.19,0.00013,15
-GO:0000122,negative regulation of transcription by ...,36,5,0.5,0.00013,15
-GO:0110126,phloem loading,8,3,0.11,0.00014,15
-GO:0006979,response to oxidative stress,573,20,7.93,0.00016,15
-GO:0070887,cellular response to chemical stimulus,2140,50,29.61,0.00016,15
-GO:0043207,response to external biotic stimulus,2430,55,33.62,0.00016,15
-GO:0051707,response to other organism,2430,55,33.62,0.00016,15
-GO:0009607,response to biotic stimulus,2432,55,33.65,0.00016,15
-GO:0002237,response to molecule of bacterial origin,116,8,1.45,0.00011,16
-GO:0042430,indole-containing compound metabolic pro...,183,10,2.29,0.00011,16
-GO:0009987,cellular process,15068,215,188.62,0.00013,16
-GO:0016310,phosphorylation,1219,31,15.26,0.00014,16
-GO:0006812,cation transport,309,13,3.87,0.00015,16
-GO:1902600,proton transmembrane transport,66,6,0.83,0.00018,16
-GO:0015672,monovalent inorganic cation transport,125,8,1.56,0.00018,16
-GO:0002221,pattern recognition receptor signaling p...,24,4,0.3,0.00021,16
-GO:0022900,electron transport chain,129,8,1.61,0.00022,16
-GO:0006869,lipid transport,101,7,1.26,0.00028,16
-GO:0010467,gene expression,3736,29,14.77,0.00014,17
-GO:0006974,cellular response to DNA damage stimulus,387,8,1.53,0.00015,17
-GO:0071103,DNA conformation change,128,5,0.51,0.00015,17
-GO:0072593,reactive oxygen species metabolic proces...,130,5,0.51,0.00017,17
-GO:0033013,tetrapyrrole metabolic process,297,7,1.17,0.00018,17
-GO:0044260,cellular macromolecule metabolic process,5657,38,22.36,0.00018,17
-GO:0007049,cell cycle,754,11,2.98,0.00018,17
-GO:0006272,leading strand elongation,6,2,0.02,0.00023,17
-GO:0009628,response to abiotic stimulus,4060,30,16.05,0.00025,17
-GO:1903428,positive regulation of reactive oxygen s...,7,2,0.03,0.00032,17
+GO.ID,Term,Annotated,Significant,Expected,classic,cluster,p.adj,seurat_clusters,Cluster,Color,Cluster_Type,Cluster_Type_Coarse,Enrichment
+GO:0019372,lipoxygenase pathway,4,2,0.02,0.00011,0,0.012290344827586208,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,1.9607843137254901
+GO:0009416,response to light stimulus,2022,21,8.75,0.00012,0,0.013241609907120745,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.1538461538461537
+GO:0015996,chlorophyll catabolic process,24,3,0.1,0.00015,0,0.015959104477611938,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.727272727272727
+GO:0009314,response to radiation,2065,21,8.94,0.00016,0,0.016822182890855457,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.1126760563380285
+GO:0031407,oxylipin metabolic process,25,3,0.11,0.00017,0,0.01773406829268293,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.7027027027027026
+GO:0014070,response to organic cyclic compound,809,12,3.5,0.00019,0,0.019459712643678163,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.6666666666666665
+GO:0046149,pigment catabolic process,27,3,0.12,0.00021,0,0.021263693181818182,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.6785714285714284
+GO:0006690,icosanoid metabolic process,6,2,0.03,0.00028,0,0.027291959890610756,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,1.941747572815534
+GO:0080151,positive regulation of salicylic acid me...,6,2,0.03,0.00028,0,0.027291959890610756,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,1.941747572815534
+GO:0006787,porphyrin-containing compound catabolic ...,30,3,0.13,0.00029,0,0.028163978201634878,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.6548672566371683
+GO:0033015,tetrapyrrole catabolic process,30,3,0.13,0.00029,0,0.028163978201634878,0,M5,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.6548672566371683
+GO:0010027,thylakoid membrane organization,51,4,0.25,0.00011,1,0.012290344827586208,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.2
+GO:0006417,regulation of translation,98,5,0.48,0.00012,1,0.013241609907120745,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.3783783783783785
+GO:0006779,porphyrin-containing compound biosynthet...,100,5,0.48,0.00013,1,0.014184061224489794,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.3783783783783785
+GO:0034248,regulation of cellular amide metabolic p...,101,5,0.49,0.00013,1,0.014184061224489794,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.3557046979865772
+GO:0010608,posttranscriptional regulation of gene e...,234,7,1.13,0.00015,1,0.015959104477611938,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.286384976525822
+GO:0009668,plastid membrane organization,56,4,0.27,0.00016,1,0.016822182890855457,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.149606299212598
+GO:0033014,tetrapyrrole biosynthetic process,111,5,0.54,0.00021,1,0.021263693181818182,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,3.2467532467532467
+GO:0006094,gluconeogenesis,24,3,0.12,0.00021,1,0.021263693181818182,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,2.6785714285714284
+GO:0071704,organic substance metabolic process,10498,69,50.89,0.00023,1,0.023027134831460672,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,1.3297359799576025
+GO:0019319,hexose biosynthetic process,27,3,0.13,0.00030,1,0.029003435804701626,1,M6,#33a02c,Other Mesophyll,Control Mesophyll,2.6548672566371683
+GO:0033013,tetrapyrrole metabolic process,297,6,0.77,0.00012,2,0.013241609907120745,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,3.389830508474576
+GO:1903428,positive regulation of reactive oxygen s...,7,2,0.02,0.00014,2,0.015075166163141994,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,1.9607843137254901
+GO:0010119,regulation of stomatal movement,104,4,0.27,0.00015,2,0.015959104477611938,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,3.149606299212598
+GO:0009651,response to salt stress,613,8,1.59,0.00017,2,0.01773406829268293,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,3.088803088803089
+GO:0002213,defense response to insect,44,3,0.11,0.00020,2,0.020405725190839694,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,2.7027027027027026
+GO:0042221,response to chemical,4906,25,12.7,0.00021,2,0.021263693181818182,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,1.8248175182481752
+GO:0072593,reactive oxygen species metabolic proces...,130,4,0.34,0.00036,2,0.03403480106100796,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,2.9850746268656714
+GO:2000379,positive regulation of reactive oxygen s...,13,2,0.03,0.00050,2,0.04530762711864407,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,1.941747572815534
+GO:0009644,response to high light intensity,62,3,0.16,0.00056,2,0.04981577371048253,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,2.586206896551724
+GO:0010087,phloem or xylem histogenesis,147,4,0.38,0.00057,2,0.05066319201995013,2,M7,#33a02c,Other Mesophyll,Control Mesophyll,2.8985507246376816
+GO:0071495,cellular response to endogenous stimulus,1320,23,9.75,0.00011,3,0.012290344827586208,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.13953488372093
+GO:0007165,signal transduction,2401,34,17.74,0.00014,3,0.015075166163141994,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,1.8143009605122733
+GO:0009755,hormone-mediated signaling pathway,1081,20,7.99,0.00014,3,0.015075166163141994,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.2246941045606228
+GO:0009409,response to cold,459,12,3.39,0.00016,3,0.016822182890855457,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.7334851936218674
+GO:1901701,cellular response to oxygen-containing c...,1250,21,9.24,0.00036,3,0.03403480106100796,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.05078125
+GO:0002376,immune system process,687,14,5.08,0.00059,3,0.052051435643564355,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.3026315789473686
+GO:0009753,response to jasmonic acid,615,13,4.54,0.00067,3,0.05786786752827141,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.3465703971119134
+GO:0050789,regulation of biological process,6712,69,49.59,0.00074,3,0.06279780952380953,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,1.3639059102589444
+GO:0009644,response to high light intensity,62,4,0.46,0.00115,3,0.09028259911894274,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,2.73972602739726
+GO:0009061,anaerobic respiration,8,2,0.06,0.00148,3,0.11152253699788583,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,1.8867924528301885
+GO:0010438,cellular response to sulfur starvation,8,2,0.06,0.00148,3,0.11152253699788583,3,M8,#33a02c,Other Mesophyll,Control Mesophyll,1.8867924528301885
+GO:0009611,response to wounding,793,12,3.28,0.00010,4,0.011314920634920636,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.8037383177570097
+GO:0031408,oxylipin biosynthetic process,23,3,0.1,0.00011,4,0.012290344827586208,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.727272727272727
+GO:0014070,response to organic cyclic compound,809,12,3.35,0.00012,4,0.013241609907120745,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.7586206896551726
+GO:0009415,response to water,1073,14,4.44,0.00013,4,0.014184061224489794,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.5735294117647056
+GO:0070887,cellular response to chemical stimulus,2140,21,8.86,0.00014,4,0.015075166163141994,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.129817444219067
+GO:0031407,oxylipin metabolic process,25,3,0.1,0.00015,4,0.015959104477611938,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.727272727272727
+GO:0001101,response to acid chemical,1101,14,4.56,0.00016,4,0.016822182890855457,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.5179856115107917
+GO:0031347,regulation of defense response,734,11,3.04,0.00022,4,0.022088000000000003,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.722772277227723
+GO:0080134,regulation of response to stress,866,12,3.59,0.00023,4,0.023027134831460672,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.6143790849673203
+GO:0009414,response to water deprivation,1004,13,4.16,0.00024,4,0.023871851162790697,4,M9,#33a02c,Other Mesophyll,Control Mesophyll,2.5193798449612403
+GO:0006950,response to stress,5155,162,58.95,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,2.702251876563803
+GO:0009607,response to biotic stimulus,2432,106,27.81,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.6792780284623396
+GO:0043207,response to external biotic stimulus,2430,105,27.79,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.6470996873914556
+GO:0051707,response to other organism,2430,105,27.79,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.6470996873914556
+GO:0044419,interspecies interaction between organis...,2452,105,28.04,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.615702479338843
+GO:0009605,response to external stimulus,2861,111,32.72,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.2918149466192173
+GO:0050896,response to stimulus,8837,190,101.06,< 1e-30,5,NA,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,1.8616500097981579
+GO:0006790,sulfur compound metabolic process,522,17,5.97,0.00011,5,0.012290344827586208,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,2.4390243902439024
+GO:0009808,lignin metabolic process,68,6,0.78,0.00013,5,0.014184061224489794,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.3707865168539324
+GO:1901605,alpha-amino acid metabolic process,379,14,4.33,0.00013,5,0.014184061224489794,5,M1,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,2.626641651031895
+GO:0009631,cold acclimation,62,3,0.09,0.00011,6,0.012290344827586208,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,2.7522935779816513
+GO:0006950,response to stress,5155,17,7.76,0.00041,6,0.03815462140992167,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1.9406392694063928
+GO:0010207,photosystem II assembly,28,2,0.04,0.00081,6,0.06755854914196567,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1.923076923076923
+GO:0042548,"regulation of photosynthesis, light reac...",28,2,0.04,0.00081,6,0.06755854914196567,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1.923076923076923
+GO:0050821,protein stabilization,30,2,0.05,0.00093,6,0.07544854324734447,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1.9047619047619047
+GO:0043467,regulation of generation of precursor me...,31,2,0.05,0.00099,6,0.07959153383458646,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1.9047619047619047
+GO:0009780,photosynthetic NADP+ reduction,1,1,0,0.00151,6,0.11330404210526315,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1
+GO:0018131,oxazole or thiazole biosynthetic process,1,1,0,0.00151,6,0.11330404210526315,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1
+GO:0046484,oxazole or thiazole metabolic process,1,1,0,0.00151,6,0.11330404210526315,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1
+GO:0031647,regulation of protein stability,39,2,0.06,0.00157,6,0.11657904166666666,6,M10,#33a02c,Other Mesophyll,Control Mesophyll,1.8867924528301885
+GO:0006749,glutathione metabolic process,46,4,0.26,0.00014,7,0.015075166163141994,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,3.1746031746031744
+GO:0099402,plant organ development,1790,23,10.19,0.00017,7,0.01773406829268293,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,2.0554066130473636
+GO:0048827,phyllome development,706,13,4.02,0.00020,7,0.020405725190839694,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,2.5896414342629486
+GO:0009991,response to extracellular stimulus,282,8,1.61,0.00021,7,0.021263693181818182,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,3.065134099616858
+GO:0006082,organic acid metabolic process,2078,25,11.83,0.00024,7,0.023871851162790697,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,1.9485580670303975
+GO:1901701,cellular response to oxygen-containing c...,1250,18,7.12,0.00025,7,0.02482033426183844,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,2.216748768472906
+GO:0009642,response to light intensity,367,9,2.09,0.00026,7,0.025646457564575644,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,2.912621359223301
+GO:0042538,hyperosmotic salinity response,57,4,0.32,0.00031,7,0.029835337533753375,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,3.0303030303030303
+GO:0009269,response to desiccation,24,3,0.14,0.00033,7,0.03147687778768956,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,2.631578947368421
+GO:0009631,cold acclimation,62,4,0.35,0.00043,7,0.039602222222222226,7,M11,#33a02c,Other Mesophyll,Control Mesophyll,2.962962962962963
+GO:0006091,generation of precursor metabolites and ...,410,3,0.14,0.00024,8,0.023871851162790697,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,2.631578947368421
+GO:0019684,"photosynthesis, light reaction",158,2,0.05,0.00113,8,0.08910499999999999,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,1.9047619047619047
+GO:0015979,photosynthesis,238,2,0.08,0.00253,8,0.17056921815889028,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,1.8518518518518516
+GO:0009769,"photosynthesis, light harvesting in phot...",10,1,0,0.00329,8,0.20989650357995226,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,1
+GO:0033013,tetrapyrrole metabolic process,297,2,0.1,0.00390,8,0.24146577880718006,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,1.8181818181818181
+GO:0030388,"fructose 1,6-bisphosphate metabolic proc...",12,1,0,0.00395,8,0.24176170578133946,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,1
+GO:0006094,gluconeogenesis,24,1,0.01,0.00788,8,0.3975712252591894,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,0.9900990099009901
+GO:0019319,hexose biosynthetic process,27,1,0.01,0.00886,8,0.43317986282578874,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,0.9900990099009901
+GO:0006006,glucose metabolic process,48,1,0.02,0.01571,8,0.6288352861952863,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,0.9803921568627451
+GO:0046364,monosaccharide biosynthetic process,52,1,0.02,0.01701,8,0.6599460304789551,8,M12,#33a02c,Other Mesophyll,Control Mesophyll,0.9803921568627451
+GO:0010565,regulation of cellular ketone metabolic ...,119,5,0.46,0.00010,9,0.011314920634920636,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,3.4246575342465753
+GO:0023052,signaling,2453,22,9.58,0.00013,9,0.014184061224489794,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,2.0793950850661624
+GO:0033240,positive regulation of cellular amine me...,5,2,0.02,0.00015,9,0.015959104477611938,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,1.9607843137254901
+GO:0045764,positive regulation of cellular amino ac...,5,2,0.02,0.00015,9,0.015959104477611938,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,1.9607843137254901
+GO:0071446,cellular response to salicylic acid stim...,134,5,0.52,0.00018,9,0.01848864553314121,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,3.289473684210526
+GO:0046394,carboxylic acid biosynthetic process,644,10,2.52,0.00020,9,0.020405725190839694,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,2.840909090909091
+GO:0006563,L-serine metabolic process,30,3,0.12,0.00022,9,0.022088000000000003,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,2.6785714285714284
+GO:0009682,induced systemic resistance,30,3,0.12,0.00022,9,0.022088000000000003,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,2.6785714285714284
+GO:0006564,L-serine biosynthetic process,6,2,0.02,0.00022,9,0.022088000000000003,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,1.9607843137254901
+GO:0090357,regulation of tryptophan metabolic proce...,6,2,0.02,0.00022,9,0.022088000000000003,9,M3,#ff7f00,Transition Mesophyll,DC3000 Mesophyll,1.9607843137254901
+GO:0006950,response to stress,5155,219,78.84,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,2.7429859719438876
+GO:0043207,response to external biotic stimulus,2430,153,37.17,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,4.008383547288446
+GO:0051707,response to other organism,2430,153,37.17,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,4.008383547288446
+GO:0009607,response to biotic stimulus,2432,153,37.2,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,4.00523560209424
+GO:0044419,interspecies interaction between organis...,2452,153,37.5,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.9740259740259742
+GO:0009605,response to external stimulus,2861,163,43.76,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.641644325290438
+GO:0050896,response to stimulus,8837,265,135.16,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,1.9462397179788484
+GO:0098542,defense response to other organism,2106,133,32.21,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,4.004817825956037
+GO:0006952,defense response,2459,141,37.61,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,3.651903651903652
+GO:0009617,response to bacterium,1226,100,18.75,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,5.063291139240507
+GO:0042742,defense response to bacterium,1037,89,15.86,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,5.278766310794781
+GO:0042221,response to chemical,4906,187,75.04,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,2.459231983166754
+GO:0002376,immune system process,687,65,10.51,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,5.647263249348393
+GO:0009620,response to fungus,958,75,14.65,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,4.792332268370607
+GO:0014070,response to organic cyclic compound,809,69,12.37,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,5.1608077786088264
+GO:0051716,cellular response to stimulus,3815,150,58.35,< 1e-30,10,NA,10,M2,#1f78b4,Immunity Mesophyll,DC3000 Mesophyll,2.527379949452401
+GO:0033013,tetrapyrrole metabolic process,297,10,2.28,0.00010,11,0.011314920634920636,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.048780487804878
+GO:2000379,positive regulation of reactive oxygen s...,13,3,0.1,0.00012,11,0.013241609907120745,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.727272727272727
+GO:0006778,porphyrin-containing compound metabolic ...,247,9,1.89,0.00013,11,0.014184061224489794,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.114186851211073
+GO:1903409,reactive oxygen species biosynthetic pro...,34,4,0.26,0.00013,11,0.014184061224489794,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.1746031746031744
+GO:0010119,regulation of stomatal movement,104,6,0.8,0.00015,11,0.015959104477611938,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.333333333333333
+GO:0010597,green leaf volatile biosynthetic process,3,2,0.02,0.00017,11,0.01773406829268293,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,1.9607843137254901
+GO:0090333,regulation of stomatal closure,37,4,0.28,0.00018,11,0.01848864553314121,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.125
+GO:0015994,chlorophyll metabolic process,153,7,1.17,0.00018,11,0.01848864553314121,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.2258064516129035
+GO:0097305,response to alcohol,1236,22,9.48,0.00020,11,0.020405725190839694,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.099236641221374
+GO:0010118,stomatal movement,160,7,1.23,0.00024,11,0.023871851162790697,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,3.1390134529147984
+GO:0055085,transmembrane transport,756,16,5.8,0.00024,11,0.023871851162790697,11,M4,#e31a1c,Susceptibility Mesophyll,DC3000 Mesophyll,2.3529411764705883
+GO:0042221,response to chemical,4906,138,50.79,< 1e-30,12,NA,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,2.6646070670013517
+GO:0050896,response to stimulus,8837,180,91.49,< 1e-30,12,NA,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,1.9461563412260785
+GO:0006950,response to stress,5155,134,53.37,< 1e-30,12,NA,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,2.46459444546625
+GO:0009067,aspartate family amino acid biosynthetic...,46,5,0.48,0.00011,12,0.012290344827586208,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,3.3783783783783785
+GO:0031407,oxylipin metabolic process,25,4,0.26,0.00012,12,0.013241609907120745,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,3.1746031746031744
+GO:0010439,regulation of glucosinolate biosynthetic...,10,3,0.1,0.00012,12,0.013241609907120745,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,2.727272727272727
+GO:0071395,cellular response to jasmonic acid stimu...,185,9,1.92,0.00014,12,0.015075166163141994,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,3.0821917808219177
+GO:0071396,cellular response to lipid,482,15,4.99,0.00016,12,0.016822182890855457,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,2.5041736227045073
+GO:0006566,threonine metabolic process,11,3,0.11,0.00017,12,0.01773406829268293,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,2.7027027027027026
+GO:0044282,small molecule catabolic process,244,10,2.53,0.00024,12,0.023871851162790697,12,B15,#a6cee3,Bundle Sheath,Bundle Sheath,2.8328611898017
+GO:0042221,response to chemical,4906,181,65.34,< 1e-30,13,NA,13,P16,#b2df8a,Vasculature,Vasculature,2.7283690081398855
+GO:0006950,response to stress,5155,180,68.66,< 1e-30,13,NA,13,P16,#b2df8a,Vasculature,Vasculature,2.5839793281653747
+GO:1901700,response to oxygen-containing compound,3055,139,40.69,< 1e-30,13,NA,13,P16,#b2df8a,Vasculature,Vasculature,3.334132885584073
+GO:0050896,response to stimulus,8837,219,117.69,< 1e-30,13,NA,13,P16,#b2df8a,Vasculature,Vasculature,1.8451428089982307
+GO:0071215,cellular response to abscisic acid stimu...,323,14,4.3,0.00012,13,0.013241609907120745,13,P16,#b2df8a,Vasculature,Vasculature,2.6415094339622645
+GO:0097306,cellular response to alcohol,323,14,4.3,0.00012,13,0.013241609907120745,13,P16,#b2df8a,Vasculature,Vasculature,2.6415094339622645
+GO:0009867,jasmonic acid mediated signaling pathway,178,10,2.37,0.00014,13,0.015075166163141994,13,P16,#b2df8a,Vasculature,Vasculature,2.9673590504451037
+GO:0002376,immune system process,687,22,9.15,0.00014,13,0.015075166163141994,13,P16,#b2df8a,Vasculature,Vasculature,2.167487684729064
+GO:0031408,oxylipin biosynthetic process,23,4,0.31,0.00022,13,0.022088000000000003,13,P16,#b2df8a,Vasculature,Vasculature,3.0534351145038165
+GO:0006790,sulfur compound metabolic process,522,18,6.95,0.00024,13,0.023871851162790697,13,P16,#b2df8a,Vasculature,Vasculature,2.2641509433962264
+GO:0009642,response to light intensity,367,13,3.73,0.00010,14,0.011314920634920636,14,G17,#fdbf6f,Guard,Guard,2.7484143763213527
+GO:0016145,S-glycoside catabolic process,28,4,0.28,0.00018,14,0.01848864553314121,14,G17,#fdbf6f,Guard,Guard,3.125
+GO:0019759,glycosinolate catabolic process,28,4,0.28,0.00018,14,0.01848864553314121,14,G17,#fdbf6f,Guard,Guard,3.125
+GO:0019762,glucosinolate catabolic process,28,4,0.28,0.00018,14,0.01848864553314121,14,G17,#fdbf6f,Guard,Guard,3.125
+GO:0009753,response to jasmonic acid,615,17,6.25,0.00019,14,0.019459712643678163,14,G17,#fdbf6f,Guard,Guard,2.3448275862068964
+GO:0006979,response to oxidative stress,573,16,5.82,0.00027,14,0.026510578512396694,14,G17,#fdbf6f,Guard,Guard,2.3460410557184748
+GO:0009409,response to cold,459,14,4.67,0.00027,14,0.026510578512396694,14,G17,#fdbf6f,Guard,Guard,2.4691358024691357
+GO:1901575,organic substance catabolic process,1713,33,17.41,0.00028,14,0.027291959890610756,14,G17,#fdbf6f,Guard,Guard,1.7925040738728952
+GO:0042538,hyperosmotic salinity response,57,5,0.58,0.00028,14,0.027291959890610756,14,G17,#fdbf6f,Guard,Guard,3.1645569620253164
+GO:0006790,sulfur compound metabolic process,522,15,5.31,0.00031,14,0.029835337533753375,14,G17,#fdbf6f,Guard,Guard,2.3771790808240887
+GO:0044419,interspecies interaction between organis...,2452,56,33.93,0.00011,15,0.012290344827586208,15,C18,#fb9a99,Companion,Companion,1.6032064128256514
+GO:1901657,glycosyl compound metabolic process,273,13,3.78,0.00012,15,0.013241609907120745,15,C18,#fb9a99,Companion,Companion,2.7196652719665275
+GO:0044281,small molecule metabolic process,2760,61,38.19,0.00013,15,0.014184061224489794,15,C18,#fb9a99,Companion,Companion,1.5565195202857873
+GO:0000122,negative regulation of transcription by ...,36,5,0.5,0.00013,15,0.014184061224489794,15,C18,#fb9a99,Companion,Companion,3.3333333333333335
+GO:0110126,phloem loading,8,3,0.11,0.00014,15,0.015075166163141994,15,C18,#fb9a99,Companion,Companion,2.7027027027027026
+GO:0006979,response to oxidative stress,573,20,7.93,0.00016,15,0.016822182890855457,15,C18,#fb9a99,Companion,Companion,2.2396416573348263
+GO:0070887,cellular response to chemical stimulus,2140,50,29.61,0.00016,15,0.016822182890855457,15,C18,#fb9a99,Companion,Companion,1.633453119895459
+GO:0043207,response to external biotic stimulus,2430,55,33.62,0.00016,15,0.016822182890855457,15,C18,#fb9a99,Companion,Companion,1.588677065280185
+GO:0051707,response to other organism,2430,55,33.62,0.00016,15,0.016822182890855457,15,C18,#fb9a99,Companion,Companion,1.588677065280185
+GO:0009607,response to biotic stimulus,2432,55,33.65,0.00016,15,0.016822182890855457,15,C18,#fb9a99,Companion,Companion,1.5873015873015874
+GO:0002237,response to molecule of bacterial origin,116,8,1.45,0.00011,16,0.012290344827586208,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.265306122448979
+GO:0042430,indole-containing compound metabolic pro...,183,10,2.29,0.00011,16,0.012290344827586208,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.03951367781155
+GO:0009987,cellular process,15068,215,188.62,0.00013,16,0.014184061224489794,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,1.1338466406497205
+GO:0016310,phosphorylation,1219,31,15.26,0.00014,16,0.015075166163141994,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,1.906519065190652
+GO:0006812,cation transport,309,13,3.87,0.00015,16,0.015959104477611938,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,2.6694045174537986
+GO:1902600,proton transmembrane transport,66,6,0.83,0.00018,16,0.01848864553314121,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.278688524590164
+GO:0015672,monovalent inorganic cation transport,125,8,1.56,0.00018,16,0.01848864553314121,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.125
+GO:0002221,pattern recognition receptor signaling p...,24,4,0.3,0.00021,16,0.021263693181818182,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.0769230769230766
+GO:0022900,electron transport chain,129,8,1.61,0.00022,16,0.022088000000000003,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.065134099616858
+GO:0006869,lipid transport,101,7,1.26,0.00028,16,0.027291959890610756,16,M13,#33a02c,Other Mesophyll,Control Mesophyll,3.097345132743363
+GO:0010467,gene expression,3736,29,14.77,0.00014,17,0.015075166163141994,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,1.8389346861128726
+GO:0006974,cellular response to DNA damage stimulus,387,8,1.53,0.00015,17,0.015959104477611938,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,3.162055335968379
+GO:0071103,DNA conformation change,128,5,0.51,0.00015,17,0.015959104477611938,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,3.3112582781456954
+GO:0072593,reactive oxygen species metabolic proces...,130,5,0.51,0.00017,17,0.01773406829268293,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,3.3112582781456954
+GO:0033013,tetrapyrrole metabolic process,297,7,1.17,0.00018,17,0.01848864553314121,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,3.2258064516129035
+GO:0044260,cellular macromolecule metabolic process,5657,38,22.36,0.00018,17,0.01848864553314121,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,1.6267123287671232
+GO:0007049,cell cycle,754,11,2.98,0.00018,17,0.01848864553314121,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,2.763819095477387
+GO:0006272,leading strand elongation,6,2,0.02,0.00023,17,0.023027134831460672,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,1.9607843137254901
+GO:0009628,response to abiotic stimulus,4060,30,16.05,0.00025,17,0.02482033426183844,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,1.7595307917888563
+GO:1903428,positive regulation of reactive oxygen s...,7,2,0.03,0.00032,17,0.030687282511210764,17,M14,#33a02c,Other Mesophyll,Control Mesophyll,1.941747572815534
