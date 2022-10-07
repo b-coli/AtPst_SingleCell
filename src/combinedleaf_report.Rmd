@@ -11,12 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 tar_load(leaf_sobj)
 ```
 
+## Plot all cells from all studies
+
+Here I plot the integrated embedding of all cells from 8 individual datasets, 
+colored by predicted cell type.
+
 ```{r}
 cell_data <- get_cell_data(leaf_sobj)
 umap_base <- ggplot(cell_data %>% arrange(DC3000.Up1), aes(x = UMAP_1, y = UMAP_2)) + theme_bw()
 umap_base + geom_point(aes(color = predicted.id), size = 1, alpha = 0.1) +   guides(color = guide_legend(override.aes = list(alpha = 1, size = 3)))
 ggsave("plots/combined_leaf_umap_celltype.pdf", family = "ArialMT")
 ```
+
+Here I break down the integrated embedding by individual study
 
 ```{r}
 umap_base + geom_point(aes(color = predicted.id), alpha = 0.1, size = 1) + 
@@ -25,12 +32,19 @@ umap_base + geom_point(aes(color = predicted.id), alpha = 0.1, size = 1) +
 ggsave("plots/combined_leaf_umap_celltype_sample.pdf", family = "ArialMT")
 ```
 
+## Plot pathogen response on integrated embedding
+
+Here I plot the DC3000 response score (expression of up-regulated genes minus 
+down-regulated genes) on the integrated UMAP.
+
 ```{r}
 umap_base + geom_point(aes(color = DC3000.Up1 - DC3000.Down1), size = 1) + 
   scale_color_viridis_c(option = "plasma")
 
 ggsave("plots/combined_leaf_umap_response.pdf", family = "ArialMT")
 ```
+
+## Plot proportion of cells from each dataset over a specific area
 
 ```{r}
 sample_names <- cell_data$Sample_Name %>% unique()

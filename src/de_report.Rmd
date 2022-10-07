@@ -7,7 +7,11 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
 
+## Load objects from archive
+
+```{r}
 sobj <- tar_read(archived_sobj)
 de_table <- tar_read(bulk_de_table)
 
@@ -26,10 +30,14 @@ bulk_de_table <- tar_read(bulk_de_table) %>%
   filter(!(Locus %in% protoplast_loci))
 ```
 
+## Save marker data (per-cluster)
+
 ```{r}
 cluster_markers <- tar_read(cluster_deg)
 write_csv(cluster_markers, file = "data/cluster_markers.csv")
 ```
+
+## Generate UpSet plot for overlapping DE genes identified from single-cell data
 
 ```{r}
 immunity_genes <- filtered_cluster_de_genes %>%
@@ -61,6 +69,8 @@ dev.off()
 
 UpSetR::fromList(gene_list) %>% UpSetR::upset()
 ```
+
+## Compare DE log-fold-change stats between bulk and single-cell methods
 
 ```{r}
 de_comparison <- cluster_de_genes %>% 

@@ -9,11 +9,15 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Save metadata file from integrated Seurat object
+
 ```{r}
 sobj <- tar_read(archived_sobj)
 cell_data <- get_cell_data(sobj)
 write_csv(cell_data, "data/cell_metadata.csv")
 ```
+
+## Plot transcript and gene distribution per sample
 
 ```{r}
 ggplot(cell_data, aes(x = Sample_Name, y = nCount_RNA)) +
@@ -23,9 +27,7 @@ ggplot(cell_data, aes(x = Sample_Name, y = nCount_RNA)) +
   theme_bw()
 
 ggsave("plots/UMI_stats.pdf", family = "ArialMT")
-```
 
-```{r}
 ggplot(cell_data, aes(x = Sample_Name, y = cell_data$nFeature_RNA)) +
   geom_boxplot(aes(fill = Sample_Name)) +
   labs(y = "Unique Genes",
@@ -34,6 +36,8 @@ ggplot(cell_data, aes(x = Sample_Name, y = cell_data$nFeature_RNA)) +
 
 ggsave("plots/gene_stats.pdf", family = "ArialMT")
 ```
+
+## Plot cell type for all cells in UMAP space.
 
 ```{r}
 color_scheme <- cell_data %>%
@@ -54,6 +58,8 @@ ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2)) +
 ggsave("plots/umap_celltype.pdf", family = "ArialMT")
 ```
 
+## Proportion of cells belong to DC3000-treated sample in UMAP space
+
 ```{r}
 ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2, group = -1)) +
     stat_summary_hex(aes(z = Sample_Name == "DC3000"), fun = mean, binwidth = 0.25, color = 'black', lwd = 0.1) +
@@ -66,6 +72,8 @@ ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2, group = -1)) +
 
 ggsave("plots/umap_sampledensity.pdf", family = "ArialMT")
 ```
+
+## Pathogen response score per cell on UMAP
 
 ```{r}
 ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2)) +
@@ -81,6 +89,7 @@ ggsave("plots/umap_signaturescore.pdf", family = "ArialMT")
 
 ```
 
+## Bar plots of sample and cell types for each cluster
 
 ```{r}
 base_clusterplt <- cell_data %>%

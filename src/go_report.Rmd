@@ -10,6 +10,8 @@ library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Select interesting GO terms from larger GO analysis
+
 ```{r}
 marker_go <- targets::tar_read(marker_go) %>% 
   mutate(p.adj = p.adjust(classic, method = "BH"),

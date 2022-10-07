@@ -8,13 +8,16 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
 
+## Load data
+
+```{r}
 bulk_dge_raw <- targets::tar_read(bulk_dge)
 bulk_erobj <- targets::tar_read(bulk_erobj_norm)
 bulk_dge_norm <- edgeR::cpm(bulk_erobj)
 bulk_de_table <- targets::tar_read(bulk_de_table)
 sample_metadata <- read_csv("metadata/sample_metadata.csv")
-
 ```
 
 6 whole-tissue and 2 protoplasted (bulked) samples were processed by:

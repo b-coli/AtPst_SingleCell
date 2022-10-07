@@ -29,12 +29,3 @@ make -C builddir
 sudo make -C builddir install
 
 cd ~/
-
-singularity pull docker://bcoli/atpst_singlecell_r:1.0
-singularity pull docker://dceoy/gffread:latest
-singularity pull docker://dceoy/trim_galore:latest
-singularity pull docker://staphb/fastqc:0.11.9
-singularity pull docker://cumulusprod/cellranger:6.0.1
-singularity pull docker://mparikhbroad/velocyto:1.0.1
-singularity pull docker://ncbi/sra-tools:3.0.0
-

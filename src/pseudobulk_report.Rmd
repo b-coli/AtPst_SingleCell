@@ -9,6 +9,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Compile and summarize normalized counts from bulk RNA-seq dataset
+
 ```{r}
 sobj <- targets::tar_read(archived_sobj)
 targets::tar_load(bulk_erobj_norm)
@@ -30,6 +32,8 @@ bulk_norm_counts <- edgeR::cpm(bulk_erobj_norm) %>%
   select(-Treatment, -Sample_Type)
 ```
 
+## Calculate pseudobulk counts and merge with bulk RNA-seq data
+
 ```{r}
 sc_counts_data <- Seurat::GetAssayData(sobj, slot = "data", assay = "RNA")
 pseudobulk_counts <- map(c("Control", "DC3000"), function(sn) {
@@ -46,6 +50,8 @@ all_counts <- full_join(bulk_norm_counts, pseudobulk_counts) %>%
   filter(!is.na(Pseudobulk_Sample) & !is.na(Sample))
 ```
 
+## Plot bulk vs pseudobulk counts (2-d bin plot)
+
 ```{r}
 ggplot(all_counts, 
        aes(x = log1p(Pseudobulk_Counts), 
@@ -60,6 +66,8 @@ ggplot(all_counts,
 
 ggsave("plots/pseudobulk_correlation.pdf", family = "ArialMT")
 ```
+
+## Print out correlation for each comparison
 
 ```{r}
 all_counts %>% 

@@ -9,6 +9,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Load data from archive
+
 ```{r}
 sobj <- tar_read(atpst_sobj)
 cds <- tar_read(atpst_mobj)
@@ -25,6 +27,8 @@ cell_data <- get_cell_data(sobj) %>%
   left_join(pt)
 ```
 
+## Plot monocle trajectory
+
 ```{r}
 color_scheme <- tar_read(archived_clusterNames) %>%
   select(Cluster, Color) %>%
@@ -35,6 +39,8 @@ plot_cells(cds, color_cells_by = "Cluster", trajectory_graph_segment_size = 0.75
 ggsave("plots/monocle_trajectory.pdf", family = "ArialMT")
 ```
 
+## Plot expression of known genes vs. pseudotime
+
 ```{r}
 apriori_genes <- read_csv("data/apriori_immune_and_susceptible.csv", col_types = cols())
 plot_pt_heatmap(sobj, pt, apriori_genes, gene_names = tar_read(gene_ids)) + 
@@ -43,6 +49,8 @@ plot_pt_heatmap(sobj, pt, apriori_genes, gene_names = tar_read(gene_ids)) +
 
 ggsave("plots/pseuotime_heatmap_apriori.pdf", family = "ArialMT", height = 12, width = 8)
 ```
+
+## Plot expression of novel genes vs. pseudotime
 
 ```{r}
 pt_plt <- plot_pt_heatmap(
@@ -61,6 +69,8 @@ pt_plt
 
 ggsave("plots/pseudotime_heatmap_novel.pdf", plot = pt_plt, height = 10, width = 8, family = "ArialMT")
 ```
+
+## Write data for novel genes to a table.
 
 ```{r}
 modules <- select(pt_plt$data, Locus, Module) %>% unique()
