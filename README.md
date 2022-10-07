@@ -10,7 +10,7 @@ This analysis makes use of several dockerhub images:
 |dceoy/gffread:latest          |GFFRead utility for converting GFF3 files to GTF format                             |
 |dceoy/trim_galore:latest      |Trimming program for bulk RNA-seq reads                                             |
 |cumulusprod/cellranger:6.0.1  |CellRanger tool (10x Genomics) for aligning reads and assigning cells, contains STAR|
-|bcoli/AtPst_SingleCell:1.0    |Custom R environment for analyzing single-cell data                                 |                    
+|bcoli/atpst_singlecell_r:1.0  |Custom R environment for analyzing single-cell data                                 |                    
 |dynverse/velocyto:latest      |Velocyto software for determining spliced/unspliced counts                          |
 |ncbi/sra-tools                |NCBI SRA tools for downloading SRA data                                             |
 |staphb/fastqc:0.11.9          |FastQC for evaluating fastq data quality                                            |
@@ -24,3 +24,12 @@ https://data.jgi.doe.gov/refine-download/phytozome?organism=Athaliana&expanded=4
 And information from TAIR, which can be downloaded from:
 https://www.arabidopsis.org/download_files/Public_Data_Releases/TAIR_Data_20200930/gene_aliases_20200930.txt.gz
 https://arabidopsis.org/download_files/GO_and_PO_Annotations/Gene_Ontology_Annotations/ATH_GO_GOSLIM.txt.gz
+
+To run, execute:
+
+`src/download_files.sh`
+`src/preprocess_samples.sh`
+
+Then, execute the R workflow:
+
+`singularity run docker://b-coli/atpst_singlecell_r:1.0 R -e "targets::tar_make()"`
