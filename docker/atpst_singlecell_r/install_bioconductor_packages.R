@@ -16,7 +16,12 @@ BiocManager::install(
     'SingleCellExperiment',
     'SummarizedExperiment', 
     'terra',
-    'topGO'
+    'topGO',
+    'KEGGREST',
+    'pathview',
+    'clusterProfiler',
+    'KEGGgraph',
+    'org.At.tair.db'
   ),
   version = "3.12",
   update = FALSE)
