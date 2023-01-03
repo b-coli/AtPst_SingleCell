@@ -1,0 +1,99 @@
+---
+title: "KEGG Pathway Analysis"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<style type="text/css">
+.main-container {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 24)
+```
+
+```{r}
+library(KEGGREST)
+library(KEGGgraph)
+library(pathview)
+library(clusterProfiler)
+
+see_pathview <- function(pathway, expression_data, save_image = FALSE) {
+  ## Capture pathview output without saving file, render to viewer.
+  ## From https://stackoverflow.com/questions/60141841/how-to-get-pathview-plot-displayed-directly-rather-than-saving-as-a-file-in-r
+
+  imgs <- map(expression_data, function(cat_data) {
+    pathview(gene.data = cat_data, 
+             pathway.id = pathway, 
+             species = "ath", 
+             gene.idtype = "KEGG", )
+    filename <- paste0(pathway, ".pathview.png")
+    png::readPNG(filename)
+  })
+
+  gridExtra::grid.arrange(
+    grid::rasterGrob(imgs[[1]], width = unit(6,"in"), height=unit(8,"in")),
+    grid::rasterGrob(imgs[[2]], width = unit(6,"in"), height=unit(8,"in")),
+    grid::rasterGrob(imgs[[3]], width = unit(6,"in"), height=unit(8,"in")),
+    grid::rasterGrob(imgs[[4]], width = unit(6,"in"), height=unit(8,"in")),
+    ncol = 4)
+  
+  write(paste(dim(imgs[[1]])), stderr())
+  
+  if(!save_image) {
+    invisible(file.remove(paste0(pathway, ".xml")))
+    invisible(file.remove(paste0(pathway, ".png")))
+    invisible(file.remove(paste0(pathway, ".pathview.png")))
+  }
+
+}
+
+get_cluster_expression <- function(cell_type) {
+  targets::tar_read(cluster_expression)[[1]] %>% 
+    as_tibble(rownames = "Locus") %>% 
+    select(Locus, Expression = !!cell_type) %>% 
+    deframe() %>% 
+    sort(decreasing = TRUE)
+
+}
+
+get_cluster_logfc <- function(cell_type) {
+  targets::tar_read(cluster_sample_deg) %>% 
+    dplyr::filter(set1 == cell_type) %>% 
+    select(Locus, avg_log2FC) %>% 
+    deframe() %>% 
+    sort(decreasing = TRUE)
+}
+
+get_kegg_sig_ids <- function(deg) {
+  kegg_result <- gseKEGG(deg, organism = "ath", nPerm = 10000, pAdjustMethod = "BH")
+  ids <- kegg_result@result$ID
+  return(ids)
+}
+
+mesophyll_types <- c(
+  Other = "DC3000_Other Mesophyll",
+  Immunity = "DC3000_Immunity Mesophyll",
+  Transition = "DC3000_Transition Mesophyll",
+  Susceptibility = "DC3000_Susceptibility Mesophyll"
+)
+
+```
+
+## Significant pathways
+
+```{r}
+cluster_lfcs <- map(mesophyll_types, get_cluster_logfc)
+cluster_expression <- map(mesophyll_types, get_cluster_expression)
+kegg_ids <- map(cluster_lfcs, get_kegg_sig_ids) %>% reduce(c) %>% unique()
+
+map(kegg_ids, see_pathview, expression_data = cluster_expression)
+
+
+```
+

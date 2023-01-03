@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Load data from archive
 
 ```{r}
-sobj <- tar_read(atpst_sobj)
+sobj <- tar_read(archived_sobj)
 cds <- tar_read(atpst_mobj)
 ptvar_genes <- tar_read(pt_var_genes)
 
@@ -24,7 +24,8 @@ pt <- enframe(pseudotime(cds, reduction_method = 'UMAP'), "Cell", "Pseudotime")
 
 cell_data <- get_cell_data(sobj) %>%
   left_join(mumap) %>%
-  left_join(pt)
+  left_join(pt) %>% 
+  mutate(Signature = (DC3000.Up1 - DC3000.Down1)) 
 ```
 
 ## Plot monocle trajectory
@@ -34,9 +35,37 @@ color_scheme <- tar_read(archived_clusterNames) %>%
   select(Cluster, Color) %>%
   deframe()
 
-plot_cells(cds, color_cells_by = "Cluster", trajectory_graph_segment_size = 0.75, label_cell_groups = F, label_branch_points = F, label_leaves = F) + scale_color_manual(values = color_scheme)
+plot_cells(
+  cds = cds, 
+  color_cells_by = "Cluster", 
+  trajectory_graph_segment_size = 0.75, 
+  label_cell_groups = F, 
+  label_branch_points = F, 
+  label_leaves = F
+) + scale_color_manual(values = color_scheme)
 
 ggsave("plots/monocle_trajectory.pdf", family = "ArialMT")
+```
+
+## Plot DC3000 Signature Score vs. Pseudotime
+
+```{r}
+color_scheme <- tar_read(archived_clusterNames) %>%
+  select(Cluster_Type, Color) %>%
+  deframe()
+
+ggplot(cell_data, aes(x = Pseudotime, y = Signature)) +
+  geom_point(aes(color = Cluster_Type)) +
+  scale_color_manual(values = color_scheme) +
+  labs(x = "Pseudotime", y = "DC3000 Signature Score") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
+
+ggsave("plots/pseudotime_signature.pdf", family = "ArialMT", height = 8, width = 8)
 ```
 
 ## Plot expression of known genes vs. pseudotime

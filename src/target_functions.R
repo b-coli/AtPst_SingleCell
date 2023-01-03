@@ -351,8 +351,8 @@ monocle_pipeline <- function(sobj, cells, features, gene_ids) {
   start_cell <- cell_data %>%
     filter(seurat_clusters == start_cluster) %>% 
     filter(Sample_Name == "DC3000") %>%
-    mutate(Signiture = (DC3000.Up1 - DC3000.Down1)) %>% 
-    slice_min(Signiture, n = 1) %>%
+    mutate(Signature = (DC3000.Up1 - DC3000.Down1)) %>% 
+    slice_min(Signature, n = 1) %>%
     pull(Cell) %>% .[1]
   
   cds <- monocle3::learn_graph(
@@ -600,3 +600,4 @@ find_markers2d <- function(sobj, group_ident = "Cluster_Type",
   
   return(all_markers)
 }
+

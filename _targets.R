@@ -8,7 +8,7 @@ library(topGO)
 library(tidyverse)
 
 source("src/target_functions.R")
-future::plan(strategy = "multisession", workers = 4)
+#future::plan(strategy = "multisession", workers = 4)
 options(future.globals.maxSize = 10*(1024^3))
 
 sample_metadata <- readr::read_csv("metadata/sample_metadata.csv")
@@ -63,6 +63,7 @@ integrated_objects <- list(
   ),
   
   tar_target(cluster_deg, FindAllMarkers(archived_sobj, assay = "SCT", logfc.threshold = 0, min.pct = 0)),
+  tar_target(cluster_expression, AverageExpression(SetIdent(archived_sobj, value = "Sample_Name"), add.ident = "Cluster_Type", assays = "SCT")),
   tar_target(cluster_sample_deg, find_markers2d(archived_sobj, comp_1 = "DC3000", comp_2 = "Control")),
   tar_render(pseudobulk_report, path = "src/pseudobulk_report.Rmd", output_dir = "reports/"),
   tar_render(dataset_stats_report, path = "src/dataset_stats_report.Rmd", output_dir = "reports/"),
@@ -128,7 +129,8 @@ go_information <- list(
     p = 0.01, 
     gene_to_go = gene2GO,
     exclude_loci = protoplast_loci)),
-  tar_render(go_report, path = "src/go_report.Rmd", output_dir = "reports/")
+  tar_render(go_report, path = "src/go_report.Rmd", output_dir = "reports/"),
+  tar_render(kegg_report, path = "src/kegg_report.Rmd", output_dir = "reports/")
   
 )
 
