@@ -535,6 +535,14 @@ run_go <- function(genes, background, gene_to_go) {
   return(summary_table)
 }
 
+get_go_object <- function(genes, background, gene_to_go) {
+  geneList <- factor(as.integer(background %in% genes), levels = c(0,1))
+  names(geneList) <- background
+  
+  GOdata <- new("topGOdata", ontology = "BP", allGenes = geneList, annot = annFUN.gene2GO, gene2GO = gene_to_go)
+  return(GOdata)
+}
+
 get_GO_for_gene <- function(gene, gene_annot) {
   filtered_annotations <- filter(gene_annot, Locus == gene)
   go_terms <- unique(filtered_annotations$GO)
@@ -601,3 +609,7 @@ find_markers2d <- function(sobj, group_ident = "Cluster_Type",
   return(all_markers)
 }
 
+write_csv_target <- function(x, file) {
+  write_csv(x, file = file)
+  return(file)
+}

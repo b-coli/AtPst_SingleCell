@@ -18,7 +18,10 @@ bulk_data <- list(
   tar_target(bulk_erobj_norm, generate_er_object(dge = bulk_dge, md = filter(sample_metadata, Sequence_Type == "RNAseq"))),
   tar_target(bulk_de_table, get_de_genes(bulk_erobj_norm)),
   tar_target(protoplast_loci, bulk_de_table %>% filter(de_type_proto %in% c("Proto Up")) %>% pull(Locus)),
-  tar_render(bulk_analysis_report, path = "src/bulk_analysis_report.Rmd", output_dir = "reports/")
+  tar_render(bulk_analysis_report, path = "src/bulk_analysis_report.Rmd", output_dir = "reports/"),
+  tar_render(protoplast_report, path = "src/protoplast_report.Rmd", output_dir = "reports/"),
+  tar_target(bulk_de_table_outfn, "data/differential_expression_table.csv"),
+  tar_target(bulk_de_table_out, write_csv_target(bulk_de_table, bulk_de_table_outfn), format = "file")
 )
 
 individual_objects <- list(
@@ -129,6 +132,25 @@ go_information <- list(
     p = 0.01, 
     gene_to_go = gene2GO,
     exclude_loci = protoplast_loci)),
+  
+  tar_target(
+    name = protoplast_go, 
+    command = map_dfr(
+      .x = c("Proto Up", "Proto Down"),
+      .f = function(cat) {
+        genes <- filter(bulk_de_table, de_type_proto == cat) %>% pull(Locus)
+        bkg <- pull(bulk_de_table, Locus)
+        results <- run_go(
+          genes = genes, 
+          background = bkg, 
+          gene_to_go = gene2GO
+        )
+      }
+    )
+  ),
+  tar_target(protoplast_go_outfn, "data/protoplast_go_table.csv"),
+  tar_target(protoplast_go_out, write_csv_target(protoplast_go, protoplast_go_outfn), format = "file"),
+  
   tar_render(go_report, path = "src/go_report.Rmd", output_dir = "reports/"),
   tar_render(kegg_report, path = "src/kegg_report.Rmd", output_dir = "reports/")
   
