@@ -29,8 +29,8 @@ bulk_de_table <- tar_read(bulk_de_table) %>%
 proto_down <- filter(bulk_de_table, de_type_proto == "Proto Down") %>% pull(Locus)
 proto_up <- filter(bulk_de_table, de_type_proto == "Proto Up") %>% pull(Locus)
 
-sobj <- AddModuleScore(object = sobj, name = "Proto.Down", features = list(proto_down), assay = "RNA")
-sobj <- AddModuleScore(object = sobj, name = "Proto.Up", features = list(proto_up), assay = "RNA")
+sobj <- AddModuleScore(object = sobj, name = "Proto.Down", features = list(proto_down), assay = "SCT")
+sobj <- AddModuleScore(object = sobj, name = "Proto.Up", features = list(proto_up), assay = "SCT")
 
 cell_data <- get_cell_data(sobj) %>% 
   mutate(ProtoScore = Proto.Up1 - Proto.Down1) %>% 

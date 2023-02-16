@@ -1,0 +1,194 @@
+---
+title: "Genes of Interest"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(kableExtra)
+sobj <- tar_read(archived_sobj)
+```
+
+## Apriori genes by cell type
+
+```{r}
+#gene_panel <- read_csv("data/dotplot_loci.csv", col_types = cols())
+gene_ids <- tar_read(gene_ids) %>% 
+  group_by(Locus) %>% 
+  summarize(Gene = Gene[1])
+
+bulk_de_genes <- targets::tar_read(bulk_de_table) %>% 
+  filter(p_adj_treat < 0.01) %>% 
+  pull(Locus)
+
+gene_panel <- read_csv("data/apriori_immune_and_susceptible.csv") %>% 
+  left_join(gene_ids) %>% 
+  filter(Locus %in% bulk_de_genes)
+
+SCT_assay = GetAssay(sobj, assay = "SCT")
+
+cell_data <- get_cell_data(sobj) %>% 
+  mutate(Cluster_Type = factor(Cluster_Type, levels = c(
+    "Other Mesophyll",
+    "Immunity Mesophyll",
+    "Transition Mesophyll",
+    "Susceptibility Mesophyll",
+    "Bundle Sheath",
+    "Companion",
+    "Vasculature",
+    "Guard"
+  ))) %>% 
+  mutate(Cluster = factor(Cluster, levels = c(
+    paste0("M", 1:14),
+    paste0(c("B","P","G","C"), 15:18)
+  )))
+
+gene_counts <- GetAssayData(SCT_assay, slot = "counts")[gene_panel$Locus,] %>% as_tibble(rownames = "Locus") %>% pivot_longer(names_to = "Cell", values_to = "Counts", -Locus)
+gene_norm <- GetAssayData(SCT_assay, slot = "data")[gene_panel$Locus,] %>% as_tibble(rownames = "Locus") %>% pivot_longer(names_to = "Cell", values_to = "NormCounts", -Locus)
+
+gene_data <- left_join(gene_counts, gene_norm) %>%
+    left_join(cell_data) %>%
+    group_by(Locus, Cluster_Type) %>%
+    summarize(
+        pce = mean(Counts > 0),
+        avgexpr = mean(expm1(NormCounts))) %>%
+    group_by(Locus) %>%
+    mutate(scaleexpr = scale(avgexpr, center = TRUE, scale = TRUE) %>% scales::squish(range = c(-2.5,2.5))) %>%
+    left_join(gene_panel) %>%
+    mutate(Category = factor(Category, levels = c("Immunity", "Susceptibility")))
+
+ggplot(gene_data %>%
+       filter(str_detect(Cluster_Type, "Mesophyll")),
+       aes(x = Cluster_Type, y = Locus)) + 
+    geom_point(aes(color = scaleexpr, size = pce)) +
+    scale_size_continuous(range = c(0,7)) + 
+    scale_y_discrete(labels = gene_panel %>% select(Locus, Gene) %>% deframe()) +
+    facet_grid(Category ~ 1, scales = 'free', space = 'free') +
+    scale_color_gradient(low = 'lightgray', high = 'red3') +
+    scale_radius(range = c(0, 7)) +
+    theme_minimal() +
+    theme(panel.grid = element_blank())
+
+ggsave("plots/selected_gene_dotplot.pdf", family = "ArialMT", width = 5, height = 12)
+```
+
+## Apriori genes, by cluster
+
+```{r}
+gene_data <- left_join(gene_counts, gene_norm) %>%
+    left_join(cell_data) %>%
+    group_by(Locus, Cluster) %>%
+    summarize(
+        pce = mean(Counts > 0),
+        avgexpr = mean(expm1(NormCounts))) %>%
+    group_by(Locus) %>%
+    mutate(scaleexpr = scale(avgexpr, center = TRUE, scale = TRUE) %>% scales::squish(range = c(-2.5,2.5))) %>%
+    left_join(gene_panel) %>%
+    mutate(Category = factor(Category, levels = c("Immunity", "Susceptibility")))
+
+ggplot(gene_data, aes(x = Cluster, y = Locus)) + 
+    geom_point(aes(color = scaleexpr, size = pce)) +
+    scale_size_continuous(range = c(0,6)) + 
+    scale_y_discrete(labels = gene_panel %>% select(Locus, Gene) %>% deframe()) +
+    facet_grid(Category ~ 1, scales = 'free', space = 'free') +
+    scale_color_gradient(low = 'lightgray', high = 'red3') +
+    scale_radius(range = c(0, 6)) +
+    theme_minimal() +
+    theme(panel.grid = element_blank())
+
+ggsave("plots/selected_gene_dotplot_bycluster.pdf", family = "ArialMT", width = 12, height = 12)
+
+```
+
+## Apriori genes, by cluster and treatment
+
+```{r}
+gene_data <- left_join(gene_counts, gene_norm) %>%
+    left_join(cell_data) %>%
+    group_by(Locus, Cluster, Sample_Name) %>%
+    summarize(
+        pce = mean(Counts > 0),
+        avgexpr = mean(expm1(NormCounts))) %>%
+    group_by(Locus) %>%
+    mutate(scaleexpr = scale(avgexpr, center = TRUE, scale = TRUE) %>% scales::squish(range = c(-2.5,2.5))) %>%
+    left_join(gene_panel) %>%
+    mutate(Category = factor(Category, levels = c("Immunity", "Susceptibility")))
+
+ggplot(gene_data, aes(x = Cluster, y = Locus)) + 
+    geom_point(aes(color = scaleexpr, size = pce)) +
+    scale_size_continuous(range = c(0,6)) + 
+    scale_y_discrete(labels = gene_panel %>% select(Locus, Gene) %>% deframe()) +
+    facet_grid(Category ~ Sample_Name , scales = 'free', space = 'free') +
+    scale_color_gradient(low = 'lightgray', high = 'red3') +
+    scale_radius(range = c(0, 6)) +
+    theme_minimal() +
+    theme(panel.grid = element_blank())
+
+ggsave("plots/selected_gene_dotplot_byclustersample.pdf", family = "ArialMT", width = 12, height = 12)
+
+```
+
+## Marker ranks
+
+```{r}
+marker_loci <- c(
+  AT2G19190 = "FRK1",
+  AT3G18250 = "LipoP1",
+  AT5G26920 = "CPB60g",
+  AT1G26770 = "EXPA10",
+  AT4G00430 = "PIP1;4",
+  AT1G51780 = "ILL5"
+) %>% enframe(
+  "Locus", 
+  "Gene"
+)
+
+marker_data <- GetAssayData(
+  object = sobj[marker_loci$Locus,], 
+  assay = "SCT", 
+  slot = "data") %>% 
+  as_tibble(rownames = "Locus") %>% 
+  pivot_longer(names_to = "Cell", values_to = "Expression", -Locus) %>% 
+  left_join(marker_loci) %>% 
+  left_join(cell_data)
+  
+ggplot(marker_data %>% arrange(Expression), aes(x = UMAP_1, y = UMAP_2)) + 
+  geom_point(aes(color = Expression), size = 1) +
+  scale_color_viridis_c(option = 'plasma') +
+  facet_wrap("Gene") +
+  labs(x = "UMAP 1", y = "UMAP 2") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    strip.background = element_blank()
+  )
+
+targets::tar_read(cluster_deg) %>% 
+  group_by(cluster) %>% 
+  mutate(r = rank(p_val_adj, ties.method = 'first')) %>% 
+  mutate(Locus = gene) %>% 
+  mutate(seurat_clusters = as.numeric(as.character(cluster))) %>%
+  right_join(marker_loci) %>% 
+  left_join(tar_read(archived_clusterNames)) %>% 
+  filter(Cluster %in% paste0("M",1:5)) %>% 
+  arrange(r) %>% 
+  kable(format = 'html') %>% 
+  kable_styling(full_width = FALSE)
+```
+
+## Pathogen Signature Score
+
+```{r}
+immunity_genes <- gene_panel %>% filter(Category == "Immunity") %>% pull(Locus)
+susceptibility_genes <- gene_panel %>% filter(Category == "Susceptibility") %>% pull(Locus)
+
+sobj <- AddModuleScore(sobj, features = list(immunity_genes), name = "Immunity", assay = "SCT")
+sobj <- AddModuleScore(sobj, features = list(susceptibility_genes), name = "Susceptibility", assay = "SCT")
+sobj$Signature <- sobj$Susceptibility1 - sobj$Immunity1 
+FeaturePlot(sobj, "Signature") + scale_color_gradient2(low = 'blue', mid = 'white', high = 'red')
+```
+

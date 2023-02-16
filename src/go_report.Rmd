@@ -8,6 +8,8 @@ editor_options:
 ```{r setup, include=FALSE}
 library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE)
+
+sobj <- tar_read(archived_sobj)
 ```
 
 ## Select interesting GO terms from larger GO analysis
@@ -36,7 +38,8 @@ map(unique(marker_go$cluster), function(clust) {
   go_data <- filter(go_data, classic < 0.001)
   go_data <- arrange(go_data, classic)
   go_data <- slice_min(go_data, classic, n = 10)
-  kableExtra::kable(go_data, caption = paste0("Cluster ", clust), format = "html") %>% kableExtra::kable_styling(full_width = FALSE)
+  kable(go_data, caption = paste0("Cluster ", clust), format = "html") %>% 
+    kable_styling(full_width = FALSE)
 })
 ```
 
@@ -83,3 +86,58 @@ ggplot(
 ggsave("plots/go_heatmap.pdf", family = "ArialMT", width = 18, height = 12)
 ```
 
+## JA and SA response
+
+```{r}
+## Get GO terms for JA
+go_desc <- c(
+  "response to jasmonic acid",
+  "response to salicylic acid"
+)
+
+map(
+  .x = go_desc, 
+  .f = function(desc) {
+    go_terms <- tar_read(gene_annotation) %>% 
+      filter(GO_Description == desc) %>% 
+      pull(GO) %>% 
+      unique()
+    
+    genes <- tar_read(gene_annotation) %>% 
+      filter(GO %in% go_terms) %>% 
+      pull(Locus) %>% 
+      unique()
+    
+    sobj <- AddModuleScore(sobj, list(genes), name = desc, assay = "SCT")
+    
+    cell_data <- get_cell_data(sobj) %>% 
+      mutate(Cluster_Type = factor(Cluster_Type, levels = c(
+        "Other Mesophyll",
+        "Immunity Mesophyll",
+        "Transition Mesophyll",
+        "Susceptibility Mesophyll",
+        "Bundle Sheath",
+        "Companion",
+        "Vasculature",
+        "Guard"
+      ))) %>% 
+      mutate(Cluster = factor(Cluster, levels = c(
+        paste0("M", 1:14),
+        paste0(c("B","P","G","C"), 15:18)
+      )))
+    
+    color_scheme <- tar_read(archived_clusterNames) %>% 
+      dplyr::select(Cluster, Color) %>% 
+      deframe()
+    
+    ggplot(cell_data %>% mutate(), aes(x = Cluster, y = !!as.name(paste0(make.names(desc), "1")))) + 
+      geom_boxplot(aes(fill = Cluster)) +
+      geom_jitter(alpha = 0.1) +
+      scale_fill_manual(values = color_scheme) +
+      ggtitle(desc) + 
+      theme_bw() +
+      theme(plot.title = element_text(hjust = 0.5))
+  }
+)
+
+```
