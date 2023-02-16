@@ -8,7 +8,7 @@ library(topGO)
 library(tidyverse)
 
 source("src/target_functions.R")
-#future::plan(strategy = "multisession", workers = 4)
+future::plan(strategy = "multisession", workers = 15)
 options(future.globals.maxSize = 10*(1024^3))
 
 sample_metadata <- readr::read_csv("metadata/sample_metadata.csv")
@@ -33,7 +33,8 @@ individual_objects <- list(
     tar_target(loom_file, paste0("data/expression/", Sample_Name, "/velocyto/", Sample_Name, ".loom"), format = "file"),
     tar_target(raw_sobj, loom_to_sobj(loom_file = loom_file, md_file = Cell_Metadata_File, sample_name = Sample_Name)),
     tar_target(sobj, process_sobj(sobj = raw_sobj, ref = leaf_ref, de_table = bulk_de_table))
-  )
+  ),
+  tar_render(mock_reanalysis_report, path = "src/mock_reanalysis_report.Rmd", output_dir = "reports/")
 )
 
 integrated_objects <- list(
@@ -66,6 +67,7 @@ integrated_objects <- list(
   ),
   
   tar_target(cluster_deg, FindAllMarkers(archived_sobj, assay = "SCT", logfc.threshold = 0, min.pct = 0)),
+  tar_target(cluster_deg_rna, FindAllMarkers(archived_sobj, assay = "RNA", logfc.threshold = 0, min.pct = 0)),
   tar_target(cluster_expression, AverageExpression(SetIdent(archived_sobj, value = "Sample_Name"), add.ident = "Cluster_Type", assays = "SCT")),
   tar_target(cluster_sample_deg, find_markers2d(archived_sobj, comp_1 = "DC3000", comp_2 = "Control")),
   tar_render(pseudobulk_report, path = "src/pseudobulk_report.Rmd", output_dir = "reports/"),
@@ -156,11 +158,16 @@ go_information <- list(
   
 )
 
+goi_objects <- list(
+  tar_render(goi_report, path = "src/goi_report.Rmd", output_dir = "reports/")
+)
+
 list(
   bulk_data,
   individual_objects,
   integrated_objects,
   archival_data,
   pseudotime_objects,
-  go_information
+  go_information,
+  goi_objects
 )
