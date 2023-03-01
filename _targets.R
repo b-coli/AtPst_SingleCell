@@ -8,8 +8,8 @@ library(topGO)
 library(tidyverse)
 
 source("src/target_functions.R")
-future::plan(strategy = "multisession", workers = 15)
-options(future.globals.maxSize = 10*(1024^3))
+#future::plan(strategy = "multisession", workers = 15)
+#options(future.globals.maxSize = 10*(1024^3))
 
 sample_metadata <- readr::read_csv("metadata/sample_metadata.csv")
 
@@ -63,9 +63,11 @@ integrated_objects <- list(
       exclude_organelle_loci = T,
       exclude_features = protoplast_loci,
       method = "cca"
-    )
+    ),
+    
   ),
-  
+
+  tar_target(leaf_sobj_celldata, get_cell_data(leaf_sobj)),
   tar_target(cluster_deg, FindAllMarkers(archived_sobj, assay = "SCT", logfc.threshold = 0, min.pct = 0)),
   tar_target(cluster_deg_rna, FindAllMarkers(archived_sobj, assay = "RNA", logfc.threshold = 0, min.pct = 0)),
   tar_target(cluster_expression, AverageExpression(SetIdent(archived_sobj, value = "Sample_Name"), add.ident = "Cluster_Type", assays = "SCT")),

@@ -8,7 +8,7 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-tar_load(leaf_sobj)
+cell_data <- tar_read(leaf_sobj_celldata)
 ```
 
 ## Plot all cells from all studies
@@ -17,7 +17,6 @@ Here I plot the integrated embedding of all cells from 8 individual datasets,
 colored by predicted cell type.
 
 ```{r}
-cell_data <- get_cell_data(leaf_sobj)
 umap_base <- ggplot(cell_data %>% arrange(DC3000.Up1), aes(x = UMAP_1, y = UMAP_2)) + theme_bw()
 umap_base + geom_point(aes(color = predicted.id), size = 1, alpha = 0.1) +   guides(color = guide_legend(override.aes = list(alpha = 1, size = 3)))
 ggsave("plots/combined_leaf_umap_celltype.pdf", family = "ArialMT")
@@ -51,7 +50,7 @@ sample_names <- cell_data$Sample_Name %>% unique()
 
 plots <- map(sample_names, function(sample_name) {
   plt <- ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2, group = -1)) +
-    stat_summary_hex(aes(z = Sample_Name == sample_name), fun = mean, binwidth = 0.2, color = 'black', lwd = 0) +
+    stat_summary_hex(aes(z = Sample_Name == sample_name, color = Sample_Name == sample_name), fun = mean, binwidth = 0.2) +
     scale_fill_viridis_c(option = "plasma", name = paste0("Proportion ", sample_name, " Cells")) +
     labs(x = "UMAP 1", y = "UMAP 2") +
     coord_fixed() +
@@ -59,7 +58,7 @@ plots <- map(sample_names, function(sample_name) {
     theme(axis.title.x = element_text(hjust = 0)) +
     theme(axis.title.y = element_text(hjust = 0, angle = 90))
   
-  ggsave(paste0("plots/combined_leaf_umap_sampledensity_", sample_name, ".pdf"), family = "ArialMT")
+  ggsave(paste0("plots/combined_leaf_umap_sampledensity_", sample_name, ".pdf"), plot = plt, family = "ArialMT")
   
   plt
 })

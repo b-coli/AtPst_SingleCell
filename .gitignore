@@ -46,3 +46,4 @@ data/expression/*
 *.zip
 _targets/*
 Figures/*
+*.rds
