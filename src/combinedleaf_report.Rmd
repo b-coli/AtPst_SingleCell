@@ -18,8 +18,15 @@ colored by predicted cell type.
 
 ```{r}
 umap_base <- ggplot(cell_data %>% arrange(DC3000.Up1), aes(x = UMAP_1, y = UMAP_2)) + theme_bw()
-umap_base + geom_point(aes(color = predicted.id), size = 1, alpha = 0.1) +   guides(color = guide_legend(override.aes = list(alpha = 1, size = 3)))
+umap_base + geom_point(aes(color = predicted.id), size = 1, alpha = 0.1) + 
+  guides(color = guide_legend(override.aes = list(alpha = 1, size = 3))) +
+  coord_fixed() +
+  theme_void() +
+  theme(axis.title.x = element_text(hjust = 0)) +
+  theme(axis.title.y = element_text(hjust = 0, angle = 90))
+
 ggsave("plots/combined_leaf_umap_celltype.pdf", family = "ArialMT")
+ggsave("plots/combined_leaf_umap_celltype.jpg", family = "ArialMT", dpi = 600)
 ```
 
 Here I break down the integrated embedding by individual study
