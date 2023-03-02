@@ -69,6 +69,7 @@ color_scheme <- tar_read(archived_clusterNames) %>%
 ggplot(arrange(cell_data, UMAP_1), aes(x = UMAP_1, y = UMAP_2)) + 
   geom_point(aes(color = ProtoScoreSquish), size = 0.5) + 
   scale_color_viridis_c(name = "Protoplast Signature Score", option = "plasma") +
+  coord_fixed() +
   labs(x = "UMAP 1", y = "UMAP 2") +
   theme_bw() +
   theme(axis.text = element_blank(),
