@@ -23,9 +23,10 @@ bulk_de_genes <- targets::tar_read(bulk_de_table) %>%
   filter(p_adj_treat < 0.01) %>% 
   pull(Locus)
 
-gene_panel <- read_csv("data/apriori_immune_and_susceptible.csv") %>% 
-  left_join(gene_ids) %>% 
-  filter(Locus %in% bulk_de_genes)
+unfiltered_gene_panel <- read_csv("data/apriori_immune_and_susceptible.csv") %>% 
+  left_join(gene_ids)
+
+gene_panel <- filter(unfiltered_gene_panel, Locus %in% bulk_de_genes)
 
 SCT_assay = GetAssay(sobj, assay = "SCT")
 
@@ -45,8 +46,21 @@ cell_data <- get_cell_data(sobj) %>%
     paste0(c("B","P","G","C"), 15:18)
   )))
 
-gene_counts <- GetAssayData(SCT_assay, slot = "counts")[gene_panel$Locus,] %>% as_tibble(rownames = "Locus") %>% pivot_longer(names_to = "Cell", values_to = "Counts", -Locus)
-gene_norm <- GetAssayData(SCT_assay, slot = "data")[gene_panel$Locus,] %>% as_tibble(rownames = "Locus") %>% pivot_longer(names_to = "Cell", values_to = "NormCounts", -Locus)
+unfiltered_gene_counts <- GetAssayData(SCT_assay, slot = "counts")[unfiltered_gene_panel$Locus,] %>% 
+  as_tibble(rownames = "Locus") %>% 
+  pivot_longer(names_to = "Cell", values_to = "Counts", -Locus)
+
+unfiltered_gene_norm <- GetAssayData(SCT_assay, slot = "data")[unfiltered_gene_panel$Locus,] %>% 
+  as_tibble(rownames = "Locus") %>% 
+  pivot_longer(names_to = "Cell", values_to = "NormCounts", -Locus)
+
+gene_counts <- GetAssayData(SCT_assay, slot = "counts")[gene_panel$Locus,] %>% 
+  as_tibble(rownames = "Locus") %>% 
+  pivot_longer(names_to = "Cell", values_to = "Counts", -Locus)
+
+gene_norm <- GetAssayData(SCT_assay, slot = "data")[gene_panel$Locus,] %>% 
+  as_tibble(rownames = "Locus") %>% 
+  pivot_longer(names_to = "Cell", values_to = "NormCounts", -Locus)
 
 gene_data <- left_join(gene_counts, gene_norm) %>%
     left_join(cell_data) %>%
@@ -127,6 +141,34 @@ ggplot(gene_data, aes(x = Cluster, y = Locus)) +
     theme(panel.grid = element_blank())
 
 ggsave("plots/selected_gene_dotplot_byclustersample.pdf", family = "ArialMT", width = 12, height = 12)
+
+```
+
+## Apriori genes (unfiltered), by cluster and treatment
+
+```{r}
+gene_data <- left_join(unfiltered_gene_counts, unfiltered_gene_norm) %>%
+    left_join(cell_data) %>%
+    group_by(Locus, Cluster, Sample_Name) %>%
+    summarize(
+        pce = mean(Counts > 0),
+        avgexpr = mean(expm1(NormCounts))) %>%
+    group_by(Locus) %>%
+    mutate(scaleexpr = scale(avgexpr, center = TRUE, scale = TRUE) %>% scales::squish(range = c(-2.5,2.5))) %>%
+    left_join(unfiltered_gene_panel) %>%
+    mutate(Category = factor(Category, levels = c("Immunity", "Susceptibility")))
+
+ggplot(gene_data, aes(x = Cluster, y = Locus)) + 
+    geom_point(aes(color = scaleexpr, size = pce)) +
+    scale_size_continuous(range = c(0,6)) + 
+    scale_y_discrete(labels = unfiltered_gene_panel %>% select(Locus, Gene) %>% deframe()) +
+    facet_grid(Category ~ Sample_Name , scales = 'free', space = 'free') +
+    scale_color_gradient(low = 'lightgray', high = 'red3') +
+    scale_radius(range = c(0, 6)) +
+    theme_minimal() +
+    theme(panel.grid = element_blank())
+
+ggsave("plots/selected_unfiltered_gene_dotplot_byclustersample.pdf", family = "ArialMT", width = 12, height = 12)
 
 ```
 
