@@ -189,7 +189,10 @@ susceptibility_genes <- gene_panel %>% filter(Category == "Susceptibility") %>% 
 sobj <- AddModuleScore(sobj, features = list(immunity_genes), name = "Immunity", assay = "SCT")
 sobj <- AddModuleScore(sobj, features = list(susceptibility_genes), name = "Susceptibility", assay = "SCT")
 sobj$Response_Score <- sobj$Susceptibility1 - sobj$Immunity1 
-FeaturePlot(sobj, "Response_Score") + scale_color_gradient2(low = 'blue', mid = 'white', high = 'red')
+FeaturePlot(sobj, "Response_Score") + 
+  scale_color_gradient2(low = 'blue', mid = 'white', high = 'red') + 
+  coord_fixed()
+
 ggsave("plots/response_score_umap.pdf", family = "ArialMT")
 ```
 
