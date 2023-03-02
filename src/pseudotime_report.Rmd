@@ -25,7 +25,7 @@ pt <- enframe(pseudotime(cds, reduction_method = 'UMAP'), "Cell", "Pseudotime")
 cell_data <- get_cell_data(sobj) %>%
   left_join(mumap) %>%
   left_join(pt) %>% 
-  mutate(Signature = (DC3000.Up1 - DC3000.Down1)) 
+  mutate(Signature = (DC3000.Up1 - DC3000.Down1))
 ```
 
 ## Plot monocle trajectory

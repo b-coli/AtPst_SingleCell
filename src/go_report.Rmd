@@ -137,6 +137,8 @@ map(
       ggtitle(desc) + 
       theme_bw() +
       theme(plot.title = element_text(hjust = 0.5))
+    
+    ggsave(paste0("plots/go_boxplot_", desc, ".pdf"))
   }
 )
 

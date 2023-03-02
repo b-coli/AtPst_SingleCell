@@ -207,7 +207,7 @@ pt &lt;- enframe(pseudotime(cds, reduction_method = &#39;UMAP&#39;), &quot;Cell&
 cell_data &lt;- get_cell_data(sobj) %&gt;%
   left_join(mumap) %&gt;%
   left_join(pt) %&gt;% 
-  mutate(Signature = (DC3000.Up1 - DC3000.Down1)) </code></pre>
+  mutate(Signature = (DC3000.Up1 - DC3000.Down1))</code></pre>
 <pre><code>## Joining, by = &quot;Cell&quot;
 ## Joining, by = &quot;Cell&quot;
 ## Joining, by = &quot;Cell&quot;
