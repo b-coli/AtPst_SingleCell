@@ -14,7 +14,6 @@ sobj <- tar_read(archived_sobj)
 ## Apriori genes by cell type
 
 ```{r}
-#gene_panel <- read_csv("data/dotplot_loci.csv", col_types = cols())
 gene_ids <- tar_read(gene_ids) %>% 
   group_by(Locus) %>% 
   summarize(Gene = Gene[1])
