@@ -1,0 +1,99 @@
+---
+title: "Mock Re-analysis"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Recluster mock-treated cells
+
+```{r}
+original_md <- targets::tar_read(archived_sobj) %>% .@meta.data
+mock_cells <- original_md %>% 
+  as_tibble(rownames = "Cell") %>% 
+  filter(Sample_Name == "Control") %>% 
+  pull(Cell)
+
+mock_md <- original_md[mock_cells,]
+mock_sobj <- targets::tar_read(sobj_Control) %>% AddMetaData(mock_md)
+
+cell_data <- get_cell_data(mock_sobj) %>% 
+  mutate(Cluster_Type = factor(Cluster_Type, levels = c(
+    "Other Mesophyll",
+    "Immunity Mesophyll",
+    "Transition Mesophyll",
+    "Susceptibility Mesophyll",
+    "Bundle Sheath",
+    "Companion",
+    "Vasculature",
+    "Guard"
+  ))) %>% 
+  mutate(Cluster = factor(Cluster, levels = c(
+    paste0("M", 1:14),
+    paste0(c("B","P","G","C"), 15:18)
+  )))
+
+color_scheme <- tar_read(archived_clusterNames) %>% 
+  select(Cluster, Color) %>% 
+  deframe()
+
+ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2)) + 
+  geom_point(aes(color = Cluster), size = 1) +
+  scale_color_manual(values = color_scheme) +
+  theme_bw() +
+  coord_fixed() +
+  theme(panel.grid = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggsave("plots/mock_reclustered.pdf", family = "ArialMT")
+```
+
+## Recluster DC3000-treated cells
+
+```{r}
+treated_cells <- original_md %>% 
+  as_tibble(rownames = "Cell") %>% 
+  filter(Sample_Name == "DC3000") %>% 
+  pull(Cell)
+
+treated_md <- original_md[treated_cells,]
+treated_sobj <- targets::tar_read(sobj_DC3000) %>% AddMetaData(treated_md)
+
+cell_data <- get_cell_data(treated_sobj) %>% 
+  mutate(Cluster_Type = factor(Cluster_Type, levels = c(
+    "Other Mesophyll",
+    "Immunity Mesophyll",
+    "Transition Mesophyll",
+    "Susceptibility Mesophyll",
+    "Bundle Sheath",
+    "Companion",
+    "Vasculature",
+    "Guard"
+  ))) %>% 
+  mutate(Cluster = factor(Cluster, levels = c(
+    paste0("M", 1:14),
+    paste0(c("B","P","G","C"), 15:18)
+  )))
+
+color_scheme <- tar_read(archived_clusterNames) %>% 
+  select(Cluster, Color) %>% 
+  deframe()
+
+ggplot(cell_data %>% arrange(UMAP_1), aes(x = UMAP_1, y = UMAP_2)) + 
+  geom_point(aes(color = Cluster), size = 1) +
+  scale_color_manual(values = color_scheme) +
+  theme_bw() +
+  coord_fixed() +
+  theme(panel.grid = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
+ggsave("plots/treated_reclustered.pdf", family = "ArialMT")
+
+```
+

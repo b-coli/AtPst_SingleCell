@@ -34,7 +34,7 @@ individual_objects <- list(
     tar_target(raw_sobj, loom_to_sobj(loom_file = loom_file, md_file = Cell_Metadata_File, sample_name = Sample_Name)),
     tar_target(sobj, process_sobj(sobj = raw_sobj, ref = leaf_ref, de_table = bulk_de_table))
   ),
-  tar_render(mock_reanalysis_report, path = "src/mock_reanalysis_report.Rmd", output_dir = "reports/")
+  tar_render(sample_reanalysis_report, path = "src/sample_reanalysis_report.Rmd", output_dir = "reports/")
 )
 
 integrated_objects <- list(
