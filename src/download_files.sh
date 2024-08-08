@@ -1,6 +1,6 @@
 #!/bin/bash
 
-startfile=20
+startfile=1
 
 ## Define Metadata indexes in file metadata csv
 sn_idx=$(awk -v RS=',' '/Sample_Name/{print NR; exit}' metadata/file_metadata.csv) ## Sample Name
@@ -62,30 +62,31 @@ while [ "$i" -lt "$len" ]; do
 	if [ "$db" == "Local" ]; then
 		if [ "$rd" == "1" ]; then
 			echo "$samplename"
-			#cp ${loc} ${sample_folder}/${r1}
+			cp ${loc} ${sample_folder}/${r1}
 		fi
 		if [ "$rd" == "2" ]; then
 			echo "$samplename"
-			#cp ${loc} ${sample_folder}/${r2}
+			cp ${loc} ${sample_folder}/${r2}
 		fi
 	fi
 
 	## If file is located in NCBI SRA, use fasterq-dump to download, then rename and move
 	if [ "$db" == "NCBI_SRA" ]; then
-		#singularity run docker://ncbi/sra-tools fasterq-dump -e 15 -S --include-technical $accession
+		singularity run docker://ncbi/sra-tools prefetch --max-size 150G $accession
+		singularity run docker://ncbi/sra-tools fasterq-dump -e 15 -S --include-technical ./$accession
 
 		if [ "$seqtype" == "PE" ]; then
-			echo "$samplename"
-			#pigz -p 15 ${accession}_${bar}.fastq 
-			#pigz -p 15 ${accession}_${gen}.fastq
-			#mv ${accession}_${bar}.fastq.gz ${sample_folder}/$r1
-			#mv ${accession}_${gen}.fastq.gz ${sample_folder}/$r2
+			echo "$samplename $bar $gen"
+			pigz -p 15 ${accession}_${bar}.fastq 
+			pigz -p 15 ${accession}_${gen}.fastq
+			mv ${accession}_${bar}.fastq.gz ${sample_folder}/$r1
+			mv ${accession}_${gen}.fastq.gz ${sample_folder}/$r2
 		fi
 
 		if [ "$seqtype" == "SE" ]; then
 			echo "$samplename"
-			#pigz -p 15 ${accession}_1.fastq
-			#mv ${accession}_1.fastq.gz ${sample_folder}/$r1
+			pigz -p 15 ${accession}.fastq
+			mv ${accession}.fastq.gz ${sample_folder}/$r1
 		fi
 	fi
 
@@ -108,8 +109,8 @@ done
 ## Download the Zhang data set
 
 ## Download the published Frommer dataset, to serve as a reference:
-mkdir -p data/expression/FrommerPublished/
+mkdir -p data/expression/KimPublished/
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_barcodes.tsv.gz -O data/expression/KimPublished/barcodes.tsv.gz
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_features.tsv.gz -O data/expression/KimPublished/features.tsv.gz
 wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE161nnn/GSE161332/suppl/GSE161332_matrix.mtx.gz -O data/expression/KimPublished/matrix.mtx.gz
-wget https://www.arabidopsis.org/download_files/Public_Data_Releases/TAIR_Data_20200930/gene_aliases_20200930.txt.gz -O data/gene_aliases_20200930.txt.gz
+wget https://www.arabidopsis.org/api/download-files/download?filePath=Public_Data_Releases/TAIR_Data_20200930/gene_aliases_20200930.txt.gz -O data/gene_aliases_20200930.txt.gz

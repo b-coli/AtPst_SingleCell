@@ -3,7 +3,7 @@
 ## Download Araport11 annotations and genome fasta from phytozome
 
 ## Set up folder
-mkdir genomes/compiled_references/at10
+mkdir -p genomes/compiled_references/at10
 
 ## Unzip phytozome files
 zcat genomes/Phytozome/PhytozomeV12/early_release/Athaliana_447_Araport11/assembly/Athaliana_447_TAIR10.fa.gz > genomes/compiled_references/at10/at10.fa

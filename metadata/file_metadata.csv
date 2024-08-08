@@ -20,8 +20,8 @@ ProckoLeaf1,NCBI_SRA,SRR15992287,NA,1,1,NA,PE,2,1
 ProckoLeaf2,NCBI_SRA,SRR15992288,NA,1,2,NA,PE,2,1
 ZhangLeaf1,NGDC,CRR151722,ftp://download.big.ac.cn/gsa/CRA002977/CRR151722/CRR151722_f1.fastq.gz,1,1,1,PE,2,1
 ZhangLeaf1,NGDC,CRR151722,ftp://download.big.ac.cn/gsa/CRA002977/CRR151722/CRR151722_r2.fastq.gz,1,1,2,PE,2,1
-Control,NCBI_SRA,SRR21622666,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/Control_S33_L004_R1_001.fastq.gz,33,4,NA,PE,NA,NA
-DC3000,NCBI_SRA,SRR21622665,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/DC3000_S32_L004_R1_001.fastq.gz,32,4,NA,PE,NA,NA
+Control,NCBI_SRA,SRR21622666,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/Control_S33_L004_R1_001.fastq.gz,33,4,NA,PE,2,1
+DC3000,NCBI_SRA,SRR21622665,data/coaker_dataset/pi8x7420yj/Un_DTDB217_PE150_new/Project_DCSL_10XSC0078/DC3000_S32_L004_R1_001.fastq.gz,32,4,NA,PE,2,1
 ControlBulk1,NCBI_SRA,SRR21621998,data/coaker_dataset/q42e7ni62v/Unaligned/Project_GCLL_L4_Tag0008P_Lei/LEAFMOCK01_UMI_S199_L004_R1_001.fastq.gz,1,1,NA,SE,NA,NA
 ControlBulk2,NCBI_SRA,SRR21621997,data/coaker_dataset/q42e7ni62v/Unaligned/Project_GCLL_L4_Tag0008P_Lei/LEAFMOCK02_UMI_S200_L004_R1_001.fastq.gz,1,1,NA,SE,NA,NA
 ControlBulk3,NCBI_SRA,SRR21621996,data/coaker_dataset/q42e7ni62v/Unaligned/Project_GCLL_L4_Tag0008P_Lei/LEAFMOCK03_UMI_S201_L004_R1_001.fastq.gz,1,1,NA,SE,NA,NA
